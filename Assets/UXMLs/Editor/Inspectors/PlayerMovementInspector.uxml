@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/USSs/Editor/Inspectors/PlayerMovementInspector.uss?fileID=7433441132597879392&amp;guid=f1379a83b5e8ffa45a31b93d466806de&amp;type=3#PlayerMovementInspector" />
+    <ui:VisualElement name="SliderContainer">
+        <ui:Slider picking-mode="Ignore" label="Player Speed" value="2" high-value="3" low-value="1" show-input-field="true" direction="Horizontal" binding-path="speed" focusable="false" name="Slider" />
+    </ui:VisualElement>
+    <ui:VisualElement name="LabelToogleContainer">
+        <ui:Label tabindex="-1" text="Possible Directions" parse-escape-sequences="true" display-tooltip-when-elided="true" tooltip="In which direction can the player go from the current position." />
+        <ui:VisualElement name="ToggleContainer" style="height: 45px;">
+            <ui:Toggle label="Up" name="Up" />
+            <ui:Toggle label="Left" name="Left" />
+            <ui:Toggle label="Down" name="Down" />
+            <ui:Toggle label="Right" name="Right" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

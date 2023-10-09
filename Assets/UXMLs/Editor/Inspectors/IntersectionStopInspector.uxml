@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/USSs/Editor/Inspectors/IntersectionStopInspector.uss?fileID=7433441132597879392&amp;guid=4a6350b0f03a26649adc99d6653c3634&amp;type=3#IntersectionStopInspector" />
+    <ui:VisualElement name="LabelToggleContainer">
+        <ui:Label tabindex="-1" text="Possible Turns" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+        <ui:VisualElement name="ToggleContainer" style="flex-grow: 1;">
+            <ui:Toggle label="Up" name="Up" />
+            <ui:Toggle label="Left" name="Left" />
+            <ui:Toggle label="Down" name="Down" />
+            <ui:Toggle label="Right" name="Right" value="false" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
