@@ -16,24 +16,8 @@ public class IntersectionStop : MonoBehaviour
      * (Starting from up going clockwise)
      */
     [SerializeField] private bool[] turnDirection = { false, false, false, false };
-    private bool[] stopDirection = { false, false, false, false};
     int directionIndex;
     Vector2 dist;
-
-    private void Awake()
-    {
-        /* The stop directions are set by seeing if the player can turn to the corresponding directions:
-         *     if it a turnable direction then it is not a stop direction
-         *     otherwise it is
-         *
-         * Stop direction
-         * means that if the player is going toward that direction and is close enough to the center of the intersection he will be stopped
-         */
-        for (int i = 0; i < turnDirection.Length; i++)
-        {
-            stopDirection[i] = !turnDirection[i];
-        }
-    }
 
     public void ApplyDuringCollision(PlayerMovement pm)
     {
@@ -41,7 +25,11 @@ public class IntersectionStop : MonoBehaviour
         if (directionIndex == -1) return; // If the player is not moving then there is no need to check the collision
         dist = pm.transform.position - transform.position;
         
-        if (stopDirection[directionIndex] && HasCollided())
+        /* The following piece of code checks if the player is moving toward a non turnable direction
+         * if he is than it also checks if the player is close enough to the wall
+         * if he is than it stops the player
+         */
+        if (!turnDirection[directionIndex] && HasCollided())
         {
             pm.Stop();
             pm.AdjustPosition();
