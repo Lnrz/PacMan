@@ -15,39 +15,59 @@ public class IntersectionStop : MonoBehaviour
      * -1 : not valid
      * (Starting from up going clockwise)
      */
-    [SerializeField] private bool[] turnDirection = { false, false, false, false };
-    int directionIndex;
-    Vector2 dist;
+    [SerializeField] private bool[] turnDirection = new bool[4];
+    private int directionIndex;
+    private Vector2 dist;
+    private GameObject go;
 
-    public void ApplyDuringCollision(PlayerMovement pm)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        directionIndex = pm.getDirectionIndex();
-        if (directionIndex == -1) return; // If the player is not moving then there is no need to check the collision
-        dist = pm.transform.position - transform.position;
+        go = collision.gameObject;
+        if (go.TryGetComponent<AbstractMovingEntity>(out AbstractMovingEntity movingEnt))
+        {
+            TriggerStay(movingEnt);
+            movingEnt.IntersectionStopEnter(transform.position, turnDirection);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        go = collision.gameObject;
+        if (go.TryGetComponent<AbstractMovingEntity>(out AbstractMovingEntity movingEnt))
+        {
+            TriggerStay(movingEnt);
+        }
+    }
+
+    private void TriggerStay(AbstractMovingEntity movingEnt)
+    {
+        directionIndex = movingEnt.GetDirectionIndex();
+        if (directionIndex == -1) return; // If the entity is not moving then there is no need to check the collision
+        dist = movingEnt.transform.position - transform.position;
         
-        /* The following piece of code checks if the player is moving toward a non turnable direction
-         * if he is than it also checks if the player is close enough to the wall
-         * if he is than it stops the player
+        /* The following piece of code checks if the entity is moving toward a non turnable direction
+         * if he is than it also checks if the entity is close enough to the wall
+         * if he is than it stops the entity
          */
         if (!turnDirection[directionIndex] && HasCollided())
         {
-            pm.Stop();
-            pm.AdjustPosition();
-            pm.LockDirection(directionIndex, true);
-            return; // Since the player has been stopped there is no need to check if he is going towards the intersection or not
+            movingEnt.Stop();
+            movingEnt.AdjustPosition();
+            movingEnt.LockDirection(directionIndex, true);
+            return; // Since the entity has been stopped there is no need to check if he is going towards the intersection or not
         }
-        /* If the player is going toward the intersection his legal directions will be updated by adding the turnable ones,
+        /* If the entity is going toward the intersection his legal directions will be updated by adding the turnable ones,
          * otherwise if he is going away from the intersection the directions corresponding to the opposite axis,
          * in respect of the one on which he is currently moving, will become illegal.
          */
         if (IsGoingToIntersection())
         {
-            UpdateLegalDir(pm);
+            UpdateLegalDir(movingEnt);
         }
         else
         {
-            pm.LockDirection((directionIndex + 1) % 4, true);
-            pm.LockDirection((directionIndex + 3) % 4, true);
+            movingEnt.LockDirection((directionIndex + 1) % 4, true);
+            movingEnt.LockDirection((directionIndex + 3) % 4, true);
         }
     }
 
@@ -56,13 +76,13 @@ public class IntersectionStop : MonoBehaviour
         return turnDirection[i];
     }
 
-    private void UpdateLegalDir(PlayerMovement pm)
+    private void UpdateLegalDir(AbstractMovingEntity movingEnt)
     {
         for (int i = 0; i < 4; i++)
         {
             if (turnDirection[i])
             {
-                pm.LockDirection(i, false);
+                movingEnt.LockDirection(i, false);
             }
         }
     }
