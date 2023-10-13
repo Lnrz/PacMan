@@ -10,7 +10,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
     private readonly float turnDist = 0.025f;
     private Vector3 direction = Vector3.zero;
 
-    private void Update()
+    protected void Update()
     {
         UpdateHelper();
         ChangeDirection();
@@ -31,6 +31,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
     {
         direction = Vector3.zero;
         directionIndex = -1;
+        AdjustPosition();
     }
 
     public void LockDirection(int directionIndex, bool lockMode)
@@ -38,7 +39,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         legalDir[directionIndex] = !lockMode;
     }
 
-    public void AdjustPosition()
+    private void AdjustPosition()
     {
         Vector3 pos;
 
@@ -48,7 +49,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         transform.position = pos;
     }
 
-    public abstract void IntersectionStopEnter(Vector3 interPos, bool[] interDir);
+    public abstract void IntersectionStopEnter(Vector3 interPos);
 
     protected abstract void UpdateHelper();
 

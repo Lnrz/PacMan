@@ -25,7 +25,7 @@ public class PlayerMovement : AbstractMovingEntity
      * Possible
      * means that the direction is not null and that the player is close enough to the intersection to turn
      */
-    protected override void UpdateHelper()
+    protected override sealed void UpdateHelper()
     {
         ChangeDirection(GetDirectionInput());
     }
@@ -54,25 +54,25 @@ public class PlayerMovement : AbstractMovingEntity
         return directionIndex;
     }
 
-    private bool LeftInput()
+    private bool UpInput()
     {
-        return Input.GetKeyDown(KeyCode.A);
-    }
-
-    private bool DownInput()
-    {
-        return Input.GetKeyDown(KeyCode.S);
+        return Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
     }
 
     private bool RightInput()
     {
-        return Input.GetKeyDown(KeyCode.D);
+        return Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
     }
 
-    private bool UpInput()
+    private bool DownInput()
     {
-        return Input.GetKeyDown(KeyCode.W);
+        return Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
     }
 
-    public override void IntersectionStopEnter(Vector3 interPos, bool[] interDir) {}
+    private bool LeftInput()
+    {
+        return Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
+    }
+
+    public override sealed void IntersectionStopEnter(Vector3 interPos) {}
 }
