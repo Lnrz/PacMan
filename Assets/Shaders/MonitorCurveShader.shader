@@ -3,6 +3,8 @@ Shader "PostProcessorShaders/MonitorCurveShader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Kx ("Horizontal Curvature Strength", Range(0.0001, 1.0)) = 0.2
+        _Ky ("Vertical Curvature Strength", Range(0.0001, 1.0)) = 0.15
     }
     SubShader
     {
@@ -16,11 +18,9 @@ Shader "PostProcessorShaders/MonitorCurveShader"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
-
-            static const float horizontalStrength = 1.8;
-            static const float horizontalRadius = sqrt(pow(horizontalStrength, 2) + 0.25);
-            static const float verticalStrength = 3.6;
-            static const float verticalRadius = sqrt(pow(verticalStrength, 2) + 0.25);
+            
+            float _Kx = 0.2;
+            float _Ky = 0.1;
 
             struct appdata
             {
@@ -46,33 +46,14 @@ Shader "PostProcessorShaders/MonitorCurveShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float3 center = float3(0.5, i.uv.y, horizontalStrength);
-                float3 p = float3(i.uv.x, i.uv.y, 0);
-                float3 diff = p - center;
-                float3 diffNorm = normalize(diff);
-                float remLen = horizontalRadius - length(diff);
-                float2 newUV = i.uv;
-                newUV.x = p.x + diffNorm.x * remLen;
+                float2 ru;
                 
-                center = float3(i.uv.x, 0.5, verticalStrength);
-                diff = p - center;
-                diffNorm = normalize(diff);
-                remLen = verticalRadius - length(diff);
-                newUV.y = p.y + diffNorm.y * remLen;
-    
-                /*
-                if (newUV.y <= 0.5)
-                {
-                    return float4(newUV.y, 0, 0, 1);
-                }
-                else
-                {
-                    return float4(1 - newUV.y, 0, 0, 1);
-                }
-                */
-    
-                fixed4 col = tex2D(_MainTex, newUV);
-                return col;
+                ru = i.uv - float2(0.5, 0.5);
+                ru = pow(length(ru), 2);
+                
+                i.uv.x = 0.5 + (i.uv.x - 0.5) / (2 * _Kx * ru) * (1 - sqrt(1 - 4 * _Kx * ru));
+                i.uv.y = 0.5 + (i.uv.y - 0.5) / (2 * _Ky * ru) * (1 - sqrt(1 - 4 * _Ky * ru));
+                return tex2D(_MainTex, i.uv);
             }
             ENDCG
         }
