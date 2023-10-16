@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChaseGhostState : TPGhostState
+public class ChaseGhostMovementState : TPGhostMovementState
 {
     protected override Vector2 GetTargetPoint()
     {

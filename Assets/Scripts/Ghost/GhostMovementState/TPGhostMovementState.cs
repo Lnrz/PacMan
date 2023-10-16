@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class TPGhostState : GhostState
+public abstract class TPGhostMovementState : GhostMovementState
 {
     public sealed override int GetTurningDirectionIndex(Vector2 interPos)
     {

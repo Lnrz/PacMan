@@ -6,14 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GhostStateSettings", menuName = "ScriptableObjects/GhostStateSettings", order = 1)]
 public class GhostStateSettings : ScriptableObject
 {
-    private Type[] states;
+    private GhostStateAbstractFactory[] states;
     private float[] durations;
 
     //Da renderlo settabile usando un menu custom
     private void OnValidate()
     {
-        durations = new float[3] { 7.0f, 20.0f, 5.0f };
-        states = new Type[4] { typeof(ScatterGhostState), typeof(ChaseGhostState), typeof(ScatterGhostState), typeof(ChaseGhostState) };
+        durations = new float[3] { 10.0f, 20.0f, 7.0f };
+        states = new GhostStateAbstractFactory[4] { new GhostStateScatterFactory(), new GhostStateChaseFactory(), new GhostStateScatterFactory(), new GhostStateChaseFactory() };
     }
 
     public int GetDurationsLenght()
@@ -26,7 +26,7 @@ public class GhostStateSettings : ScriptableObject
         return durations[index];
     }
 
-    public Type GetStateType(int index)
+    public GhostStateAbstractFactory GetStateFactory(int index)
     {
         return states[index];
     }

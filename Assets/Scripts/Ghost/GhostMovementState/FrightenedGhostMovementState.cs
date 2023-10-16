@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrightenedGhostState : GhostState
+public class FrightenedGhostMovementState : GhostMovementState
 {
     public override int GetTurningDirectionIndex(Vector2 interPos)
     {

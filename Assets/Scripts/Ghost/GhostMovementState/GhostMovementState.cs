@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class GhostState
+public abstract class GhostMovementState
 {
     protected GhostMovement context;
 

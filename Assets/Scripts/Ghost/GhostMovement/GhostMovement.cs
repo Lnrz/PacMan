@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 
-public abstract class GhostMovement : AbstractMovingEntity
+public abstract class GhostMovement : AbstractMovingEntity, GhostStateManagerObserver
 {
     [SerializeField] protected Transform pacman;
     [SerializeField] private Vector2 fixedTargetPoint;
-    private GhostState state;
+    private GhostMovementState state;
     private bool isWaitingToReverseDir;
     private int reverseDirIndex;
 
@@ -43,13 +43,6 @@ public abstract class GhostMovement : AbstractMovingEntity
         return fixedTargetPoint;
     }
 
-    public void ChangeState(GhostState state)
-    {
-        this.state?.BeforeChange();
-        this.state = state;
-        state.SetContext(this);
-    }
-
     public void ReverseDirection()
     {
         isWaitingToReverseDir = true;
@@ -64,5 +57,13 @@ public abstract class GhostMovement : AbstractMovingEntity
         dist.y = Mathf.Abs(transform.position.y - Mathf.Floor(transform.position.y) - 0.5f);
 
         return Mathf.Max(dist.x, dist.y) < 0.001f;
+    }
+
+    public void UpdateState(GhostStateAbstractFactory factory)
+    {
+        if (!enabled) enabled = true;
+        state?.BeforeChange();
+        state = factory.GetMovementState();
+        state.SetContext(this);
     }
 }
