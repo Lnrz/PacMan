@@ -1,15 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using System.Security.Cryptography;
 using UnityEngine;
 
-public abstract class GhostMovement : AbstractMovingEntity, GhostStateManagerObserver
+public abstract class GhostMovement : AbstractMovingEntity, GhostStateManagerObserver, GhostHouseDependedActivation
 {
     [SerializeField] protected Transform pacman;
     [SerializeField] private Vector2 fixedTargetPoint;
+    [SerializeField] private GhostHouseSettings settings;
     private GhostMovementState state;
     private bool isWaitingToReverseDir;
     private int reverseDirIndex;
+
+    private void OnEnable()
+    {
+        int directionIndex;
+
+        directionIndex = Random.Range(0, 4);
+        for (int i = 0; i < 4; i++)
+        {
+            if (settings.IsTurnableDir(directionIndex))
+            {
+                LockDirection(directionIndex, false);
+                ChangeDirection(directionIndex);
+                break;
+            }
+            directionIndex = (directionIndex + 1) % 4;
+        }
+    }
 
     protected override sealed void UpdateHelper()
     {
@@ -61,9 +80,13 @@ public abstract class GhostMovement : AbstractMovingEntity, GhostStateManagerObs
 
     public void UpdateState(GhostStateAbstractFactory factory)
     {
-        if (!enabled) enabled = true;
         state?.BeforeChange();
         state = factory.GetMovementState();
         state.SetContext(this);
+    }
+
+    public void Activate()
+    {
+        enabled = true;
     }
 }

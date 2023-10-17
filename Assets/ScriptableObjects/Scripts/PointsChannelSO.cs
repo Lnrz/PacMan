@@ -5,8 +5,8 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "FruitChannelSO", menuName = "ScriptableObjects/Channels/FruitChannel", order = 1)]
-public class FruitChannelSO : ScriptableObject
+[CreateAssetMenu(fileName = "PointsChannelSO", menuName = "ScriptableObjects/Channels/PointsChannel", order = 1)]
+public class PointsChannelSO : ScriptableObject
 {
     private UnityEvent<int> listenersEvent;
 

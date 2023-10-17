@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractFruit : MonoBehaviour
+public abstract class AbstractPickable : MonoBehaviour
 {
     [SerializeField] private int points = 5;
-    [SerializeField] private FruitChannelSO fruitChannel;
+    [SerializeField] private PointsChannelSO pointsChannel;
     private float sqrdEatRange = 0.0625f;
 
     protected void OnTriggerStay2D(Collider2D collision)
@@ -24,7 +24,7 @@ public abstract class AbstractFruit : MonoBehaviour
             sqrdDist = (myPos - playerPos).sqrMagnitude;
             if (sqrdDist <= sqrdEatRange)
             {
-                fruitChannel.Raise(points);
+                pointsChannel.Raise(points);
                 OnPlayerDetection();
                 gameObject.SetActive(false);
             }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PointManager : MonoBehaviour
 {
-    [SerializeField] private FruitChannelSO fruitChannel;
+    [SerializeField] private PointsChannelSO pointsChannel;
     private int points = 0;
 
     private void Awake()
     {
-        fruitChannel.AddListener(points => IncreasePoints(points));
+        pointsChannel.AddListener(IncreasePoints);
     }
 
     private void IncreasePoints(int points)

@@ -1,11 +1,9 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class GhostStateManager : MonoBehaviour
+public class GhostStateManager : MonoBehaviour, GhostHouseDependedActivation
 {
     [SerializeField] private GhostStateSettings settings;
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
@@ -88,5 +86,10 @@ public class GhostStateManager : MonoBehaviour
         StartCoroutine(statesCoroutine);
 
         Debug.Log("DISABLED: FRIGHTENED");
+    }
+
+    public void Activate()
+    {
+        enabled = true;
     }
 }
