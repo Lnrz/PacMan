@@ -1,28 +1,31 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Transactions;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class GhostHouse : MonoBehaviour
+public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEventInvoker
 {
     [SerializeField] private ExitHouseChannelSO exitHouseChannel;
     [SerializeField] private GhostHouseSettings settings;
     [SerializeField] private int priority = 0;
     [SerializeField] private int startPos = -1;
     [SerializeField] private bool isAlreadyOut = false;
-    private List<GhostHouseDependedActivation> ghostHouseDAScripts = new List<GhostHouseDependedActivation>();
+    private UnityEvent outsideHomeEvent = new UnityEvent();
+    private UnityEvent enteringHomeEvent = new UnityEvent();
     private IEnumerator exitHouseCorout;
+    private IEnumerator enterHouseCorout;
     private Vector2 ghostHouseCenter;
     private Vector2 ghostHouseExit;
     private Vector2 ghostPositionInHouse;
-
+    private bool isGoingHome = false;
 
     private void Awake()
     {
-        GetComponents<GhostHouseDependedActivation>(ghostHouseDAScripts);
         ghostHouseCenter = settings.GetGhostHouseCenter();
         ghostHouseExit = settings.GetExitPosition();
+        if (TryGetComponent<EatenEventInvoker>(out EatenEventInvoker eatenEventInvoker))
+        {
+            eatenEventInvoker.OnEaten(OnEaten);
+        }
         if (!isAlreadyOut)
         {
             exitHouseChannel.AddListener(WakeUp);
@@ -36,8 +39,31 @@ public class GhostHouse : MonoBehaviour
         }
         else
         {
+            startPos = -1;
             transform.position = ghostHouseExit;
+            FireOutsideHomeEvent();
         }
+    }
+
+    private void Update()
+    {
+        if (isGoingHome && IsCloseToHomeExit())
+        {
+            isGoingHome = false;
+            enterHouseCorout = EnterHouse();
+            FireEnteringHomeEvent();
+            StartCoroutine(enterHouseCorout);
+        }
+    }
+
+    private bool IsCloseToHomeExit()
+    {
+        return ((Vector2)transform.position - ghostHouseExit).sqrMagnitude < 0.025f;
+    }
+
+    private void OnEaten()
+    {
+        isGoingHome = true;
     }
 
     private void WakeUp(int priority)
@@ -72,10 +98,7 @@ public class GhostHouse : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
-        foreach (GhostHouseDependedActivation script in ghostHouseDAScripts)
-        {
-            script.Activate();
-        }
+        FireOutsideHomeEvent();
     }
 
     private IEnumerator EnterHouse()
@@ -102,5 +125,27 @@ public class GhostHouse : MonoBehaviour
                 yield return null;
             }
         }
+        exitHouseCorout = ExitHouse();
+        StartCoroutine(exitHouseCorout);
+    }
+
+    public void OnOutsideHome(UnityAction listener)
+    {
+        outsideHomeEvent.AddListener(listener);
+    }
+
+    private void FireOutsideHomeEvent()
+    {
+        outsideHomeEvent.Invoke();
+    }
+
+    public void OnEnteringHome(UnityAction listener)
+    {
+        enteringHomeEvent.AddListener(listener);
+    }
+
+    private void FireEnteringHomeEvent()
+    {
+        enteringHomeEvent.Invoke();
     }
 }

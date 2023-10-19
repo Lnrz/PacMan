@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class AkabeiMovement : GhostMovement
 {
+    protected override void AwakeHelper() {}
+
     public override Vector2 GetTargetPoint()
     {
         return pacman.position;

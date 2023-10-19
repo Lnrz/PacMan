@@ -6,7 +6,7 @@ public class PinkyMovement : GhostMovement
 {
     private AbstractMovingEntity pacmanME;
     
-    private void Awake()
+    protected override void AwakeHelper()
     {
         pacmanME = pacman.GetComponent<AbstractMovingEntity>();
     }

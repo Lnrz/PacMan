@@ -6,7 +6,7 @@ public class GhostCounterManager : MonoBehaviour
 {
     [SerializeField] private DotChannelSO dotChannel;
     [SerializeField] private ExitHouseChannelSO exitHouseChannel;
-    [SerializeField] private int[] waitTimes = { 0, 30, 60};
+    [SerializeField] private int[] waitTimes = { 0, 5, 60};
     private int priority = 0;
 
     private void Awake()

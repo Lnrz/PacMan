@@ -4,5 +4,12 @@ using UnityEngine;
 
 public abstract class GhostContactState
 {
-    public abstract void OnContactWithPlayer(GameObject ghost, GameObject player);
+    protected ContactWithPlayer context;
+
+    public void SetContext(ContactWithPlayer context)
+    {
+        this.context = context;
+    }
+
+    public abstract void OnContactWithPlayer(GameObject player);
 }

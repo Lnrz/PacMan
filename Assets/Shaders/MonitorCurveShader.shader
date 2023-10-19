@@ -3,8 +3,8 @@ Shader "PostProcessorShaders/MonitorCurveShader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _Kx ("Horizontal Curvature Strength", Range(0.0001, 1.0)) = 0.2
-        _Ky ("Vertical Curvature Strength", Range(0.0001, 1.0)) = 0.15
+        _Kx ("Horizontal Curvature Strength", Range(0.001, 3.0)) = 0.1
+        _Ky ("Vertical Curvature Strength", Range(0.001, 3.0)) = 0.05
     }
     SubShader
     {

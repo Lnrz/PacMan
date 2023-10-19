@@ -3,45 +3,81 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostStateManager : MonoBehaviour, GhostHouseDependedActivation
+public class GhostStateManager : MonoBehaviour
 {
     [SerializeField] private GhostStateSettings settings;
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
     private List<GhostStateManagerObserver> observers = new List<GhostStateManagerObserver>();
-    private float time = 0.0f;
     private float frightenedDuration = 6.0f;
     private IEnumerator statesCoroutine;
     private IEnumerator waitFrightenedCoroutine;
     private int durationsLength;
-    private int progress;
+    private int progress = 0;
+    private bool isFrightened = false;
+    private bool isInOrGoingHome = true;
 
     private void Awake()
     {
         GetComponents<GhostStateManagerObserver>(observers);
         statesCoroutine = SetStates();
         durationsLength = settings.GetDurationsLenght();
-        waitFrightenedCoroutine = WaitFrightenedState();
         powerPelletChannel.AddListener(EnableFrightenedState);
+        if (TryGetComponent<OutsideHomeEventInvoker>(out OutsideHomeEventInvoker outsideHomeEventInvoker))
+        {
+            outsideHomeEventInvoker.OnOutsideHome(OnOutsideHome);
+        }
+        if (TryGetComponent<EatenEventInvoker>(out EatenEventInvoker eatenEventInvoker))
+        {
+            eatenEventInvoker.OnEaten(OnEaten);
+        }
+        if (TryGetComponent<EnteringHomeEventInvoker>(out EnteringHomeEventInvoker enteringHomeEventInvoker))
+        {
+            enteringHomeEventInvoker.OnEnteringHome(OnEnteringHome);
+        }
     }
 
-    private void OnEnable()
+    private void OnOutsideHome()
     {
-        StartCoroutine(statesCoroutine);
+        isInOrGoingHome = false;
+        if (!isFrightened)
+        {
+            NotifyObservers(progress);
+            StartCoroutine(statesCoroutine);
+        }
+        else
+        {
+            NotifyObservers(new GhostStateFrightenedFactory());
+        }
+    }
+
+    private void OnEaten()
+    {
+        isInOrGoingHome = true;
+        isFrightened = false;
+        StopCoroutine(waitFrightenedCoroutine);
+        NotifyObservers(new GhostStateGoHomeFactory());
+    }
+
+    private void OnEnteringHome()
+    {
+        NotifyObservers(new GhostStateDefaultFactory());
     }
 
     private IEnumerator SetStates()
     {
-        for (progress = 0; progress < durationsLength; progress++)
+        float time;
+        
+        while (progress < durationsLength)
         {
-            NotifyObservers(progress);
+            time = 0.0f;
             while (time < settings.GetDuration(progress))
             {
                 time += Time.deltaTime;
                 yield return null;
             }
-            time = 0.0f;
+            progress++;
+            NotifyObservers(progress);
         }
-        NotifyObservers(progress);
     }
 
     private void NotifyObservers(int index)
@@ -62,8 +98,12 @@ public class GhostStateManager : MonoBehaviour, GhostHouseDependedActivation
 
     private void EnableFrightenedState()
     {
+        isFrightened = true;
         StopCoroutine(statesCoroutine);
-        NotifyObservers(new GhostStateFrightenedFactory());
+        if (!isInOrGoingHome)
+        {
+            NotifyObservers(new GhostStateFrightenedFactory());
+        }
         if (waitFrightenedCoroutine is not null)
         {
             StopCoroutine(waitFrightenedCoroutine);
@@ -82,14 +122,13 @@ public class GhostStateManager : MonoBehaviour, GhostHouseDependedActivation
 
     private void DisableFrightenedState()
     {
-        NotifyObservers(progress);
-        StartCoroutine(statesCoroutine);
+        isFrightened = false;
+        if (!isInOrGoingHome)
+        {
+            NotifyObservers(progress);
+            StartCoroutine(statesCoroutine);
+        }
 
         Debug.Log("DISABLED: FRIGHTENED");
-    }
-
-    public void Activate()
-    {
-        enabled = true;
     }
 }

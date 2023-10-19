@@ -7,7 +7,7 @@ public class AosukeMovement : GhostMovement
     [SerializeField] private Transform akabei;
     private AbstractMovingEntity pacmanME;
 
-    private void Awake()
+    protected override void AwakeHelper()
     {
         pacmanME = pacman.GetComponent<AbstractMovingEntity>();
     }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FrightenedGhostContactState : GhostContactState
 {
-    public override void OnContactWithPlayer(GameObject ghost, GameObject player)
+    public override void OnContactWithPlayer(GameObject player)
     {
-        ghost.SetActive(false);
+        context.FireOnEatenEvent();
     }
 }

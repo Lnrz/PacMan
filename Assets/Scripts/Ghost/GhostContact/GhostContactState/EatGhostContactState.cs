@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EatGhostContactState : GhostContactState
 {
-    public override void OnContactWithPlayer(GameObject ghost, GameObject player)
+    public override void OnContactWithPlayer(GameObject player)
     {
         player.SetActive(false);
     }

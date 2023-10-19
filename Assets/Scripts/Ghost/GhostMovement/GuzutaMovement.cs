@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GuzutaMovement : GhostMovement
 {
+    protected override void AwakeHelper() {}
+
     public override Vector2 GetTargetPoint()
     {
         Vector2 pacmanPos;

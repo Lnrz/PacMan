@@ -2,32 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Security.Cryptography;
+using System.Xml;
 using UnityEngine;
 
-public abstract class GhostMovement : AbstractMovingEntity, GhostStateManagerObserver, GhostHouseDependedActivation
+public abstract class GhostMovement : AbstractMovingEntity, GhostStateManagerObserver
 {
     [SerializeField] protected Transform pacman;
     [SerializeField] private Vector2 fixedTargetPoint;
     [SerializeField] private GhostHouseSettings settings;
-    private GhostMovementState state;
-    private bool isWaitingToReverseDir;
-    private int reverseDirIndex;
+    private GhostMovementState state = new StillGhostMovementState();
+    private bool isWaitingToReverseDir = false;
+    private int reverseDirIndex = -1;
 
-    private void OnEnable()
+    protected void Awake()
     {
-        int directionIndex;
-
-        directionIndex = Random.Range(0, 4);
+        state.SetContext(this);
         for (int i = 0; i < 4; i++)
         {
-            if (settings.IsTurnableDir(directionIndex))
-            {
-                LockDirection(directionIndex, false);
-                ChangeDirection(directionIndex);
-                break;
-            }
-            directionIndex = (directionIndex + 1) % 4;
+            LockDirection(i, !settings.IsTurnableDir(i));
         }
+        AwakeHelper();
+    }
+
+    protected abstract void AwakeHelper();
+
+    public Vector2 GetGhostHouseExitPosition()
+    {
+        return settings.GetExitPosition();
     }
 
     protected override sealed void UpdateHelper()
@@ -62,6 +63,19 @@ public abstract class GhostMovement : AbstractMovingEntity, GhostStateManagerObs
         return fixedTargetPoint;
     }
 
+    public void TakeRandomInitialDirection()
+    {
+        int directionIndex;
+
+        directionIndex = Random.Range(0, 4);
+        for (int i = 0; i < 4; i++)
+        {
+            if (GetIsLegalDir(directionIndex)) break;
+            directionIndex = (directionIndex + 1) % 4;
+        }
+        ChangeDirection(directionIndex);
+    }
+
     public void ReverseDirection()
     {
         isWaitingToReverseDir = true;
@@ -80,13 +94,8 @@ public abstract class GhostMovement : AbstractMovingEntity, GhostStateManagerObs
 
     public void UpdateState(GhostStateAbstractFactory factory)
     {
-        state?.BeforeChange();
+        state.BeforeChange();
         state = factory.GetMovementState();
         state.SetContext(this);
-    }
-
-    public void Activate()
-    {
-        enabled = true;
     }
 }

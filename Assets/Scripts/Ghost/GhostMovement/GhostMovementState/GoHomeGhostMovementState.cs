@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChaseGhostMovementState : TPGhostMovementState
+public class GoHomeGhostMovementState : TPGhostMovementState
 {
     public override void BeforeChange()
     {
-        context.ReverseDirection();
+        context.Stop();
     }
 
     protected override Vector2 GetTargetPoint()
     {
-        return context.GetTargetPoint();
+        return context.GetGhostHouseExitPosition();
     }
 }

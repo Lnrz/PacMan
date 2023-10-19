@@ -40,9 +40,4 @@ public abstract class TPGhostMovementState : GhostMovementState
         if (dist[newDirectionIndex] == float.MaxValue) return (context.GetDirectionIndex() + 2) %  4;
         return newDirectionIndex;
     }
-
-    public override void BeforeChange()
-    {
-        context.ReverseDirection();
-    }
 }

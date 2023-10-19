@@ -898,7 +898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
   exitHouseChannel: {fileID: 11400000, guid: 889f156366d524844af0a914bb583dce, type: 2}
-  waitTimes: 000000001e0000003c000000
+  waitTimes: 00000000050000003c000000
 --- !u!1 &241879303
 GameObject:
   m_ObjectHideFlags: 0
@@ -6424,10 +6424,10 @@ GameObject:
   - component: {fileID: 1786660124}
   - component: {fileID: 1786660123}
   - component: {fileID: 1786660127}
+  - component: {fileID: 1786660130}
   - component: {fileID: 1786660129}
   - component: {fileID: 1786660128}
   - component: {fileID: 1786660131}
-  - component: {fileID: 1786660130}
   m_Layer: 0
   m_Name: Akabei
   m_TagString: Untagged
@@ -6585,7 +6585,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786660122}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 903a1f7763a60614895e62c5892ffe28, type: 3}
   m_Name: 
@@ -6602,7 +6602,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786660122}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2fc07ec1c7431441a9ca33c0d15c2a5, type: 3}
   m_Name: 
@@ -6798,10 +6798,10 @@ GameObject:
   - component: {fileID: 1804420032}
   - component: {fileID: 1804420031}
   - component: {fileID: 1804420030}
+  - component: {fileID: 1804420033}
   - component: {fileID: 1804420029}
   - component: {fileID: 1804420028}
   - component: {fileID: 1804420034}
-  - component: {fileID: 1804420033}
   m_Layer: 0
   m_Name: Aosuke
   m_TagString: Untagged
@@ -6845,7 +6845,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804420026}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4e2b8b514b540041b8a11ee3b25a757, type: 3}
   m_Name: 
@@ -6977,7 +6977,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804420026}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2fc07ec1c7431441a9ca33c0d15c2a5, type: 3}
   m_Name: 
