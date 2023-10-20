@@ -3764,6 +3764,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1057298693}
+  - component: {fileID: 1057298694}
   m_Layer: 0
   m_Name: FruitManager
   m_TagString: Untagged
@@ -3818,6 +3819,22 @@ Transform:
   - {fileID: 78995886}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1057298694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057298692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699edbea51bcd954ba18118f573facaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitDots: 0a00000014000000
+  specialFruitPrefab: {fileID: 1450296846960988864, guid: 901fb63ffd4940b42ac9a4dd62b5167d, type: 3}
+  spawnPos: {x: -3.5, y: -1.5, z: 0}
+  dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &1073667010
 GameObject:
   m_ObjectHideFlags: 0
@@ -5137,7 +5154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ac22fbcff757048be2ca181501f609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  legalDir: 01000100
+  legalDir: 01010100
   speed: 3
 --- !u!58 &1406563540
 CircleCollider2D:
@@ -5235,7 +5252,7 @@ Transform:
   m_GameObject: {fileID: 1406563537}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 1, z: 0}
+  m_LocalPosition: {x: -1.5, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
