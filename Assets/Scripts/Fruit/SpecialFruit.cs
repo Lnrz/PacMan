@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpecialFruit : AbstractPickable
 {
-    [SerializeField] private float secondsBeforeDestroy = 1.0f;
+    [SerializeField] private float secondsBeforeDestroy = 10.0f;
 
     private void Awake()
     {

@@ -6,15 +6,6 @@ using UnityEngine;
 
 public class IntersectionStop : MonoBehaviour
 {
-    /* Directions have been indexed this way:
-     * 
-     * 0 : up
-     * 1 : right
-     * 2 : down
-     * 3 : left
-     * -1 : not valid
-     * (Starting from up going clockwise)
-     */
     [SerializeField] private bool[] turnDirection = new bool[4];
     private int directionIndex;
     private Vector2 dist;

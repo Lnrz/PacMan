@@ -73,7 +73,7 @@ public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
             while (time < settings.GetDuration(progress))
             {
                 time += Time.deltaTime;
-                yield return null;
+                yield return new WaitForEndOfFrame();
             }
             progress++;
             FireChangeStateEvent(progress);

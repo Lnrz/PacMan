@@ -17,6 +17,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
     private Vector2 ghostHouseExit;
     private Vector2 ghostPositionInHouse;
     private bool isGoingHome = false;
+    private float maxDistFromHouseExit = 0.001f;
 
     private void Awake()
     {
@@ -58,7 +59,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
 
     private bool IsCloseToHomeExit()
     {
-        return ((Vector2)transform.position - ghostHouseExit).sqrMagnitude < 0.025f;
+        return ((Vector2)transform.position - ghostHouseExit).sqrMagnitude <= maxDistFromHouseExit;
     }
 
     private void OnEaten()
@@ -87,7 +88,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
                 newPos = Vector2.Lerp(ghostPositionInHouse, ghostHouseCenter, time * 2.0f);
                 transform.position = newPos;
                 time += Time.deltaTime;
-                yield return null;
+                yield return new WaitForEndOfFrame();
             }
         }
         time = 0;
@@ -96,8 +97,9 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
             newPos = Vector2.Lerp(ghostHouseCenter, ghostHouseExit, time);
             transform.position = newPos;
             time += Time.deltaTime;
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
+        transform.position = ghostHouseExit;
         FireOutsideHomeEvent();
     }
 
@@ -112,7 +114,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
             newPos = Vector2.Lerp(ghostHouseExit, ghostHouseCenter, time);
             transform.position = newPos;
             time += Time.deltaTime;
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
         time = 0;
         if (startPos != -1)
@@ -122,7 +124,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
                 newPos = Vector2.Lerp(ghostHouseCenter, ghostPositionInHouse, time * 2.0f);
                 transform.position = newPos;
                 time += Time.deltaTime;
-                yield return null;
+                yield return new WaitForEndOfFrame();
             }
         }
         exitHouseCorout = ExitHouse();
