@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class GhostStateManager : MonoBehaviour
+public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
 {
     [SerializeField] private GhostStateSettings settings;
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
-    private List<GhostStateManagerObserver> observers = new List<GhostStateManagerObserver>();
+    private UnityEvent<GhostStateAbstractFactory> onChangeStateEvent = new UnityEvent<GhostStateAbstractFactory>();
     private float frightenedDuration = 6.0f;
     private IEnumerator statesCoroutine;
     private IEnumerator waitFrightenedCoroutine;
@@ -18,7 +19,6 @@ public class GhostStateManager : MonoBehaviour
 
     private void Awake()
     {
-        GetComponents<GhostStateManagerObserver>(observers);
         statesCoroutine = SetStates();
         durationsLength = settings.GetDurationsLenght();
         powerPelletChannel.AddListener(EnableFrightenedState);
@@ -41,12 +41,12 @@ public class GhostStateManager : MonoBehaviour
         isInOrGoingHome = false;
         if (!isFrightened)
         {
-            NotifyObservers(progress);
+            FireChangeStateEvent(progress);
             StartCoroutine(statesCoroutine);
         }
         else
         {
-            NotifyObservers(new GhostStateFrightenedFactory());
+            FireChangeStateEvent(new GhostStateFrightenedFactory());
         }
     }
 
@@ -55,12 +55,12 @@ public class GhostStateManager : MonoBehaviour
         isInOrGoingHome = true;
         isFrightened = false;
         StopCoroutine(waitFrightenedCoroutine);
-        NotifyObservers(new GhostStateGoHomeFactory());
+        FireChangeStateEvent(new GhostStateGoHomeFactory());
     }
 
     private void OnEnteringHome()
     {
-        NotifyObservers(new GhostStateDefaultFactory());
+        FireChangeStateEvent(new GhostStateDefaultFactory());
     }
 
     private IEnumerator SetStates()
@@ -76,24 +76,21 @@ public class GhostStateManager : MonoBehaviour
                 yield return null;
             }
             progress++;
-            NotifyObservers(progress);
+            FireChangeStateEvent(progress);
         }
     }
 
-    private void NotifyObservers(int index)
+    private void FireChangeStateEvent(int index)
     {
         GhostStateAbstractFactory factory;
 
         factory = settings.GetStateFactory(index);
-        NotifyObservers(factory);
+        FireChangeStateEvent(factory);
     }
 
-    private void NotifyObservers(GhostStateAbstractFactory factory)
+    private void FireChangeStateEvent(GhostStateAbstractFactory factory)
     {
-        foreach (GhostStateManagerObserver observer in observers)
-        {
-            observer.UpdateState(factory);
-        }
+        onChangeStateEvent.Invoke(factory);
     }
 
     private void EnableFrightenedState()
@@ -102,7 +99,7 @@ public class GhostStateManager : MonoBehaviour
         StopCoroutine(statesCoroutine);
         if (!isInOrGoingHome)
         {
-            NotifyObservers(new GhostStateFrightenedFactory());
+            FireChangeStateEvent(new GhostStateFrightenedFactory());
         }
         if (waitFrightenedCoroutine is not null)
         {
@@ -125,10 +122,15 @@ public class GhostStateManager : MonoBehaviour
         isFrightened = false;
         if (!isInOrGoingHome)
         {
-            NotifyObservers(progress);
+            FireChangeStateEvent(progress);
             StartCoroutine(statesCoroutine);
         }
 
         Debug.Log("DISABLED: FRIGHTENED");
+    }
+
+    public void OnChangeState(UnityAction<GhostStateAbstractFactory> listener)
+    {
+        onChangeStateEvent.AddListener(listener);
     }
 }

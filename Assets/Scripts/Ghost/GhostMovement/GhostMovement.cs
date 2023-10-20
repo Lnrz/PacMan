@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Xml;
 using UnityEngine;
 
-public abstract class GhostMovement : AbstractMovingEntity, GhostStateManagerObserver
+public abstract class GhostMovement : AbstractMovingEntity
 {
     [SerializeField] protected Transform pacman;
     [SerializeField] private Vector2 fixedTargetPoint;
@@ -20,6 +20,10 @@ public abstract class GhostMovement : AbstractMovingEntity, GhostStateManagerObs
         for (int i = 0; i < 4; i++)
         {
             LockDirection(i, !settings.IsTurnableDir(i));
+        }
+        if (TryGetComponent<ChangeStateEventInvoker>(out ChangeStateEventInvoker changeStateEventInvoker))
+        {
+            changeStateEventInvoker.OnChangeState(UpdateState);
         }
         AwakeHelper();
     }
@@ -92,7 +96,7 @@ public abstract class GhostMovement : AbstractMovingEntity, GhostStateManagerObs
         return Mathf.Max(dist.x, dist.y) < 0.001f;
     }
 
-    public void UpdateState(GhostStateAbstractFactory factory)
+    private void UpdateState(GhostStateAbstractFactory factory)
     {
         state.BeforeChange();
         state = factory.GetMovementState();

@@ -4,10 +4,18 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ContactWithPlayer : MonoBehaviour, GhostStateManagerObserver, EatenEventInvoker
+public class ContactWithPlayer : MonoBehaviour, EatenEventInvoker
 {
     private GhostContactState contactState = new IgnoreGhostContactState();
     private UnityEvent onEatenEvent = new UnityEvent();
+
+    private void Awake()
+    {
+        if (TryGetComponent<ChangeStateEventInvoker>(out ChangeStateEventInvoker changeStateEventInvoker))
+        {
+            changeStateEventInvoker.OnChangeState(UpdateState);
+        }
+    }
 
     public void OnEaten(UnityAction listener)
     {
@@ -19,7 +27,7 @@ public class ContactWithPlayer : MonoBehaviour, GhostStateManagerObserver, Eaten
         onEatenEvent.Invoke();
     }
 
-    public void UpdateState(GhostStateAbstractFactory factory)
+    private void UpdateState(GhostStateAbstractFactory factory)
     {
         contactState = factory.GetContactState();
         contactState.SetContext(this);
