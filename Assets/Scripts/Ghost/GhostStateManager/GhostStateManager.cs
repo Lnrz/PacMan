@@ -9,7 +9,7 @@ public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
     [SerializeField] private GhostStateSettings settings;
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
     private UnityEvent<GhostStateAbstractFactory> onChangeStateEvent = new UnityEvent<GhostStateAbstractFactory>();
-    private float frightenedDuration = 6.0f;
+    private float frightenedDuration = 60.0f;
     private IEnumerator statesCoroutine;
     private IEnumerator waitFrightenedCoroutine;
     private int durationsLength;

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class ContactWithPlayer : MonoBehaviour, EatenEventInvoker
 {
+    [SerializeField] private GhostEatenChannelSO ghostEatenChannel;
     private GhostContactState contactState = new IgnoreGhostContactState();
     private UnityEvent onEatenEvent = new UnityEvent();
 
@@ -25,6 +26,7 @@ public class ContactWithPlayer : MonoBehaviour, EatenEventInvoker
     public void FireOnEatenEvent()
     {
         onEatenEvent.Invoke();
+        ghostEatenChannel.Invoke();
     }
 
     private void UpdateState(GhostStateAbstractFactory factory)
