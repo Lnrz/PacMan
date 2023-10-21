@@ -20,5 +20,13 @@ public class FrightenedGhostMovementState : GhostMovementState
         return (context.GetDirectionIndex() + 2) % 4;
     }
 
-    public override void BeforeChange() {}
+    public override void BeforeChange()
+    {
+        context.ChangeToNormalSpeedMod();
+    }
+
+    public override void AfterChange()
+    {
+        context.ChangeToFrightenedSpeedMod();
+    }
 }

@@ -6,7 +6,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CustomEditor(typeof(PlayerMovement))]
+//[CustomEditor(typeof(PlayerMovement))]
 public class PlayerMovementEditor : Editor
 {
     public VisualTreeAsset inspectorUXML;

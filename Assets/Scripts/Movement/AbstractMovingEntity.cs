@@ -4,11 +4,12 @@ using UnityEngine;
 public abstract class AbstractMovingEntity : MonoBehaviour
 {
     [SerializeField] private bool[] legalDir = new bool[4];
-    [SerializeField] private float speed = 2;
-    private int directionIndex = -1;
-    private int nextDirectionIndex = -1;
+    private readonly float speed = 4.0f;
+    private float speedMod = 1.0f;
     private readonly float turnDist = 0.025f;
+    private int directionIndex = -1;
     private Vector3 direction = Vector3.zero;
+    private int nextDirectionIndex = -1;
 
     protected void Update()
     {
@@ -62,6 +63,11 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         }
     }
 
+    protected void ChangeSpeedMod(float speedMod)
+    {
+        this.speedMod = speedMod;
+    }
+
     private void ChangeDirection()
     {
         if (IsNextDirectionTurnable())
@@ -76,7 +82,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
 
     private void Move()
     {
-        transform.position += speed * Time.deltaTime * direction;
+        transform.position += speed * speedMod * Time.deltaTime * direction;
     }
 
     private bool IsDirectionValid(int otherDirectionIndex)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dot : AbstractPickable
+public class Dot : AbstractEatable
 {
     [SerializeField] private DotChannelSO dotChannel;
 

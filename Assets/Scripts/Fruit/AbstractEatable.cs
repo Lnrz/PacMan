@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractPickable : MonoBehaviour
+public abstract class AbstractEatable : MonoBehaviour
 {
     [SerializeField] private int points = 5;
     [SerializeField] private PointsChannelSO pointsChannel;
+    [SerializeField] private float eatingTime = 0.017f;
+    [SerializeField] private float eatingSpeedReduction = 0.2f;
     private float sqrdEatRange = 0.0625f;
 
     protected void OnTriggerStay2D(Collider2D collision)
@@ -25,6 +27,7 @@ public abstract class AbstractPickable : MonoBehaviour
             if (sqrdDist <= sqrdEatRange)
             {
                 pointsChannel.Raise(points);
+                pm.OnEating(eatingTime, eatingSpeedReduction);
                 OnPlayerDetection();
                 gameObject.SetActive(false);
             }

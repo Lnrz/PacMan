@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SpecialFruit : AbstractPickable
+public class SpecialFruit : AbstractEatable
 {
     [SerializeField] private float secondsBeforeDestroy = 10.0f;
 

@@ -12,4 +12,6 @@ public abstract class GhostMovementState
     public abstract int GetTurningDirectionIndex(Vector2 interPos);
 
     public abstract void BeforeChange();
+
+    public abstract void AfterChange();
 }

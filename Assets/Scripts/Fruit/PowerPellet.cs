@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerPellet : AbstractPickable
+public class PowerPellet : AbstractEatable
 {
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
 

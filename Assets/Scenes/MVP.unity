@@ -258,6 +258,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &14125995
 GameObject:
@@ -394,6 +396,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &78995885
 GameObject:
@@ -530,6 +534,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 50
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
 --- !u!1 &104362469
 GameObject:
@@ -666,6 +672,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &159836904
 GameObject:
@@ -802,6 +810,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &201360127
 GameObject:
@@ -899,7 +909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
   exitHouseChannel: {fileID: 11400000, guid: 889f156366d524844af0a914bb583dce, type: 2}
-  waitTimes: 00000000050000003c000000
+  waitTimes: 000000001e0000003c000000
 --- !u!1 &241879303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,7 +1105,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1417584186}
+  - {fileID: 1589930773}
   - {fileID: 374808431}
+  - {fileID: 661331922}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &295983824
@@ -1398,6 +1410,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &365651058
 GameObject:
@@ -1626,7 +1640,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1778,6 +1792,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!58 &436789560
 CircleCollider2D:
@@ -2001,6 +2017,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &477090223
 GameObject:
@@ -2205,7 +2223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1774e80970710d4f81f1ae3286c9743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vSyncCount: 0
+  vSyncCount: 1
   frameRate: 60
 --- !u!1 &548231516
 GameObject:
@@ -2342,7 +2360,99 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
+--- !u!1 &661331921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 661331922}
+  - component: {fileID: 661331924}
+  - component: {fileID: 661331923}
+  m_Layer: 0
+  m_Name: TunnelSlowAreaDown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &661331922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661331921}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.5, y: -6, z: -0.12549825}
+  m_LocalScale: {x: 1, y: 3, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 289906086}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &661331923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661331921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1512ccebc3d1c064bafef3790dececb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &661331924
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661331921}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &741321462
 GameObject:
   m_ObjectHideFlags: 0
@@ -2646,6 +2756,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &767636995
 GameObject:
@@ -2779,6 +2891,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!58 &781738364
 CircleCollider2D:
@@ -3251,6 +3365,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &970513793
 GameObject:
@@ -3300,6 +3416,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!58 &970513796
 CircleCollider2D:
@@ -3769,6 +3887,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &1057298692
 GameObject:
@@ -3780,6 +3900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1057298693}
   - component: {fileID: 1057298694}
+  - component: {fileID: 1057298695}
   m_Layer: 0
   m_Name: FruitManager
   m_TagString: Untagged
@@ -3850,6 +3971,21 @@ MonoBehaviour:
   specialFruitPrefab: {fileID: 1450296846960988864, guid: 901fb63ffd4940b42ac9a4dd62b5167d, type: 3}
   spawnPos: {x: -3.5, y: -1.5, z: 0}
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
+--- !u!114 &1057298695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057298692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3643909954d5f074fa69baa3530c29fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
+  powerUpEndChannel: {fileID: 11400000, guid: 6401d40b1491801439628922f80c7364, type: 2}
+  powerUpDuration: 20
 --- !u!1 &1073667010
 GameObject:
   m_ObjectHideFlags: 0
@@ -3985,6 +4121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &1085265195
 GameObject:
@@ -4175,6 +4313,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &1089411580
 GameObject:
@@ -4311,6 +4451,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &1127003109
 GameObject:
@@ -4447,6 +4589,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &1141188567
 GameObject:
@@ -4916,6 +5060,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &1327937182
 GameObject:
@@ -5052,6 +5198,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &1331581340
 GameObject:
@@ -5149,6 +5297,7 @@ GameObject:
   - component: {fileID: 1406563541}
   - component: {fileID: 1406563540}
   - component: {fileID: 1406563543}
+  - component: {fileID: 1406563544}
   - component: {fileID: 1406563538}
   m_Layer: 0
   m_Name: Player
@@ -5170,7 +5319,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   legalDir: 01010100
-  speed: 3
+  normalSpeedMod: 0.8
+  poweredSpeedMod: 0.9
+  powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
+  powerUpEndChannel: {fileID: 11400000, guid: 6401d40b1491801439628922f80c7364, type: 2}
 --- !u!58 &1406563540
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5300,6 +5452,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1406563544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406563537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf3c5df404b74a4cbda8d3d5572bd4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1417584185
 GameObject:
   m_ObjectHideFlags: 0
@@ -5362,7 +5526,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -5595,6 +5759,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!58 &1503030408
 CircleCollider2D:
@@ -6031,6 +6197,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &1585659819
 GameObject:
@@ -6167,7 +6335,99 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
+--- !u!1 &1589930772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1589930773}
+  - component: {fileID: 1589930775}
+  - component: {fileID: 1589930774}
+  m_Layer: 0
+  m_Name: TunnelSlowAreaUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1589930773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589930772}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.5, y: 7, z: -0.12549825}
+  m_LocalScale: {x: 1, y: 3, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 289906086}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1589930774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589930772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1512ccebc3d1c064bafef3790dececb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1589930775
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589930772}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1611301225
 GameObject:
   m_ObjectHideFlags: 0
@@ -6384,6 +6644,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &1675105199
 GameObject:
@@ -6520,6 +6782,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &1699005218
 GameObject:
@@ -6569,6 +6833,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!58 &1699005221
 CircleCollider2D:
@@ -7318,6 +7584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 04f369dc556643b45abca76e739df65d, type: 2}
   powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
+  powerUpEndChannel: {fileID: 11400000, guid: 6401d40b1491801439628922f80c7364, type: 2}
 --- !u!114 &1786660129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7331,10 +7598,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   legalDir: 01010000
-  speed: 3
   pacman: {fileID: 1406563542}
   fixedTargetPoint: {x: -10, y: -10}
   settings: {fileID: 11400000, guid: 61097e7b4db9bdb4c870f84483a33399, type: 2}
+  normalSpeedMod: 0.75
+  frightenedSpeedMod: 0.75
+  tunnelSpeedMod: 0.4
+  goHomeSpeedMod: 1.5
 --- !u!114 &1786660130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7579,6 +7849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 04f369dc556643b45abca76e739df65d, type: 2}
   powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
+  powerUpEndChannel: {fileID: 11400000, guid: 6401d40b1491801439628922f80c7364, type: 2}
 --- !u!114 &1804420029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7592,10 +7863,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   legalDir: 00000101
-  speed: 3
   pacman: {fileID: 1406563542}
   fixedTargetPoint: {x: 10, y: 10}
   settings: {fileID: 11400000, guid: 61097e7b4db9bdb4c870f84483a33399, type: 2}
+  normalSpeedMod: 0.75
+  frightenedSpeedMod: 0.75
+  tunnelSpeedMod: 0.4
+  goHomeSpeedMod: 1.5
   akabei: {fileID: 1786660125}
 --- !u!50 &1804420030
 Rigidbody2D:
@@ -7789,6 +8063,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!58 &1814027052
 CircleCollider2D:
@@ -8012,6 +8288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &1850021812
 GameObject:
@@ -8148,6 +8426,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &2003858376
 GameObject:
@@ -8281,6 +8561,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!58 &2012665118
 CircleCollider2D:
@@ -8504,6 +8786,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &2074790348
 GameObject:
@@ -8724,6 +9008,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  eatingTime: 0.017
+  eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
 --- !u!1 &2116692083
 GameObject:

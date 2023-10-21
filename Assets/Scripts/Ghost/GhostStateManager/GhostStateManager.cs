@@ -8,10 +8,9 @@ public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
 {
     [SerializeField] private GhostStateSettings settings;
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
+    [SerializeField] private PowerUpEndChannelSO powerUpEndChannel;
     private UnityEvent<GhostStateAbstractFactory> onChangeStateEvent = new UnityEvent<GhostStateAbstractFactory>();
-    private float frightenedDuration = 60.0f;
     private IEnumerator statesCoroutine;
-    private IEnumerator waitFrightenedCoroutine;
     private int durationsLength;
     private int progress = 0;
     private bool isFrightened = false;
@@ -22,6 +21,7 @@ public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
         statesCoroutine = SetStates();
         durationsLength = settings.GetDurationsLenght();
         powerPelletChannel.AddListener(EnableFrightenedState);
+        powerUpEndChannel.AddListener(DisableFrightenedState);
         if (TryGetComponent<OutsideHomeEventInvoker>(out OutsideHomeEventInvoker outsideHomeEventInvoker))
         {
             outsideHomeEventInvoker.OnOutsideHome(OnOutsideHome);
@@ -54,7 +54,6 @@ public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
     {
         isInOrGoingHome = true;
         isFrightened = false;
-        StopCoroutine(waitFrightenedCoroutine);
         FireChangeStateEvent(new GhostStateGoHomeFactory());
     }
 
@@ -101,32 +100,23 @@ public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
         {
             FireChangeStateEvent(new GhostStateFrightenedFactory());
         }
-        if (waitFrightenedCoroutine is not null)
-        {
-            StopCoroutine(waitFrightenedCoroutine);
-        }
-        waitFrightenedCoroutine = WaitFrightenedState();
-        StartCoroutine(waitFrightenedCoroutine);
 
         Debug.Log("ACTIVATED: FRIGHTENED");
     }
 
-    private IEnumerator WaitFrightenedState()
-    {
-        yield return new WaitForSeconds(frightenedDuration);
-        DisableFrightenedState();
-    }
-
     private void DisableFrightenedState()
     {
-        isFrightened = false;
-        if (!isInOrGoingHome)
+        if (isFrightened)
         {
-            FireChangeStateEvent(progress);
-            StartCoroutine(statesCoroutine);
-        }
+            isFrightened = false;
+            if (!isInOrGoingHome)
+            {
+                FireChangeStateEvent(progress);
+                StartCoroutine(statesCoroutine);
+            }
 
-        Debug.Log("DISABLED: FRIGHTENED");
+            Debug.Log("DISABLED: FRIGHTENED");
+        }
     }
 
     public void OnChangeState(UnityAction<GhostStateAbstractFactory> listener)

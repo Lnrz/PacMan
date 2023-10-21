@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fruit : AbstractPickable
+public class Fruit : AbstractEatable
 {
     protected override void OnPlayerDetection() {}
 }

@@ -9,6 +9,8 @@ public class ScatterGhostMovementState : TPGhostMovementState
         context.ReverseDirection();
     }
 
+    public override void AfterChange() {}
+
     protected override Vector2 GetTargetPoint()
     {
         return context.GetFixedTargetPoint();

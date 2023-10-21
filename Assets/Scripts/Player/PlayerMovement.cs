@@ -1,55 +1,61 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : AbstractMovingEntity
 {
-    protected override sealed void UpdateHelper()
-    {
-        ChangeDirection(GetDirectionInput());
-    }
+    [SerializeField] private float normalSpeedMod = 0.8f;
+    [SerializeField] private float poweredSpeedMod = 0.9f;
+    [SerializeField] private PowerPelletChannelSO powerPelletChannel;
+    [SerializeField] private PowerUpEndChannelSO powerUpEndChannel;
+    private float currentSpeedMod;
+    private bool isEating = false;
 
-    private int GetDirectionInput()
+    private void Awake()
     {
-        int directionIndex = -1;
-
-        if (UpInput())
+        powerPelletChannel.AddListener(ChangeSpeedModToPowered);
+        powerUpEndChannel.AddListener(ChangeSpeedModToNormal);
+        ChangeSpeedModToNormal();
+        if (TryGetComponent<PlayerInputEventInvoker>(out PlayerInputEventInvoker playerInputEventInvoker))
         {
-            directionIndex = 0;
+            playerInputEventInvoker.OnPlayerInputEvent(ChangeDirection);
         }
-        else if (RightInput())
+    }
+
+    private void ChangeSpeedModToPowered()
+    {
+        currentSpeedMod = poweredSpeedMod;
+    }
+
+    private void ChangeSpeedModToNormal()
+    {
+        currentSpeedMod = normalSpeedMod;
+        if (!isEating)
         {
-            directionIndex = 1;
+            ChangeSpeedMod(currentSpeedMod);
         }
-        else if (DownInput())
-        {
-            directionIndex = 2;
-        }
-        else if (LeftInput())
-        {
-            directionIndex = 3;
-        }
-
-        return directionIndex;
     }
 
-    private bool UpInput()
+    public void OnEating(float eatingTime, float eatingSpeedReduction)
     {
-        return Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
+        IEnumerator onEatingCorout;
+
+        onEatingCorout = OnEatingCoroutine(eatingTime, eatingSpeedReduction);
+        StartCoroutine(onEatingCorout);
     }
 
-    private bool RightInput()
+    private IEnumerator OnEatingCoroutine(float eatingTime, float eatingSpeedReduction)
     {
-        return Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
+        float speedMod;
+
+        isEating = true;
+        speedMod = Mathf.Max(0, currentSpeedMod - eatingSpeedReduction);
+        ChangeSpeedMod(speedMod);
+        yield return new WaitForSeconds(eatingTime);
+        ChangeSpeedMod(currentSpeedMod);
+        isEating = false;
     }
 
-    private bool DownInput()
-    {
-        return Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
-    }
+    public override sealed void IntersectionStopEnter(Vector3 interPos) {} 
 
-    private bool LeftInput()
-    {
-        return Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
-    }
-
-    public override sealed void IntersectionStopEnter(Vector3 interPos) {}
+    protected override void UpdateHelper() {}
 }

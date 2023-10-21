@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net;
-using System.Security.Cryptography;
-using System.Xml;
 using UnityEngine;
 
 public abstract class GhostMovement : AbstractMovingEntity
@@ -10,6 +5,11 @@ public abstract class GhostMovement : AbstractMovingEntity
     [SerializeField] protected Transform pacman;
     [SerializeField] private Vector2 fixedTargetPoint;
     [SerializeField] private GhostHouseSettings settings;
+    [SerializeField] private float normalSpeedMod = 0.75f;
+    [SerializeField] private float frightenedSpeedMod = 0.5f;
+    [SerializeField] private float tunnelSpeedMod = 0.4f;
+    [SerializeField] private float goHomeSpeedMod = 1.5f;
+    private float currentSpeedMod;
     private GhostMovementState state = new StillGhostMovementState();
     private bool isWaitingToReverseDir = false;
     private int reverseDirIndex = -1;
@@ -21,6 +21,7 @@ public abstract class GhostMovement : AbstractMovingEntity
         {
             LockDirection(i, !settings.IsTurnableDir(i));
         }
+        ChangeToNormalSpeedMod();
         if (TryGetComponent<ChangeStateEventInvoker>(out ChangeStateEventInvoker changeStateEventInvoker))
         {
             changeStateEventInvoker.OnChangeState(UpdateState);
@@ -101,5 +102,34 @@ public abstract class GhostMovement : AbstractMovingEntity
         state.BeforeChange();
         state = factory.GetMovementState();
         state.SetContext(this);
+        state.AfterChange();
+    }
+
+    public void ChangeToNormalSpeedMod()
+    {
+        ChangeSpeedMod(normalSpeedMod);
+        currentSpeedMod = normalSpeedMod;
+    }
+
+    public void ChangeToFrightenedSpeedMod()
+    {
+        ChangeSpeedMod(frightenedSpeedMod);
+        currentSpeedMod = frightenedSpeedMod;
+    }
+
+    public void ChangeToGoHomeSpeedMod()
+    {
+        ChangeSpeedMod(goHomeSpeedMod);
+        currentSpeedMod = goHomeSpeedMod;
+    }
+
+    public void ChangeToTunnelSpeedMod()
+    {
+        ChangeSpeedMod(tunnelSpeedMod);
+    }
+
+    public void RestoreSpeedMod()
+    {
+        ChangeSpeedMod(currentSpeedMod);
     }
 }
