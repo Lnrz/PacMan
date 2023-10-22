@@ -9,7 +9,10 @@ public class StillGhostMovementState : GhostMovementState
         context.TakeRandomInitialDirection();
     }
 
-    public override void AfterChange() {}
+    public override void AfterChange()
+    {
+        context.Stop();
+    }
 
     public override int GetTurningDirectionIndex(Vector2 interPos)
     {

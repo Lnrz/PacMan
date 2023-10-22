@@ -6,15 +6,17 @@ public class GhostCounterManager : MonoBehaviour
 {
     [SerializeField] private DotChannelSO dotChannel;
     [SerializeField] private ExitHouseChannelSO exitHouseChannel;
+    [SerializeField] private GameStartChannelSO gameStartChannel;
     [SerializeField] private int[] waitTimes = { 0, 5, 60};
     private int priority = 0;
 
     private void Awake()
     {
         dotChannel.AddListener(DecreaseWait);
+        gameStartChannel.AddListener(OnGameStart);
     }
 
-    private void Start()
+    private void OnGameStart()
     {
         if (waitTimes[priority] == 0)
         {
@@ -24,10 +26,13 @@ public class GhostCounterManager : MonoBehaviour
 
     private void DecreaseWait()
     {
-        waitTimes[priority]--;
-        if (waitTimes[priority] == 0)
+        if (priority < 3)
         {
-            WakeUpGhost();
+            waitTimes[priority]--;
+            if (waitTimes[priority] == 0)
+            {
+                WakeUpGhost();
+            }
         }
     }
 
@@ -35,11 +40,7 @@ public class GhostCounterManager : MonoBehaviour
     {
         exitHouseChannel.Invoke(priority);
         priority++;
-        if (priority > 2)
-        {
-            dotChannel.RemoveListener(DecreaseWait);
-        }
-        else if (waitTimes[priority] == 0)
+        if (priority < 3 && waitTimes[priority] == 0)
         {
             WakeUpGhost();
         }

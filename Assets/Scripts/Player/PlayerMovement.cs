@@ -3,21 +3,39 @@ using UnityEngine;
 
 public class PlayerMovement : AbstractMovingEntity
 {
+    [SerializeField] private Vector2 starPos;
     [SerializeField] private float normalSpeedMod = 0.8f;
     [SerializeField] private float poweredSpeedMod = 0.9f;
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
     [SerializeField] private PowerUpEndChannelSO powerUpEndChannel;
+    [SerializeField] private GameStartChannelSO gameStartChannel;
     private float currentSpeedMod;
     private bool isEating = false;
+    private bool isGameStarted = false;
 
     private void Awake()
     {
+        transform.position = starPos;
         powerPelletChannel.AddListener(ChangeSpeedModToPowered);
         powerUpEndChannel.AddListener(ChangeSpeedModToNormal);
+        gameStartChannel.AddListener(OnGameStart);
         ChangeSpeedModToNormal();
         if (TryGetComponent<PlayerInputEventInvoker>(out PlayerInputEventInvoker playerInputEventInvoker))
         {
-            playerInputEventInvoker.OnPlayerInputEvent(ChangeDirection);
+            playerInputEventInvoker.OnPlayerInputEvent(OnPlayerInput);
+        }
+    }
+
+    private void OnGameStart()
+    {
+        isGameStarted = true;
+    }
+
+    private void OnPlayerInput(int inputDirectionIndex)
+    {
+        if (isGameStarted)
+        {
+            ChangeDirection(inputDirectionIndex);
         }
     }
 

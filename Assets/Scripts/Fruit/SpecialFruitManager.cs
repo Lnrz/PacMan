@@ -17,17 +17,16 @@ public class SpecialFruitManager : MonoBehaviour
 
     private void DecreaseCounter()
     {
-        for (int i = progress; i < waitDots.Length; i++)
+        if (progress < waitDots.Length)
         {
-            waitDots[i]--;
-        }
-        if (waitDots[progress] == 0)
-        {
-            Instantiate(specialFruitPrefab, spawnPos, Quaternion.identity);
-            progress++;
-            if (progress == waitDots.Length)
+            for (int i = progress; i < waitDots.Length; i++)
             {
-                dotChannel.RemoveListener(DecreaseCounter);
+                waitDots[i]--;
+            }
+            if (waitDots[progress] == 0)
+            {
+                Instantiate(specialFruitPrefab, spawnPos, Quaternion.identity);
+                progress++;
             }
         }
     }

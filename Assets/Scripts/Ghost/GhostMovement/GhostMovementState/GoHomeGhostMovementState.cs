@@ -6,7 +6,6 @@ public class GoHomeGhostMovementState : TPGhostMovementState
 {
     public override void BeforeChange()
     {
-        context.Stop();
         context.ChangeToNormalSpeedMod();
     }
 
