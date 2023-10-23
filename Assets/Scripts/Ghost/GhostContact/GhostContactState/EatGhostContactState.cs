@@ -6,6 +6,9 @@ public class EatGhostContactState : GhostContactState
 {
     public override void OnContactWithPlayer(GameObject player)
     {
-        player.SetActive(false);
+        if (player.TryGetComponent<PlayerLifeManager>(out PlayerLifeManager plm))
+        {
+            plm.DecreaseLivesLeft();
+        }
     }
 }

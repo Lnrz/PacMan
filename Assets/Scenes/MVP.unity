@@ -4862,7 +4862,9 @@ MonoBehaviour:
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
   exitHouseChannel: {fileID: 11400000, guid: 889f156366d524844af0a914bb583dce, type: 2}
   gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
-  waitTimes: 000000001e0000003c000000
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
+  localCounter: 00000000050000003c000000
+  globalCounter: 00000000050000000f000000
 --- !u!114 &1177933876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4938,6 +4940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
 --- !u!1 &1302863211
 GameObject:
   m_ObjectHideFlags: 0
@@ -5393,6 +5396,7 @@ GameObject:
   - component: {fileID: 1406563543}
   - component: {fileID: 1406563544}
   - component: {fileID: 1406563538}
+  - component: {fileID: 1406563545}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5412,8 +5416,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ac22fbcff757048be2ca181501f609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  legalDir: 01010100
-  starPos: {x: -1.5, y: 2.5}
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
+  startDirections: 01010100
+  startPos: {x: -1.5, y: 2.5}
   normalSpeedMod: 0.8
   poweredSpeedMod: 0.9
   powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
@@ -5560,6 +5565,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecf3c5df404b74a4cbda8d3d5572bd4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1406563545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406563537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe9e455ac288f343887ec4d7d0fec19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livesLeft: 2
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
 --- !u!1 &1417584185
 GameObject:
   m_ObjectHideFlags: 0
@@ -7633,6 +7652,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 04f369dc556643b45abca76e739df65d, type: 2}
   powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
   powerUpEndChannel: {fileID: 11400000, guid: 6401d40b1491801439628922f80c7364, type: 2}
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
 --- !u!114 &1786660129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7645,7 +7665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903a1f7763a60614895e62c5892ffe28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  legalDir: 01010000
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   pacman: {fileID: 1406563542}
   fixedTargetPoint: {x: -10, y: -10}
   settings: {fileID: 11400000, guid: 61097e7b4db9bdb4c870f84483a33399, type: 2}
@@ -7666,6 +7686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostEatenChannel: {fileID: 11400000, guid: 89a389330caa60045ae8ce5dd2dbdaa8, type: 2}
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
 --- !u!114 &1786660131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7681,6 +7702,7 @@ MonoBehaviour:
   exitHouseChannel: {fileID: 11400000, guid: 889f156366d524844af0a914bb583dce, type: 2}
   settings: {fileID: 11400000, guid: 61097e7b4db9bdb4c870f84483a33399, type: 2}
   gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   priority: 0
   startPos: -1
   isAlreadyOut: 1
@@ -7899,6 +7921,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 04f369dc556643b45abca76e739df65d, type: 2}
   powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
   powerUpEndChannel: {fileID: 11400000, guid: 6401d40b1491801439628922f80c7364, type: 2}
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
 --- !u!114 &1804420029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7911,7 +7934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e2b8b514b540041b8a11ee3b25a757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  legalDir: 00000101
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   pacman: {fileID: 1406563542}
   fixedTargetPoint: {x: 10, y: 10}
   settings: {fileID: 11400000, guid: 61097e7b4db9bdb4c870f84483a33399, type: 2}
@@ -8047,6 +8070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostEatenChannel: {fileID: 11400000, guid: 89a389330caa60045ae8ce5dd2dbdaa8, type: 2}
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
 --- !u!114 &1804420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8062,6 +8086,7 @@ MonoBehaviour:
   exitHouseChannel: {fileID: 11400000, guid: 889f156366d524844af0a914bb583dce, type: 2}
   settings: {fileID: 11400000, guid: 61097e7b4db9bdb4c870f84483a33399, type: 2}
   gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   priority: 1
   startPos: 1
   isAlreadyOut: 0

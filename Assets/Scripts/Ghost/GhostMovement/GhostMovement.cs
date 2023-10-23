@@ -10,26 +10,35 @@ public abstract class GhostMovement : AbstractMovingEntity
     [SerializeField] private float tunnelSpeedMod = 0.4f;
     [SerializeField] private float goHomeSpeedMod = 1.5f;
     private float currentSpeedMod;
-    private GhostMovementState state = new StillGhostMovementState();
+    private GhostMovementState state;
     private bool isWaitingToReverseDir = false;
     private int reverseDirIndex = -1;
 
-    protected void Awake()
+    protected override sealed void AwakeHelper()
     {
-        state.SetContext(this);
+        ResetState();
         for (int i = 0; i < 4; i++)
         {
             LockDirection(i, !settings.IsTurnableDir(i));
         }
         ChangeToNormalSpeedMod();
+        gameRestartChannel.AddListener(OnGameRestart);
         if (TryGetComponent<ChangeStateEventInvoker>(out ChangeStateEventInvoker changeStateEventInvoker))
         {
             changeStateEventInvoker.OnChangeState(UpdateState);
         }
-        AwakeHelper();
     }
 
-    protected abstract void AwakeHelper();
+    private void OnGameRestart()
+    {
+        ResetState();
+        CancelReverseDirection();
+        ChangeToNormalSpeedMod();
+        for (int i = 0; i < 4; i++)
+        {
+            LockDirection(i, !settings.IsTurnableDir(i));
+        }
+    }
 
     public Vector2 GetGhostHouseExitPosition()
     {
@@ -41,8 +50,7 @@ public abstract class GhostMovement : AbstractMovingEntity
         if (isWaitingToReverseDir && IsCloseToTileCenter())
         {
             ChangeDirection(reverseDirIndex);
-            isWaitingToReverseDir = false;
-            reverseDirIndex = -1;
+            CancelReverseDirection();
         }
     }
 
@@ -87,6 +95,12 @@ public abstract class GhostMovement : AbstractMovingEntity
         reverseDirIndex = (GetDirectionIndex() + 2) % 4;
     }
 
+    public void CancelReverseDirection()
+    {
+        isWaitingToReverseDir = false;
+        reverseDirIndex = -1;
+    }
+
     private bool IsCloseToTileCenter()
     {
         Vector2 dist;
@@ -95,6 +109,12 @@ public abstract class GhostMovement : AbstractMovingEntity
         dist.y = Mathf.Abs(transform.position.y - Mathf.Floor(transform.position.y) - 0.5f);
 
         return Mathf.Max(dist.x, dist.y) < 0.001f;
+    }
+
+    private void ResetState()
+    {
+        state = new StillGhostMovementState();
+        state.SetContext(this);
     }
 
     private void UpdateState(GhostStateAbstractFactory factory)

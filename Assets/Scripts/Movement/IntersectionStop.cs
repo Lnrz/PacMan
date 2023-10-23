@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class IntersectionStop : MonoBehaviour
@@ -21,22 +17,20 @@ public class IntersectionStop : MonoBehaviour
         }
     }
 
+    private void UpdateLegalDir(AbstractMovingEntity movingEnt)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            movingEnt.LockDirection(i, !turnDirection[i]);
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         go = collision.gameObject;
         if (go.TryGetComponent<AbstractMovingEntity>(out AbstractMovingEntity movingEnt))
         {
             CheckForCollision(movingEnt);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        go = collision.gameObject;
-        if (go.TryGetComponent<AbstractMovingEntity>(out AbstractMovingEntity movingEnt))
-        {
-            movingEnt.LockDirection((directionIndex + 1) % 4, true);
-            movingEnt.LockDirection((directionIndex + 3) % 4, true);
         }
     }
     
@@ -52,19 +46,6 @@ public class IntersectionStop : MonoBehaviour
         }
     }
 
-    public bool CanTurn(int directionIndex)
-    {
-        return turnDirection[directionIndex];
-    }
-
-    private void UpdateLegalDir(AbstractMovingEntity movingEnt)
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            movingEnt.LockDirection(i, !turnDirection[i]);
-        }
-    }
-
     private bool HasCollided()
     {
         return
@@ -72,5 +53,26 @@ public class IntersectionStop : MonoBehaviour
             (directionIndex == 1 && dist.x >= 0) ||
             (directionIndex == 2 && dist.y <= 0) ||
             (directionIndex == 3 && dist.x <= 0);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        go = collision.gameObject;
+        if (go.TryGetComponent<AbstractMovingEntity>(out AbstractMovingEntity movingEnt) &&  IsNotTooDistant(go))
+        {
+            movingEnt.LockDirection((directionIndex + 1) % 4, true);
+            movingEnt.LockDirection((directionIndex + 3) % 4, true);
+        }
+    }
+
+    private bool IsNotTooDistant(GameObject other)
+    {
+        dist = other.transform.position - transform.position;
+        return dist.sqrMagnitude <= 1.0f;
+    }
+
+    public bool CanTurn(int directionIndex)
+    {
+        return turnDirection[directionIndex];
     }
 }

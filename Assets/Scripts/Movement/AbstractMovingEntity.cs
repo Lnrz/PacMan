@@ -3,13 +3,28 @@ using UnityEngine;
 
 public abstract class AbstractMovingEntity : MonoBehaviour
 {
-    [SerializeField] private bool[] legalDir = new bool[4];
+    [SerializeField] protected GameRestartChannelSO gameRestartChannel;
+    private bool[] legalDir = new bool[4];
     private readonly float speed = 4.0f;
     private float speedMod = 1.0f;
     private readonly float turnDist = 0.025f;
     private int directionIndex = -1;
     private Vector3 direction = Vector3.zero;
     private int nextDirectionIndex = -1;
+
+    protected void Awake()
+    {
+        gameRestartChannel.AddListener(OnGameRestart);
+        AwakeHelper();
+    }
+
+    protected abstract void AwakeHelper();
+
+    private void OnGameRestart()
+    {
+        Stop();
+        nextDirectionIndex = -1;
+    }
 
     protected void Update()
     {

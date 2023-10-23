@@ -21,8 +21,6 @@ public class PointManager : MonoBehaviour
     private void IncreasePoints(int points)
     {
         this.points += points;
-
-        Debug.Log(this.points);
     }
 
     private void ResetEatGhostProgress()

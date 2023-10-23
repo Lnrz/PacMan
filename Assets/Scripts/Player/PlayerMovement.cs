@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PlayerMovement : AbstractMovingEntity
 {
-    [SerializeField] private Vector2 starPos;
+    [SerializeField] private bool[] startDirections = { false, false, false, false };
+    [SerializeField] private Vector2 startPos;
     [SerializeField] private float normalSpeedMod = 0.8f;
     [SerializeField] private float poweredSpeedMod = 0.9f;
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
@@ -13,12 +14,17 @@ public class PlayerMovement : AbstractMovingEntity
     private bool isEating = false;
     private bool isGameStarted = false;
 
-    private void Awake()
+    protected override void AwakeHelper()
     {
-        transform.position = starPos;
+        for (int i = 0; i < 4; i++)
+        {
+            LockDirection(i, !startDirections[i]);
+        }
+        transform.position = startPos;
         powerPelletChannel.AddListener(ChangeSpeedModToPowered);
         powerUpEndChannel.AddListener(ChangeSpeedModToNormal);
         gameStartChannel.AddListener(OnGameStart);
+        gameRestartChannel.AddListener(OnGameRestart);
         ChangeSpeedModToNormal();
         if (TryGetComponent<PlayerInputEventInvoker>(out PlayerInputEventInvoker playerInputEventInvoker))
         {
@@ -71,6 +77,18 @@ public class PlayerMovement : AbstractMovingEntity
         yield return new WaitForSeconds(eatingTime);
         ChangeSpeedMod(currentSpeedMod);
         isEating = false;
+    }
+
+    private void OnGameRestart()
+    {
+        transform.position = startPos;
+        isGameStarted = false;
+        isEating = false;
+        ChangeSpeedModToNormal();
+        for (int i = 0; i < 4; i++)
+        {
+            LockDirection(i, !startDirections[i]);
+        }
     }
 
     public override sealed void IntersectionStopEnter(Vector3 interPos) {} 

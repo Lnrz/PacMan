@@ -7,6 +7,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
     [SerializeField] private ExitHouseChannelSO exitHouseChannel;
     [SerializeField] private GhostHouseSettings settings;
     [SerializeField] private GameStartChannelSO gameStartChannel;
+    [SerializeField] private GameRestartChannelSO gameRestartChannel;
     [SerializeField] private int priority = 0;
     [SerializeField] private int startPos = -1;
     [SerializeField] private bool isAlreadyOut = false;
@@ -25,6 +26,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         ghostHouseCenter = settings.GetGhostHouseCenter();
         ghostHouseExit = settings.GetExitPosition();
         gameStartChannel.AddListener(OnStart);
+        gameRestartChannel.AddListener(OnGameRestart);
         if (TryGetComponent<EatenEventInvoker>(out EatenEventInvoker eatenEventInvoker))
         {
             eatenEventInvoker.OnEaten(OnEaten);
@@ -32,7 +34,6 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         if (!isAlreadyOut)
         {
             exitHouseChannel.AddListener(WakeUp);
-            exitHouseCorout = ExitHouse();
             if (settings.IsVertical() && startPos != -1)
             {
                 startPos = (startPos + 1) % 4;
@@ -81,7 +82,8 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
     {
         if (this.priority == priority)
         {
-            StartCoroutine(exitHouseCorout);    
+            exitHouseCorout = ExitHouse();
+            StartCoroutine(exitHouseCorout);
         }
     }
 
@@ -159,5 +161,19 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
     private void FireEnteringHomeEvent()
     {
         enteringHomeEvent.Invoke();
+    }
+
+    private void OnGameRestart()
+    {
+        isGoingHome = false;
+        StopAllCoroutines();
+        if (!isAlreadyOut)
+        {
+            transform.position = ghostPositionInHouse;
+        }
+        else
+        {
+            transform.position = ghostHouseExit;
+        }
     }
 }

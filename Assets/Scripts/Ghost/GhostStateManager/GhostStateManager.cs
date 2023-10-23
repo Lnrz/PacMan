@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +7,7 @@ public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
     [SerializeField] private GhostStateSettings settings;
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
     [SerializeField] private PowerUpEndChannelSO powerUpEndChannel;
+    [SerializeField] private GameRestartChannelSO gameRestartChannel;
     private UnityEvent<GhostStateAbstractFactory> onChangeStateEvent = new UnityEvent<GhostStateAbstractFactory>();
     private IEnumerator statesCoroutine;
     private int durationsLength;
@@ -22,6 +21,7 @@ public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
         durationsLength = settings.GetDurationsLenght();
         powerPelletChannel.AddListener(EnableFrightenedState);
         powerUpEndChannel.AddListener(DisableFrightenedState);
+        gameRestartChannel.AddListener(OnGameRestart);
         if (TryGetComponent<OutsideHomeEventInvoker>(out OutsideHomeEventInvoker outsideHomeEventInvoker))
         {
             outsideHomeEventInvoker.OnOutsideHome(OnOutsideHome);
@@ -100,8 +100,6 @@ public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
         {
             FireChangeStateEvent(new GhostStateFrightenedFactory());
         }
-
-        Debug.Log("ACTIVATED: FRIGHTENED");
     }
 
     private void DisableFrightenedState()
@@ -122,5 +120,14 @@ public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
     public void OnChangeState(UnityAction<GhostStateAbstractFactory> listener)
     {
         onChangeStateEvent.AddListener(listener);
+    }
+
+    private void OnGameRestart()
+    {
+        isInOrGoingHome = true;
+        isFrightened = false;
+        progress = 0;
+        StopCoroutine(statesCoroutine);
+        statesCoroutine = SetStates();
     }
 }

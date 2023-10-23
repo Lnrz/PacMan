@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class ContactWithPlayer : MonoBehaviour, EatenEventInvoker
 {
     [SerializeField] private GhostEatenChannelSO ghostEatenChannel;
-    private GhostContactState contactState = new IgnoreGhostContactState();
+    [SerializeField] private GameRestartChannelSO gameRestartChannel;
+    private GhostContactState contactState;
     private UnityEvent onEatenEvent = new UnityEvent();
 
     private void Awake()
     {
+        ResetState();
+        gameRestartChannel.AddListener(OnGameRestart);
         if (TryGetComponent<ChangeStateEventInvoker>(out ChangeStateEventInvoker changeStateEventInvoker))
         {
             changeStateEventInvoker.OnChangeState(UpdateState);
@@ -29,9 +29,20 @@ public class ContactWithPlayer : MonoBehaviour, EatenEventInvoker
         ghostEatenChannel.Invoke();
     }
 
+    private void OnGameRestart()
+    {
+        ResetState();
+    }
+
     private void UpdateState(GhostStateAbstractFactory factory)
     {
         contactState = factory.GetContactState();
+        contactState.SetContext(this);
+    }
+
+    private void ResetState()
+    {
+        contactState = new IgnoreGhostContactState();
         contactState.SetContext(this);
     }
 

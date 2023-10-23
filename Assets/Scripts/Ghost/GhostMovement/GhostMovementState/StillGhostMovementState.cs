@@ -11,6 +11,7 @@ public class StillGhostMovementState : GhostMovementState
 
     public override void AfterChange()
     {
+        context.CancelReverseDirection();
         context.Stop();
     }
 
