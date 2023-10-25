@@ -3,33 +3,38 @@ using UnityEngine;
 
 public class PlayerMovement : AbstractMovingEntity
 {
-    [SerializeField] private bool[] startDirections = { false, false, false, false };
+    [SerializeField] private bool[] startDirections;
     [SerializeField] private Vector2 startPos;
-    [SerializeField] private float normalSpeedMod = 0.8f;
-    [SerializeField] private float poweredSpeedMod = 0.9f;
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
     [SerializeField] private PowerUpEndChannelSO powerUpEndChannel;
+    [SerializeField] private SpeedSettingsChannelSO speedSettingsChannel;
     [SerializeField] private GameStartChannelSO gameStartChannel;
+    private float normalSpeedMod;
+    private float poweredSpeedMod;
     private float currentSpeedMod;
     private bool isEating = false;
     private bool isGameStarted = false;
 
     protected override void AwakeHelper()
     {
-        for (int i = 0; i < 4; i++)
-        {
-            LockDirection(i, !startDirections[i]);
-        }
         transform.position = startPos;
+        SetStartingTurnableDirections();
         powerPelletChannel.AddListener(ChangeSpeedModToPowered);
         powerUpEndChannel.AddListener(ChangeSpeedModToNormal);
+        speedSettingsChannel.AddListener(OnSpeedSettingsChange);
         gameStartChannel.AddListener(OnGameStart);
         gameRestartChannel.AddListener(OnGameRestart);
-        ChangeSpeedModToNormal();
         if (TryGetComponent<PlayerInputEventInvoker>(out PlayerInputEventInvoker playerInputEventInvoker))
         {
             playerInputEventInvoker.OnPlayerInputEvent(OnPlayerInput);
         }
+    }
+
+    private void OnSpeedSettingsChange(SpeedSettingsSO speedSettings)
+    {
+        normalSpeedMod = speedSettings.GetPlayerNormalSpeedMod();
+        poweredSpeedMod = speedSettings.GetPlayerPoweredSpeedMod();
+        ChangeSpeedModToNormal();
     }
 
     private void OnGameStart()
@@ -85,6 +90,11 @@ public class PlayerMovement : AbstractMovingEntity
         isGameStarted = false;
         isEating = false;
         ChangeSpeedModToNormal();
+        SetStartingTurnableDirections();
+    }
+
+    private void SetStartingTurnableDirections()
+    {
         for (int i = 0; i < 4; i++)
         {
             LockDirection(i, !startDirections[i]);

@@ -5,26 +5,39 @@ public class GhostCounterManager : MonoBehaviour
 {
     [SerializeField] private DotChannelSO dotChannel;
     [SerializeField] private ExitHouseChannelSO exitHouseChannel;
+    [SerializeField] private GhostHouseWaitSettingsChannelSO ghostHouseWaitSettingsChannel;
     [SerializeField] private GameStartChannelSO gameStartChannel;
     [SerializeField] private GameRestartChannelSO gameRestartChannel;
-    [SerializeField] private int[] localCounter = { 0, 30, 60 };
-    [SerializeField] private int[] globalCounter = { 7, 10, 15 };
+    [SerializeField] private NextLevelChannelSO nextLevelChannel;
+    private int[] localCounter = new int[3];
+    private int[] globalCounter = new int[3];
     private int[] localCounterCopy = new int[3];
     private int[] globalCounterCopy = new int[3];
-    private int[] actualCounter = new int[3];
+    private int[] actualCounter;
     private int priority = 0;
+    private bool isGameStarted = false;
 
     private void Awake()
     {
-        Array.Copy(localCounter, localCounterCopy, 3);
         actualCounter = localCounterCopy;
         dotChannel.AddListener(DecreaseWait);
+        ghostHouseWaitSettingsChannel.AddListener(OnWaitHouseSettingsChange);
         gameStartChannel.AddListener(OnGameStart);
         gameRestartChannel.AddListener(OnGameRestart);
+        nextLevelChannel.AddListener(OnNextLevel);
+    }
+
+    private void OnWaitHouseSettingsChange(GhostHouseWaitSettingsSO ghostHouseWaitSettings)
+    {
+        Array.Copy(ghostHouseWaitSettings.GetLocalCounter(), localCounter, 3);
+        Array.Copy(localCounter, localCounterCopy, 3);
+        Array.Copy(ghostHouseWaitSettings.GetGlobalCounter(), globalCounter, 3);
+        Array.Copy(globalCounter, globalCounterCopy, 3);
     }
 
     private void OnGameStart()
     {
+        isGameStarted = true;
         if (actualCounter[priority] <= 0)
         {
             WakeUpGhost();
@@ -33,14 +46,23 @@ public class GhostCounterManager : MonoBehaviour
 
     private void OnGameRestart()
     {
+        isGameStarted = false;
         priority = 0;
         Array.Copy(globalCounter, globalCounterCopy, 3);
         actualCounter = globalCounterCopy;
     }
 
+    private void OnNextLevel()
+    {
+        isGameStarted = false;
+        priority = 0;
+        Array.Copy(localCounter, localCounterCopy, 3);
+        actualCounter = localCounterCopy;
+    }
+
     private void DecreaseWait()
     {
-        if (priority < 3)
+        if (isGameStarted && priority < 3)
         {
             actualCounter[priority]--;
             if (actualCounter[priority] <= 0)

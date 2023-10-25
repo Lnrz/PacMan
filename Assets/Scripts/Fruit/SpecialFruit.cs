@@ -5,7 +5,7 @@ public class SpecialFruit : AbstractEatable
 {
     [SerializeField] private float secondsBeforeDestroy = 10.0f;
 
-    private void Awake()
+    private void Start()
     {
         IEnumerator destroyCorout;
 
@@ -20,6 +20,11 @@ public class SpecialFruit : AbstractEatable
     }
 
     protected override void OnPlayerDetection()
+    {
+        Destroy(gameObject);
+    }
+
+    protected override void OnNextLevel()
     {
         Destroy(gameObject);
     }

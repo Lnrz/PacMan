@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerPellet : AbstractEatable
@@ -8,6 +6,11 @@ public class PowerPellet : AbstractEatable
 
     protected override void OnPlayerDetection()
     {
-        powerPelletChannel.Raise();
+        powerPelletChannel.Invoke();
+    }
+
+    protected override void OnNextLevel()
+    {
+        gameObject.SetActive(true);
     }
 }

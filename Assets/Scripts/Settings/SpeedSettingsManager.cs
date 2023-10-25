@@ -1,0 +1,1 @@
+public class SpeedSettingsManager : AbstractSettingsManager<SpeedSettingsObject, SpeedSettingsChannelSO, SpeedSettingsSO> {}

@@ -4,11 +4,12 @@ using UnityEngine.Events;
 
 public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
 {
-    [SerializeField] private GhostStateSettings settings;
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
     [SerializeField] private PowerUpEndChannelSO powerUpEndChannel;
     [SerializeField] private GameRestartChannelSO gameRestartChannel;
+    [SerializeField] private GhostStateSettingsChannelSO ghostStateSettingsChannel;
     private UnityEvent<GhostStateAbstractFactory> onChangeStateEvent = new UnityEvent<GhostStateAbstractFactory>();
+    private GhostStateSettings settings;
     private IEnumerator statesCoroutine;
     private int durationsLength;
     private int progress = 0;
@@ -18,7 +19,7 @@ public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
     private void Awake()
     {
         statesCoroutine = SetStates();
-        durationsLength = settings.GetDurationsLenght();
+        ghostStateSettingsChannel.AddListener(OnGhostStateSettingsChange);
         powerPelletChannel.AddListener(EnableFrightenedState);
         powerUpEndChannel.AddListener(DisableFrightenedState);
         gameRestartChannel.AddListener(OnGameRestart);
@@ -34,6 +35,12 @@ public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
         {
             enteringHomeEventInvoker.OnEnteringHome(OnEnteringHome);
         }
+    }
+
+    private void OnGhostStateSettingsChange(GhostStateSettings ghostStateSettings)
+    {
+        settings = ghostStateSettings;
+        durationsLength = settings.GetDurationsLenght();
     }
 
     private void OnOutsideHome()
@@ -112,8 +119,6 @@ public class GhostStateManager : MonoBehaviour, ChangeStateEventInvoker
                 FireChangeStateEvent(progress);
                 StartCoroutine(statesCoroutine);
             }
-
-            Debug.Log("DISABLED: FRIGHTENED");
         }
     }
 

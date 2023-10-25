@@ -1,0 +1,1 @@
+public class GhostStateSettingsManager : AbstractSettingsManager<GhostStateSettingsObject, GhostStateSettingsChannelSO, GhostStateSettings> {}

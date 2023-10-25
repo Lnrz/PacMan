@@ -1,0 +1,1 @@
+public class PowerUpDurationSettingsManager : AbstractSettingsManager<PowerUpDurationSettingsObject, PowerUpDurationSettingsChannelSO, PowerUpDurationSettings> {}

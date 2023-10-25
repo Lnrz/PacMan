@@ -1,3 +1,4 @@
+using UnityEditor.U2D;
 using UnityEngine;
 
 public abstract class GhostMovement : AbstractMovingEntity
@@ -5,10 +6,11 @@ public abstract class GhostMovement : AbstractMovingEntity
     [SerializeField] protected Transform pacman;
     [SerializeField] private Vector2 fixedTargetPoint;
     [SerializeField] private GhostHouseSettings settings;
-    [SerializeField] private float normalSpeedMod = 0.75f;
-    [SerializeField] private float frightenedSpeedMod = 0.5f;
-    [SerializeField] private float tunnelSpeedMod = 0.4f;
-    [SerializeField] private float goHomeSpeedMod = 1.5f;
+    [SerializeField] private SpeedSettingsChannelSO speedSettingsChannel;
+    private static readonly float goHomeSpeedMod = 1.5f;
+    private float normalSpeedMod;
+    private float frightenedSpeedMod;
+    private float tunnelSpeedMod;
     private float currentSpeedMod;
     private GhostMovementState state;
     private bool isWaitingToReverseDir = false;
@@ -21,12 +23,20 @@ public abstract class GhostMovement : AbstractMovingEntity
         {
             LockDirection(i, !settings.IsTurnableDir(i));
         }
-        ChangeToNormalSpeedMod();
+        speedSettingsChannel.AddListener(OnSpeedSettingsChange);
         gameRestartChannel.AddListener(OnGameRestart);
         if (TryGetComponent<ChangeStateEventInvoker>(out ChangeStateEventInvoker changeStateEventInvoker))
         {
             changeStateEventInvoker.OnChangeState(UpdateState);
         }
+    }
+
+    private void OnSpeedSettingsChange(SpeedSettingsSO speedSettings)
+    {
+        normalSpeedMod = speedSettings.GetGhostNormalSpeedMod();
+        frightenedSpeedMod = speedSettings.GetGhostFrightenedSpeedMod();
+        tunnelSpeedMod = speedSettings.GetGhostTunnelSpeedMod();
+        ChangeToNormalSpeedMod();
     }
 
     private void OnGameRestart()

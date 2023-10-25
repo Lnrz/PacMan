@@ -1,0 +1,1 @@
+public class SpecialFruitSettingsManager : AbstractSettingsManager<SpecialFruitSettingsObject, SpecialFruitSettingsChannelSO, SpecialFruitSettingsSO> {}

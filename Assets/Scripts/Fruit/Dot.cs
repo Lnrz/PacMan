@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Dot : AbstractEatable
@@ -9,5 +7,10 @@ public class Dot : AbstractEatable
     protected override void OnPlayerDetection()
     {
         dotChannel.Invoke();
+    }
+
+    protected override void OnNextLevel()
+    {
+        gameObject.SetActive(true);
     }
 }

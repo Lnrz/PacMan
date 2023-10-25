@@ -5,12 +5,14 @@ public class PowerUpManager : MonoBehaviour
 {
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
     [SerializeField] private PowerUpEndChannelSO powerUpEndChannel;
-    [SerializeField] private float powerUpDuration = 20.0f;
+    [SerializeField] private PowerUpDurationSettingsChannelSO powerUpDurationSettingsChannel;
+    private float powerUpDuration;
     private IEnumerator timerCoroutine;
 
     private void Awake()
     {
         powerPelletChannel.AddListener(StartTimer);
+        powerUpDurationSettingsChannel.AddListener(OnPowerUpDurationSettingsChange);
     }
 
     private void StartTimer()
@@ -27,5 +29,10 @@ public class PowerUpManager : MonoBehaviour
     {
         yield return new WaitForSeconds(powerUpDuration);
         powerUpEndChannel.Invoke();
+    }
+
+    private void OnPowerUpDurationSettingsChange(PowerUpDurationSettings powerUpDurationSettings)
+    {
+        powerUpDuration = powerUpDurationSettings.GetDuration();
     }
 }
