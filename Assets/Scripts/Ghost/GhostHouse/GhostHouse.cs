@@ -4,6 +4,8 @@ using UnityEngine.Events;
 
 public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEventInvoker
 {
+    private static readonly float maxDistFromHouseExit = 0.035f;
+    private static readonly float enterExitSpeed = 2.5f;
     [SerializeField] private ExitHouseChannelSO exitHouseChannel;
     [SerializeField] private GhostHouseSettings settings;
     [SerializeField] private GameStartChannelSO gameStartChannel;
@@ -19,7 +21,6 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
     private Vector2 ghostHouseExit;
     private Vector2 ghostPositionInHouse;
     private bool isGoingHome = false;
-    private float maxDistFromHouseExit = 0.001f;
 
     private void Awake()
     {
@@ -34,9 +35,9 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         if (!isAlreadyOut)
         {
             exitHouseChannel.AddListener(WakeUp);
-            if (settings.IsVertical() && startPos != -1)
+            if (settings.IsVertical())
             {
-                startPos = (startPos + 1) % 4;
+                startPos = Utility.GetNextDirectionIndex(startPos);
             }
             ghostPositionInHouse = ghostHouseCenter + Utility.Int2Dir(startPos);
             transform.position = ghostPositionInHouse;
@@ -70,7 +71,10 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
 
     private bool IsCloseToHomeExit()
     {
-        return ((Vector2)transform.position - ghostHouseExit).sqrMagnitude <= maxDistFromHouseExit;
+        Vector2 dist;
+
+        dist = (Vector2)transform.position - ghostHouseExit;
+        return dist.sqrMagnitude <= maxDistFromHouseExit;
     }
 
     private void OnEaten()
@@ -95,18 +99,18 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         time = 0;
         if (startPos != -1)
         {
-            while (time < 0.5)
+            while (time < 1 / enterExitSpeed)
             {
-                newPos = Vector2.Lerp(ghostPositionInHouse, ghostHouseCenter, time * 2.0f);
+                newPos = Vector2.Lerp(ghostPositionInHouse, ghostHouseCenter, time * enterExitSpeed);
                 transform.position = newPos;
                 time += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
         }
         time = 0;
-        while (time < 1)
+        while (time < 2 / enterExitSpeed)
         {
-            newPos = Vector2.Lerp(ghostHouseCenter, ghostHouseExit, time);
+            newPos = Vector2.Lerp(ghostHouseCenter, ghostHouseExit, time / 2 * enterExitSpeed);
             transform.position = newPos;
             time += Time.deltaTime;
             yield return new WaitForEndOfFrame();
@@ -121,9 +125,9 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         float time;
 
         time = 0;
-        while (time < 1)
+        while (time < 2 / enterExitSpeed)
         {
-            newPos = Vector2.Lerp(ghostHouseExit, ghostHouseCenter, time);
+            newPos = Vector2.Lerp(ghostHouseExit, ghostHouseCenter, time / 2 * enterExitSpeed);
             transform.position = newPos;
             time += Time.deltaTime;
             yield return new WaitForEndOfFrame();
@@ -131,9 +135,9 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         time = 0;
         if (startPos != -1)
         {
-            while (time < 0.5)
+            while (time < 1 / enterExitSpeed)
             {
-                newPos = Vector2.Lerp(ghostHouseCenter, ghostPositionInHouse, time * 2.0f);
+                newPos = Vector2.Lerp(ghostHouseCenter, ghostPositionInHouse, time * enterExitSpeed);
                 transform.position = newPos;
                 time += Time.deltaTime;
                 yield return new WaitForEndOfFrame();

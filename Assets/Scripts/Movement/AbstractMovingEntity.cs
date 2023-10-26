@@ -3,27 +3,19 @@ using UnityEngine;
 
 public abstract class AbstractMovingEntity : MonoBehaviour
 {
-    [SerializeField] protected GameRestartChannelSO gameRestartChannel;
+    private static readonly float speed = 4.0f;
+    protected static readonly float turnDist = 0.035f;
+    [SerializeField] private GameRestartChannelSO gameRestartChannel;
     private bool[] legalDir = new bool[4];
-    private readonly float speed = 4.0f;
     private float speedMod = 1.0f;
-    private readonly float turnDist = 0.025f;
     private int directionIndex = -1;
-    private Vector3 direction = Vector3.zero;
     private int nextDirectionIndex = -1;
+    private Vector3 direction = Vector3.zero;
 
     protected void Awake()
     {
         gameRestartChannel.AddListener(OnGameRestart);
         AwakeHelper();
-    }
-
-    protected abstract void AwakeHelper();
-
-    private void OnGameRestart()
-    {
-        Stop();
-        nextDirectionIndex = -1;
     }
 
     protected void Update()
@@ -32,6 +24,14 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         ChangeDirection();
         Move();
     }
+
+    protected abstract void AwakeHelper();
+
+    protected abstract void UpdateHelper();
+
+    protected abstract void OnGameRestartHelper();
+
+    public abstract void IntersectionStopEnter(Vector3 interPos);
 
     public bool GetIsLegalDir(int directionIndex)
     {
@@ -43,31 +43,22 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         return directionIndex;
     }
 
-    public void Stop()
-    {
-        direction = Vector3.zero;
-        directionIndex = -1;
-        AdjustPosition();
-    }
-
     public void LockDirection(int directionIndex, bool lockMode)
     {
         legalDir[directionIndex] = !lockMode;
     }
 
-    private void AdjustPosition()
+    public void SetLegalDir(bool[] newLegalDir)
     {
-        Vector3 pos;
-
-        pos = transform.position;
-        pos.x = MathF.Floor(pos.x) + 0.5f;
-        pos.y = MathF.Floor(pos.y) + 0.5f;
-        transform.position = pos;
+        Array.Copy(newLegalDir, legalDir, 4);
     }
 
-    public abstract void IntersectionStopEnter(Vector3 interPos);
-
-    protected abstract void UpdateHelper();
+    public void Stop()
+    {
+        direction = Vector3.zero;
+        directionIndex = -1;
+        Utility.AdjustPosition(transform);
+    }
 
     protected void ChangeDirection(int otherDirectionIndex)
     {
@@ -78,9 +69,9 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         }
     }
 
-    protected void ChangeSpeedMod(float speedMod)
+    private bool IsDirectionValid(int otherDirectionIndex)
     {
-        this.speedMod = speedMod;
+        return otherDirectionIndex != -1 && legalDir[otherDirectionIndex];
     }
 
     private void ChangeDirection()
@@ -88,27 +79,19 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         if (IsNextDirectionTurnable())
         {
             directionIndex = nextDirectionIndex;
-            legalDir[(directionIndex + 2) % 4] = true;
-            nextDirectionIndex = -1;
             direction = Utility.Int2Dir(directionIndex);
-            AdjustPositionToDir();
+            legalDir[Utility.GetOppositeDirectionIndex(directionIndex)] = true;
+            Utility.AdjustPositionToAxis(transform, Utility.GetAxisIndex(directionIndex));
+            nextDirectionIndex = -1;
         }
-    }
-
-    private void Move()
-    {
-        transform.position += speed * speedMod * Time.deltaTime * direction;
-    }
-
-    private bool IsDirectionValid(int otherDirectionIndex)
-    {
-        return otherDirectionIndex != -1 && legalDir[otherDirectionIndex];
     }
 
     private bool IsNextDirectionTurnable()
     {
         if (!IsDirectionValid(nextDirectionIndex)) return false;
-        if (nextDirectionIndex % 2 == directionIndex % 2) return true;
+        if (Utility.GetAxisIndex(nextDirectionIndex) == Utility.GetAxisIndex(directionIndex)) return true;
+        return Utility.IsCloseToTileCenterAlongAxis(transform.position, Utility.GetAxisIndex(nextDirectionIndex), turnDist);
+        /*
         float dist;
 
         if (nextDirectionIndex % 2 == 0)
@@ -122,21 +105,23 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         dist = Mathf.Abs(dist - 0.5f);
 
         return dist <= turnDist;
+        */
     }
 
-    private void AdjustPositionToDir()
+    private void Move()
     {
-        Vector3 pos;
+        transform.position += speed * speedMod * Time.deltaTime * direction;
+    }
 
-        pos = transform.position;
-        if (directionIndex % 2 == 0)
-        {
-            pos.x = Mathf.Floor(transform.position.x) + 0.5f;
-        }
-        else
-        {
-            pos.y = Mathf.Floor(transform.position.y) + 0.5f;
-        }
-        transform.position = pos;
+    protected void ChangeSpeedMod(float speedMod)
+    {
+        this.speedMod = speedMod;
+    }
+
+    private void OnGameRestart()
+    {
+        Stop();
+        nextDirectionIndex = -1;
+        OnGameRestartHelper();
     }
 }

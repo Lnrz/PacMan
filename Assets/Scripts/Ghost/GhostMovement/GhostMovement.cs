@@ -1,30 +1,24 @@
-using UnityEditor.U2D;
 using UnityEngine;
 
 public abstract class GhostMovement : AbstractMovingEntity
 {
+    private static readonly float goHomeSpeedMod = 1.5f;
     [SerializeField] protected Transform pacman;
     [SerializeField] private Vector2 fixedTargetPoint;
     [SerializeField] private GhostHouseSettings settings;
     [SerializeField] private SpeedSettingsChannelSO speedSettingsChannel;
-    private static readonly float goHomeSpeedMod = 1.5f;
     private float normalSpeedMod;
     private float frightenedSpeedMod;
     private float tunnelSpeedMod;
     private float currentSpeedMod;
     private GhostMovementState state;
     private bool isWaitingToReverseDir = false;
-    private int reverseDirIndex = -1;
 
     protected override sealed void AwakeHelper()
     {
         ResetState();
-        for (int i = 0; i < 4; i++)
-        {
-            LockDirection(i, !settings.IsTurnableDir(i));
-        }
+        SetLegalDir(settings.GetTurnableDirsOutside());
         speedSettingsChannel.AddListener(OnSpeedSettingsChange);
-        gameRestartChannel.AddListener(OnGameRestart);
         if (TryGetComponent<ChangeStateEventInvoker>(out ChangeStateEventInvoker changeStateEventInvoker))
         {
             changeStateEventInvoker.OnChangeState(UpdateState);
@@ -39,15 +33,12 @@ public abstract class GhostMovement : AbstractMovingEntity
         ChangeToNormalSpeedMod();
     }
 
-    private void OnGameRestart()
+    protected override void OnGameRestartHelper()
     {
         ResetState();
         CancelReverseDirection();
         ChangeToNormalSpeedMod();
-        for (int i = 0; i < 4; i++)
-        {
-            LockDirection(i, !settings.IsTurnableDir(i));
-        }
+        SetLegalDir(settings.GetTurnableDirsOutside());
     }
 
     public Vector2 GetGhostHouseExitPosition()
@@ -57,9 +48,9 @@ public abstract class GhostMovement : AbstractMovingEntity
 
     protected override sealed void UpdateHelper()
     {
-        if (isWaitingToReverseDir && IsCloseToTileCenter())
+        if (isWaitingToReverseDir && Utility.IsCloseToTileCenter(transform.position, turnDist))
         {
-            ChangeDirection(reverseDirIndex);
+            ChangeDirection(Utility.GetOppositeDirectionIndex(GetDirectionIndex()));
             CancelReverseDirection();
         }
     }
@@ -69,7 +60,7 @@ public abstract class GhostMovement : AbstractMovingEntity
         int newDirectionIndex;
 
         newDirectionIndex = state.GetTurningDirectionIndex(interPos);
-        if (newDirectionIndex == (GetDirectionIndex() + 2) % 4)
+        if (newDirectionIndex == Utility.GetOppositeDirectionIndex(GetDirectionIndex()))
         {
             ReverseDirection();
         }
@@ -94,7 +85,7 @@ public abstract class GhostMovement : AbstractMovingEntity
         for (int i = 0; i < 4; i++)
         {
             if (GetIsLegalDir(directionIndex)) break;
-            directionIndex = (directionIndex + 1) % 4;
+            directionIndex = Utility.GetNextDirectionIndex(directionIndex);
         }
         ChangeDirection(directionIndex);
     }
@@ -102,23 +93,11 @@ public abstract class GhostMovement : AbstractMovingEntity
     public void ReverseDirection()
     {
         isWaitingToReverseDir = true;
-        reverseDirIndex = (GetDirectionIndex() + 2) % 4;
     }
 
     public void CancelReverseDirection()
     {
         isWaitingToReverseDir = false;
-        reverseDirIndex = -1;
-    }
-
-    private bool IsCloseToTileCenter()
-    {
-        Vector2 dist;
-
-        dist.x = Mathf.Abs(transform.position.x - Mathf.Floor(transform.position.x) - 0.5f);
-        dist.y = Mathf.Abs(transform.position.y - Mathf.Floor(transform.position.y) - 0.5f);
-
-        return Mathf.Max(dist.x, dist.y) < 0.001f;
     }
 
     private void ResetState()

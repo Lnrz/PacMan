@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class IntersectionStop : MonoBehaviour
 {
+    private static readonly float sqrdMaxExitDist = 1.0f;
     [SerializeField] private bool[] turnDirection = new bool[4];
     private int directionIndex;
     private Vector2 dist;
@@ -12,16 +13,8 @@ public class IntersectionStop : MonoBehaviour
         go = collision.gameObject;
         if (go.TryGetComponent<AbstractMovingEntity>(out AbstractMovingEntity movingEnt))
         {
-            UpdateLegalDir(movingEnt);
+            movingEnt.SetLegalDir(turnDirection);
             movingEnt.IntersectionStopEnter(transform.position);
-        }
-    }
-
-    private void UpdateLegalDir(AbstractMovingEntity movingEnt)
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            movingEnt.LockDirection(i, !turnDirection[i]);
         }
     }
 
@@ -58,17 +51,17 @@ public class IntersectionStop : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         go = collision.gameObject;
-        if (go.TryGetComponent<AbstractMovingEntity>(out AbstractMovingEntity movingEnt) &&  IsNotTooDistant(go))
+        if (go.TryGetComponent<AbstractMovingEntity>(out AbstractMovingEntity movingEnt) &&  IsNotTooDistantFromIntersection(go))
         {
             movingEnt.LockDirection((directionIndex + 1) % 4, true);
             movingEnt.LockDirection((directionIndex + 3) % 4, true);
         }
     }
 
-    private bool IsNotTooDistant(GameObject other)
+    private bool IsNotTooDistantFromIntersection(GameObject other)
     {
         dist = other.transform.position - transform.position;
-        return dist.sqrMagnitude <= 1.0f;
+        return dist.sqrMagnitude <= sqrdMaxExitDist;
     }
 
     public bool CanTurn(int directionIndex)

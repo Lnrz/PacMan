@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GhostHouseSettings", menuName = "ScriptableObjects/Settings/GhostHouseSettings", order = 1)]
@@ -23,8 +24,11 @@ public class GhostHouseSettings : ScriptableObject
         return isVertical;
     }
 
-    public bool IsTurnableDir(int directionIndex)
+    public bool[] GetTurnableDirsOutside()
     {
-        return turnableDirOutside[directionIndex];
+        bool[] res = new bool[4];
+
+        Array.Copy(turnableDirOutside, res, 4);
+        return res;
     }
 }

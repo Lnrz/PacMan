@@ -18,12 +18,11 @@ public class PlayerMovement : AbstractMovingEntity
     protected override void AwakeHelper()
     {
         transform.position = startPos;
-        SetStartingTurnableDirections();
+        SetLegalDir(startDirections);
         powerPelletChannel.AddListener(ChangeSpeedModToPowered);
         powerUpEndChannel.AddListener(ChangeSpeedModToNormal);
         speedSettingsChannel.AddListener(OnSpeedSettingsChange);
         gameStartChannel.AddListener(OnGameStart);
-        gameRestartChannel.AddListener(OnGameRestart);
         if (TryGetComponent<PlayerInputEventInvoker>(out PlayerInputEventInvoker playerInputEventInvoker))
         {
             playerInputEventInvoker.OnPlayerInputEvent(OnPlayerInput);
@@ -84,21 +83,13 @@ public class PlayerMovement : AbstractMovingEntity
         isEating = false;
     }
 
-    private void OnGameRestart()
+    protected override void OnGameRestartHelper()
     {
         transform.position = startPos;
         isGameStarted = false;
         isEating = false;
         ChangeSpeedModToNormal();
-        SetStartingTurnableDirections();
-    }
-
-    private void SetStartingTurnableDirections()
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            LockDirection(i, !startDirections[i]);
-        }
+        SetLegalDir(startDirections);
     }
 
     public override sealed void IntersectionStopEnter(Vector3 interPos) {} 

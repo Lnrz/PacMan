@@ -20,7 +20,7 @@ public abstract class TPGhostMovementState : GhostMovementState
 
         for (int i = 0; i < 4; i++)
         {
-            if (!context.GetIsLegalDir(i) || i == (context.GetDirectionIndex() + 2) % 4)
+            if (!context.GetIsLegalDir(i) || i == Utility.GetOppositeDirectionIndex(context.GetDirectionIndex()))
             {
                 dist[i] = float.MaxValue;
                 continue;

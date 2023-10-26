@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FrightenedGhostMovementState : GhostMovementState
@@ -11,13 +9,13 @@ public class FrightenedGhostMovementState : GhostMovementState
         newDirectionIndex = Random.Range(0, 4);
         for (int i = 0; i < 4; i++)
         {
-            if (newDirectionIndex != (context.GetDirectionIndex() + 2 ) % 4 && context.GetIsLegalDir(newDirectionIndex))
+            if (context.GetIsLegalDir(newDirectionIndex) && newDirectionIndex != Utility.GetOppositeDirectionIndex(context.GetDirectionIndex()))
             {
                 return newDirectionIndex;
             }
-            newDirectionIndex = (newDirectionIndex + 1) % 4;
+            newDirectionIndex = Utility.GetNextDirectionIndex(newDirectionIndex);
         }
-        return (context.GetDirectionIndex() + 2) % 4;
+        return Utility.GetOppositeDirectionIndex(context.GetDirectionIndex());
     }
 
     public override void BeforeChange()
