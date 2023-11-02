@@ -818,6 +818,101 @@ MonoBehaviour:
   eatingTime: 0.017
   eatingSpeedReduction: 0.2
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
+--- !u!1 &132266561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 132266563}
+  - component: {fileID: 132266562}
+  - component: {fileID: 132266564}
+  - component: {fileID: 132266565}
+  - component: {fileID: 132266566}
+  m_Layer: 5
+  m_Name: GameboardUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &132266562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132266561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 82fa75ecff467244ab71f5a5df449d61, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 3575a1a62d2b2874bb008a71b565208f, type: 3}
+  m_SortingOrder: 0
+--- !u!4 &132266563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132266561}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &132266564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132266561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d088a421f6ab684f9da8a435781316b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
+  gameEndChannel: {fileID: 11400000, guid: 02c3bd68c1aff10429dc419a2714a240, type: 2}
+--- !u!114 &132266565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132266561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696215dea67e9c5479e7769be1fe3638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livesLeftUpdateChannel: {fileID: 11400000, guid: 30d3011fd856bcd43b6adbe59f4f38a7, type: 2}
+  pacmanSprite: {fileID: -1904728542, guid: e969c44ba08c10a479fcbd964981670c, type: 3}
+--- !u!114 &132266566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132266561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8627c34ffe46a49ae26e6a3abc34b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
+  specialFruitSettingsChannel: {fileID: 11400000, guid: 79aca248f52c1e6479ca0709635032d9, type: 2}
+  nextLevelChannel: {fileID: 11400000, guid: 00438c6f88dfb0b4480af7eef3bbc0cf, type: 2}
 --- !u!1 &159836904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,7 +2375,7 @@ GameObject:
   - component: {fileID: 519420034}
   - component: {fileID: 519420033}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: GameboardCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5074,7 +5169,8 @@ MonoBehaviour:
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
   powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
   ghostEatenChannel: {fileID: 11400000, guid: 89a389330caa60045ae8ce5dd2dbdaa8, type: 2}
-  gameEndChannel: {fileID: 11400000, guid: 02c3bd68c1aff10429dc419a2714a240, type: 2}
+  scoreUpdateChannel: {fileID: 11400000, guid: bc455c8a885a1fe45948573eabe2d4f8, type: 2}
+  highscoreUpdateChannel: {fileID: 11400000, guid: 2a9efc9aa70ad2143b7f79925cbfae1d, type: 2}
   eatGhostPoints: c8000000900100002003000040060000
 --- !u!4 &1177933879
 Transform:
@@ -5194,13 +5290,13 @@ MonoBehaviour:
     settings: {fileID: 11400000, guid: b190433fd76005746b70d944b778afc5, type: 2}
   - startingLevel: 9
     endLevel: 10
-    settings: {fileID: 11400000, guid: f51df7191e98bb44ea7195b1eccb9559, type: 2}
+    settings: {fileID: 11400000, guid: 4611164d810260f46aa06d5f4f48ec5c, type: 2}
   - startingLevel: 11
     endLevel: 12
-    settings: {fileID: 11400000, guid: 4611164d810260f46aa06d5f4f48ec5c, type: 2}
+    settings: {fileID: 11400000, guid: 2e6576dd3fea7e34ca0fa75f75131f93, type: 2}
   - startingLevel: 13
     endLevel: -1
-    settings: {fileID: 11400000, guid: 2e6576dd3fea7e34ca0fa75f75131f93, type: 2}
+    settings: {fileID: 11400000, guid: f51df7191e98bb44ea7195b1eccb9559, type: 2}
 --- !u!114 &1177933884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5800,7 +5896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe9e455ac288f343887ec4d7d0fec19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  livesLeft: 2
+  livesLeft: 0
+  livesLeftUpdateChannel: {fileID: 11400000, guid: 30d3011fd856bcd43b6adbe59f4f38a7, type: 2}
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   gameEndChannel: {fileID: 11400000, guid: 02c3bd68c1aff10429dc419a2714a240, type: 2}
 --- !u!114 &1406563546
@@ -9616,3 +9713,4 @@ SceneRoots:
   - {fileID: 201360128}
   - {fileID: 289906086}
   - {fileID: 1057298693}
+  - {fileID: 132266563}

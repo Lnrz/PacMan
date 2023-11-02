@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="width: 100%; height: 100%; min-width: auto; min-height: auto;">
+        <ui:VisualElement style="height: 10%;" />
+        <ui:VisualElement style="height: 80%; min-width: auto; min-height: auto;">
+            <ui:Label text="READY&lt;i&gt;!&lt;/i&gt;" name="readyLabel" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); font-size: 20px; color: rgb(234, 255, 0); top: 66%; left: 31.5%; display: flex;" />
+            <ui:Label text="GAME OVER" name="gameOverLabel" style="color: rgb(255, 0, 0); font-size: 20px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); display: none; top: 66%; left: 28%;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="height: 10%; min-width: auto; min-height: auto; flex-direction: row;">
+            <ui:VisualElement style="width: 50%; min-width: auto; min-height: auto;">
+                <ui:VisualElement name="livesContainer" style="flex-grow: 1; margin-left: 6.5%; flex-direction: row;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="width: 50%; min-width: auto; min-height: auto;">
+                <ui:VisualElement name="fruitsContainer" style="flex-grow: 1; margin-right: 6.5%; flex-direction: row-reverse;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: KeySettings
   m_EditorClassIdentifier: 
   specialFruitPrefab: {fileID: 1450296846960988864, guid: 9ed86d8b30a77104da0824a1c842f537, type: 3}
+  specialFruitSprite: {fileID: -1579524090, guid: 506e5f4db71168845b43ec9d07a69442, type: 3}

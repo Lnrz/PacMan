@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 696215dea67e9c5479e7769be1fe3638
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pacmanImgUXML: {fileID: 9197481963319205126, guid: 3a46df89c200a794da07efdd39d24283, type: 3}
+  - livesLeftUpdateChannel: {fileID: 11400000, guid: 30d3011fd856bcd43b6adbe59f4f38a7, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

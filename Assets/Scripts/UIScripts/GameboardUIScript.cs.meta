@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3d088a421f6ab684f9da8a435781316b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
+  - gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
+  - gameEndChannel: {fileID: 11400000, guid: 02c3bd68c1aff10429dc419a2714a240, type: 2}
+  - readyUXML: {fileID: 9197481963319205126, guid: c87d7f5d21c8b9449805f95d962d7892, type: 3}
+  - gameOverUXML: {fileID: 9197481963319205126, guid: 0797af50ad1c57f468c8f2cb932c2f53, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

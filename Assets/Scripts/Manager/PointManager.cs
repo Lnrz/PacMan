@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PointManager : MonoBehaviour
@@ -5,22 +6,36 @@ public class PointManager : MonoBehaviour
     [SerializeField] private PointsChannelSO pointsChannel;
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
     [SerializeField] private GhostEatenChannelSO ghostEatenChannel;
-    [SerializeField] private GameEndChannelSO gameEndChannel;
+    [SerializeField] private ScoreUpdateChannelSO scoreUpdateChannel;
+    [SerializeField] private HighscoreUpdateChannelSO highscoreUpdateChannel;
     [SerializeField] private int[] eatGhostPoints = { 200, 400, 800, 1600};
-    private int points = 0;
+    private int currentPoints = 0;
+    private int highscore = 0;
     private int eatGhostProgress = 0;
 
     private void Awake()
     {
+        GetInitialHighscore();
         pointsChannel.AddListener(IncreasePoints);
         powerPelletChannel.AddListener(OnPowerPelletEaten);
         ghostEatenChannel.AddListener(OnGhostEaten);
-        gameEndChannel.AddListener(OnGameEnd);
+    }
+
+    private void GetInitialHighscore()
+    {
+        highscore = Utility.GetHighscore();
     }
 
     private void IncreasePoints(int points)
     {
-        this.points += points;
+        currentPoints += points;
+        scoreUpdateChannel.Invoke(currentPoints);
+        if (highscore < currentPoints)
+        {
+            highscore = currentPoints;
+            Utility.SetHighscore(highscore);
+            highscoreUpdateChannel.Invoke(highscore);
+        }
     }
 
     private void OnPowerPelletEaten()
@@ -32,10 +47,5 @@ public class PointManager : MonoBehaviour
     {
         IncreasePoints(eatGhostPoints[eatGhostProgress]);
         eatGhostProgress++;
-    }
-
-    private void OnGameEnd()
-    {
-        points = 0;
     }
 }

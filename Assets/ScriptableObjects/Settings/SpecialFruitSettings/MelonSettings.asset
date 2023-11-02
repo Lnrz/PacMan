@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: MelonSettings
   m_EditorClassIdentifier: 
   specialFruitPrefab: {fileID: 1450296846960988864, guid: 6e8f6d50958a18b4387b185a799c3a4e, type: 3}
+  specialFruitSprite: {fileID: 1807773155, guid: 506e5f4db71168845b43ec9d07a69442, type: 3}

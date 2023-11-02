@@ -1,8 +1,47 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public static class Utility
 {
     private static readonly float gridOffset = 0.5f;
+
+    public static void LoadScene(string sceneName, bool setAsActive)
+    {
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        if (setAsActive)
+        {
+            UnityAction<Scene, LoadSceneMode> onLoad = null;
+
+            onLoad = (Scene scene, LoadSceneMode loadMode) =>
+            {
+                if (sceneName.Equals(scene.name))
+                {
+                    SceneManager.SetActiveScene(scene);
+                    SceneManager.sceneLoaded -= onLoad;
+                }
+            };
+            SceneManager.sceneLoaded += onLoad;
+        }
+    }
+
+    public static void UnloadScene(string sceneName)
+    {
+        AsyncOperation op;
+
+        op = SceneManager.UnloadSceneAsync(sceneName);
+        op.completed += (AsyncOperation op) => Resources.UnloadUnusedAssets();
+    }
+
+    public static int GetHighscore()
+    {
+        return PlayerPrefs.GetInt("highscore", 0);
+    }
+
+    public static void SetHighscore(int highscore)
+    {
+        PlayerPrefs.SetInt("highscore", highscore);
+    }
 
     public static Vector2 Int2Dir(int directionIndex)
     {

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: StrawberrySettings
   m_EditorClassIdentifier: 
   specialFruitPrefab: {fileID: 1450296846960988864, guid: cc8d6057d18b2b840843e4edc859d763, type: 3}
+  specialFruitSprite: {fileID: 352293978, guid: 506e5f4db71168845b43ec9d07a69442, type: 3}

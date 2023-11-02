@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: CherrySettings
   m_EditorClassIdentifier: 
   specialFruitPrefab: {fileID: 1450296846960988864, guid: 901fb63ffd4940b42ac9a4dd62b5167d, type: 3}
+  specialFruitSprite: {fileID: 908610859, guid: 506e5f4db71168845b43ec9d07a69442, type: 3}

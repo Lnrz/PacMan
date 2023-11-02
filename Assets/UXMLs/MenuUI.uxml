@@ -1,0 +1,91 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="width: 100%; height: 100%;">
+        <ui:VisualElement style="height: 10%;" />
+        <ui:VisualElement style="height: 80%;">
+            <ui:VisualElement name="beforeCoin" style="height: 100%; min-width: auto; min-height: auto; display: flex;">
+                <ui:VisualElement style="height: 50%; min-width: auto; min-height: auto;">
+                    <ui:VisualElement style="height: 14.29%; justify-content: center; align-items: center;">
+                        <ui:Label text="CHARACTER / NICKNAME" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); font-size: 20px; color: rgb(255, 255, 255);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="height: 22.25%; justify-content: center; align-items: center; flex-direction: row;">
+                        <ui:VisualElement name="akabeiImg" style="flex-direction: row; width: 10%; visibility: hidden;">
+                            <ui:Image style="--unity-image-tint-color: red; --unity-image: url(&apos;project://database/Assets/Sprites/characters.png?fileID=-830084227&amp;guid=e969c44ba08c10a479fcbd964981670c&amp;type=3#ghost1&apos;);" />
+                            <ui:Image style="--unity-image: url(&apos;project://database/Assets/Sprites/characters.png?fileID=1004128692&amp;guid=e969c44ba08c10a479fcbd964981670c&amp;type=3#ghostEyesRight&apos;); translate: -100% 0;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; padding-right: 10%;">
+                            <ui:Label text="OIKAKE----" name="akabeiCharacter" style="font-size: 20px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); color: rgb(255, 0, 0); margin-right: 0; padding-right: 0; visibility: hidden;" />
+                            <ui:Label text="&quot;AKABEI&quot;" name="akabeiNickname" style="color: rgb(255, 0, 0); font-size: 20px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); margin-left: 0; padding-left: 0; visibility: hidden;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="height: 22.25%; justify-content: center; align-items: center; flex-direction: row;">
+                        <ui:VisualElement name="pinkyImg" style="flex-direction: row; width: 10%; visibility: hidden;">
+                            <ui:Image style="--unity-image-tint-color: pink; --unity-image: url(&apos;project://database/Assets/Sprites/characters.png?fileID=-830084227&amp;guid=e969c44ba08c10a479fcbd964981670c&amp;type=3#ghost1&apos;);" />
+                            <ui:Image style="--unity-image: url(&apos;project://database/Assets/Sprites/characters.png?fileID=1004128692&amp;guid=e969c44ba08c10a479fcbd964981670c&amp;type=3#ghostEyesRight&apos;); translate: -100% 0;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; padding-right: 10%;">
+                            <ui:Label text="MACHIBUSE--" name="pinkyCharacter" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); font-size: 20px; color: rgb(255, 0, 132); padding-right: 0; margin-right: 0; visibility: hidden;" />
+                            <ui:Label text="&quot;PINKY&quot;" name="pinkyNickname" style="font-size: 20px; color: rgb(255, 0, 132); -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); margin-left: 0; padding-left: 0; visibility: hidden;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="height: 22.25%; justify-content: center; align-items: center; flex-direction: row;">
+                        <ui:VisualElement name="aosukeImg" style="flex-direction: row; width: 10%; visibility: hidden;">
+                            <ui:Image style="--unity-image-tint-color: blue; --unity-image: url(&apos;project://database/Assets/Sprites/characters.png?fileID=-830084227&amp;guid=e969c44ba08c10a479fcbd964981670c&amp;type=3#ghost1&apos;);" />
+                            <ui:Image style="--unity-image: url(&apos;project://database/Assets/Sprites/characters.png?fileID=1004128692&amp;guid=e969c44ba08c10a479fcbd964981670c&amp;type=3#ghostEyesRight&apos;); translate: -100% 0;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; padding-right: 10%;">
+                            <ui:Label text="KIMAGURE--" name="aosukeCharacter" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); font-size: 20px; color: rgb(0, 75, 255); margin-right: 0; padding-right: 0; visibility: hidden;" />
+                            <ui:Label text="&quot;AOSUKE&quot;" name="aosukeNickname" style="margin-left: 0; padding-left: 0; font-size: 20px; color: rgb(0, 75, 255); -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); visibility: hidden;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="height: 22.25%; justify-content: center; align-items: center; flex-direction: row;">
+                        <ui:VisualElement name="guzutaImg" style="flex-direction: row; width: 10%; visibility: hidden;">
+                            <ui:Image style="--unity-image-tint-color: orange; --unity-image: url(&apos;project://database/Assets/Sprites/characters.png?fileID=-830084227&amp;guid=e969c44ba08c10a479fcbd964981670c&amp;type=3#ghost1&apos;);" />
+                            <ui:Image style="--unity-image: url(&apos;project://database/Assets/Sprites/characters.png?fileID=1004128692&amp;guid=e969c44ba08c10a479fcbd964981670c&amp;type=3#ghostEyesRight&apos;); translate: -100% 0;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; padding-right: 10%;">
+                            <ui:Label text="OTOBOKE---" name="guzutaCharacter" style="font-size: 20px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); color: rgb(255, 148, 0); padding-right: 0; margin-right: 0; visibility: hidden;" />
+                            <ui:Label text="&quot;GUZUTA&quot;" name="guzutaNickname" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); font-size: 20px; color: rgb(255, 148, 0); margin-left: 0; padding-left: 0; visibility: hidden;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement style="height: 50%; min-width: auto; min-height: auto;">
+                    <ui:VisualElement style="height: 25%;" />
+                    <ui:VisualElement name="points" style="height: 50%; justify-content: center; align-items: center; visibility: hidden;">
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center; align-items: center;">
+                            <ui:Image style="--unity-image: url(&apos;project://database/Assets/Sprites/eatables.png?fileID=-1504231970&amp;guid=506e5f4db71168845b43ec9d07a69442&amp;type=3#dot&apos;); height: 50%;" />
+                            <ui:Label text="10 &lt;size=15&gt;PTS&lt;/size&gt;" style="font-size: 20px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); color: rgb(255, 255, 255);" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                            <ui:Image name="powerPellet" style="--unity-image: url(&apos;project://database/Assets/Sprites/eatables.png?fileID=256685646&amp;guid=506e5f4db71168845b43ec9d07a69442&amp;type=3#powerPellet&apos;); height: 50%;" />
+                            <ui:Label text="50 &lt;size=15&gt;PTS&lt;/size&gt;" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); font-size: 20px; color: rgb(255, 255, 255);" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="credits" style="height: 25%; justify-content: center; align-items: center; font-size: 20px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); color: rgb(255, 255, 255); visibility: hidden;">
+                        <ui:Label text="UniFI" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="afterCoin" style="display: none; height: 100%; min-width: auto; min-height: auto;">
+                <ui:VisualElement style="height: 37.5%;" />
+                <ui:VisualElement style="height: 62.5%; min-width: auto; min-height: auto;">
+                    <ui:VisualElement style="height: 25%; min-width: auto; min-height: auto; align-items: center; justify-content: center;">
+                        <ui:Label text="PUSH ENTER BUTTON" style="font-size: 20px; color: rgb(205, 255, 0); -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="height: 25%;" />
+                    <ui:VisualElement style="height: 25%; min-width: auto; min-height: auto; justify-content: center; align-items: center;">
+                        <ui:Label text="BONUS PAC-MAN FOR 10000 &lt;size=15&gt;POINTS&lt;/size&gt;" style="font-size: 20px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); color: rgb(230, 140, 100);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="height: 25%; min-width: auto; min-height: auto; justify-content: center; align-items: center;">
+                        <ui:Label text="UniFI" style="font-size: 20px; -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); color: rgb(255, 255, 255);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement style="height: 10%; flex-direction: row; align-items: flex-end;">
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                <ui:Label text="CREDIT" style="-unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); font-size: 20px; color: rgb(255, 255, 255); margin-left: 6.5%;" />
+                <ui:Label text="0" name="creditNum" style="font-size: 20px; color: rgb(255, 255, 255); -unity-font-definition: url(&apos;project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&amp;guid=4ff6070a785b7934c983685ddfa4b333&amp;type=2#PublicPixel SDF&apos;); margin-left: 6.5%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

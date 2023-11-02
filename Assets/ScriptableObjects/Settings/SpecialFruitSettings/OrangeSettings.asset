@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: OrangeSettings
   m_EditorClassIdentifier: 
   specialFruitPrefab: {fileID: 1450296846960988864, guid: 1996c2c09851b95468f4f1c4a2806691, type: 3}
+  specialFruitSprite: {fileID: 1901479032, guid: 506e5f4db71168845b43ec9d07a69442, type: 3}

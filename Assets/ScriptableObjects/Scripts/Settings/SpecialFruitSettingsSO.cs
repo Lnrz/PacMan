@@ -4,9 +4,15 @@ using UnityEngine;
 public class SpecialFruitSettingsSO : ScriptableObject
 {
     [SerializeField] private GameObject specialFruitPrefab;
+    [SerializeField] private Sprite specialFruitSprite;
 
     public GameObject GetSpecialFruitPrefab()
     {
         return specialFruitPrefab;
+    }
+
+    public Sprite GetSprite()
+    {
+        return specialFruitSprite;
     }
 }
