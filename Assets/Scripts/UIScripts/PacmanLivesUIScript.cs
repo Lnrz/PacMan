@@ -4,7 +4,6 @@ using UnityEngine.UIElements;
 public class PacmanLivesUIScript : MonoBehaviour
 {
     [SerializeField] private LivesLeftUpdateChannelSO livesLeftUpdateChannel;
-    [SerializeField] private Sprite pacmanSprite;
     private VisualElement livesContainer;
     private int pacmanNum;
 
@@ -39,8 +38,7 @@ public class PacmanLivesUIScript : MonoBehaviour
                 Image pacmanImg;
 
                 pacmanImg = new Image();
-                pacmanImg.sprite = pacmanSprite;
-                pacmanImg.style.width = new Length(20, LengthUnit.Percent);
+                pacmanImg.AddToClassList("lives-container__life");
                 livesContainer.Add(pacmanImg);
                 pacmanNum++;
             }

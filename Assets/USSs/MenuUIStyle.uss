@@ -1,0 +1,156 @@
+.credit-container {
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: flex-end;
+}
+
+.credit-container__text {
+    margin-left: 6.5%;
+}
+
+.credit-container__credit {
+    margin-left: 6.5%;
+}
+
+.label-line {
+    align-items: center;
+    justify-content: center;
+    height: 14.29%;
+}
+
+.ghost-line {
+    flex-direction: row;
+    height: 22.25%;
+    align-items: center;
+    justify-content: center;
+}
+
+.ghost-line__image-container {
+    flex-direction: row;
+    width: 10%;
+}
+
+.ghost-line__eyes-image {
+    --unity-image: url('project://database/Assets/Sprites/characters.png?fileID=1004128692&guid=e969c44ba08c10a479fcbd964981670c&type=3#ghostEyesRight');
+    translate: -100% 0;
+}
+
+.ghost-line__body-image {
+    --unity-image: url('project://database/Assets/Sprites/characters.png?fileID=-830084227&guid=e969c44ba08c10a479fcbd964981670c&type=3#ghost1');
+}
+
+.ghost-line__body-image--akabei {
+    --unity-image-tint-color: red;
+}
+
+.ghost-line__body-image--pinky {
+    --unity-image-tint-color: pink;
+}
+
+.ghost-line__body-image--aosuke {
+    --unity-image-tint-color: blue;
+}
+
+.ghost-line__body-image--guzuta {
+    --unity-image-tint-color: orange;
+}
+
+.ghost-line__text-container {
+    flex-direction: row;
+    padding-right: 10%;
+}
+
+.ghost-line__character-text {
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.ghost-line__nickname-text {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.ghost-line__character-text--akabei {
+    color: red;
+}
+
+.ghost-line__nickname-text--akabei {
+    color: red;
+}
+
+.ghost-line__character-text--pinky {
+    color: pink;
+}
+
+.ghost-line__nickname-text--pinky {
+    color: pink;
+}
+
+.ghost-line__character-text--aosuke {
+    color: blue;
+}
+
+.ghost-line__nickname-text--aosuke {
+    color: blue;
+}
+
+.ghost-line__character-text--guzuta {
+    color: orange;
+}
+
+.ghost-line__nickname-text--guzuta {
+    color: orange;
+}
+
+.animation-space {
+    height: 25%;
+}
+
+.points-container {
+    height: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.points-container__dot-container,
+.points-container__power-pellet-container {
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.points-container__dot-image,
+.points-container__power-pellet-image {
+    width: 50%;
+    height: 50%;
+}
+
+.points-container__dot-image {
+    --unity-image: url("/Assets/Sprites/eatables.png#dot");
+}
+
+.points-container__power-pellet-image {
+    --unity-image: url("/Assets/Sprites/eatables.png#powerPellet");
+}
+
+.credits-container {
+    height: 25%;
+    align-items: center;
+    justify-content: center;
+}
+
+.push-container,
+.bonus-container {
+    height: 25%;
+    align-items: center;
+    justify-content: center;
+}
+
+.push-container__text {
+    color: yellow;
+}
+
+.bonus-container__text {
+    color: tan;
+}

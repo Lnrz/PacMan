@@ -1,0 +1,27 @@
+.score-container,
+.level-container,
+.high-score-container {
+	flex-grow: 2;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.high-score-container {
+	flex-grow: 3;
+}
+
+.score-container__text,
+.high-score-container__text,
+.level-container__text {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+.score-container__score,
+.high-score-container__high-score,
+.level-container__level {
+	margin-top: 0;
+	padding-top: 1px;
+}

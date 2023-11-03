@@ -1,0 +1,28 @@
+.ready-text {
+	color: yellow;
+}
+
+.game-over-text {
+	color: red;
+}
+
+.lives-container {
+	flex-direction: row;
+	flex-grow: 1;
+	margin-left: 6.5%;
+}
+
+.lives-container__life {
+	width: 15%;
+	--unity-image: url("/Assets/Sprites/characters.png#pacmanHalfOpenMouth");
+}
+
+.fruits-container {
+	flex-direction: row-reverse;
+	flex-grow: 1;
+	margin-right: 6.5%;
+}
+
+.fruits-container__fruit {
+	width: 15%;
+}

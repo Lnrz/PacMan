@@ -9,6 +9,7 @@ public class FruitsUIScript : MonoBehaviour
     private VisualElement fruitsContainer;
     private bool isImgAdded = false;
     private int fruitsCount = 0;
+    private int maxFruitCount = 6;
     private Image lastImg;
     private Sprite lastSprite;
 
@@ -41,7 +42,7 @@ public class FruitsUIScript : MonoBehaviour
     private void OnNextLevel()
     {
         AddImageToContainer();
-        if (fruitsCount > 8)
+        if (fruitsCount > maxFruitCount)
         {
             fruitsContainer.RemoveAt(0);
             fruitsCount--;
@@ -51,7 +52,7 @@ public class FruitsUIScript : MonoBehaviour
     private void AddImageToContainer()
     {
         lastImg = new Image();
-        lastImg.style.width = new Length(12.5f, LengthUnit.Percent);
+        lastImg.AddToClassList("fruits-container__fruit");
         lastImg.sprite = lastSprite;
         fruitsContainer.Add(lastImg);
         fruitsCount++;

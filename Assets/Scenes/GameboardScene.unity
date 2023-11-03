@@ -897,7 +897,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   livesLeftUpdateChannel: {fileID: 11400000, guid: 30d3011fd856bcd43b6adbe59f4f38a7, type: 2}
-  pacmanSprite: {fileID: -1904728542, guid: e969c44ba08c10a479fcbd964981670c, type: 3}
 --- !u!114 &132266566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5154,6 +5153,7 @@ MonoBehaviour:
   spawnPos: {x: -3.5, y: -1.5, z: 0}
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
   specialFruitChannel: {fileID: 11400000, guid: 79aca248f52c1e6479ca0709635032d9, type: 2}
+  nextLevelChannel: {fileID: 11400000, guid: 00438c6f88dfb0b4480af7eef3bbc0cf, type: 2}
 --- !u!114 &1177933878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5896,7 +5896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe9e455ac288f343887ec4d7d0fec19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  livesLeft: 0
+  livesLeft: 4
   livesLeftUpdateChannel: {fileID: 11400000, guid: 30d3011fd856bcd43b6adbe59f4f38a7, type: 2}
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   gameEndChannel: {fileID: 11400000, guid: 02c3bd68c1aff10429dc419a2714a240, type: 2}
