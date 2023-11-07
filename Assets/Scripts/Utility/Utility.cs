@@ -65,6 +65,21 @@ public static class Utility
         return res;
     }
 
+    public static int Dir2Int(Vector2 dir)
+    {
+        int res = -1;
+
+        if (Mathf.Abs(dir.x) >= Mathf.Abs(dir.y))
+        {
+            res = (dir.x >= 0) ? 1 : 3;
+        }
+        else
+        {
+            res = (dir.y >= 0) ? 0 : 2;
+        }
+        return res;
+    }
+
     public static int GetOppositeDirectionIndex(int directionIndex)
     {
         if (directionIndex < 0 || directionIndex > 3) return -1;

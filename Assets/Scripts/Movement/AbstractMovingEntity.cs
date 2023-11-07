@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class AbstractMovingEntity : MonoBehaviour
 {
     private static readonly float speed = 4.0f;
     protected static readonly float turnDist = 0.035f;
     [SerializeField] private GameRestartChannelSO gameRestartChannel;
+    private UnityEvent<int> directionListeners = new UnityEvent<int>();
     private bool[] legalDir = new bool[4];
     private float speedMod = 1.0f;
     private int directionIndex = -1;
@@ -56,8 +58,18 @@ public abstract class AbstractMovingEntity : MonoBehaviour
     public void Stop()
     {
         direction = Vector3.zero;
-        directionIndex = -1;
+        UpdateDirectionIndex(-1);
         Utility.AdjustPosition(transform);
+    }
+
+    public void AddDirectionListener(UnityAction<int> listener)
+    {
+        directionListeners.AddListener(listener);
+    }
+
+    public void RemoveDirectionListener(UnityAction<int> listener)
+    {
+        directionListeners.RemoveListener(listener);
     }
 
     protected void ChangeDirection(int otherDirectionIndex)
@@ -78,7 +90,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
     {
         if (IsNextDirectionTurnable())
         {
-            directionIndex = nextDirectionIndex;
+            UpdateDirectionIndex(nextDirectionIndex);
             direction = Utility.Int2Dir(directionIndex);
             legalDir[Utility.GetOppositeDirectionIndex(directionIndex)] = true;
             Utility.AdjustPositionToAxis(transform, Utility.GetAxisIndex(directionIndex));
@@ -91,21 +103,6 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         if (!IsDirectionValid(nextDirectionIndex)) return false;
         if (Utility.GetAxisIndex(nextDirectionIndex) == Utility.GetAxisIndex(directionIndex)) return true;
         return Utility.IsCloseToTileCenterAlongAxis(transform.position, Utility.GetAxisIndex(nextDirectionIndex), turnDist);
-        /*
-        float dist;
-
-        if (nextDirectionIndex % 2 == 0)
-        {
-            dist = transform.position.x - Mathf.Floor(transform.position.x);
-        }
-        else
-        {
-            dist = transform.position.y - Mathf.Floor(transform.position.y);
-        }
-        dist = Mathf.Abs(dist - 0.5f);
-
-        return dist <= turnDist;
-        */
     }
 
     private void Move()
@@ -123,5 +120,11 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         Stop();
         nextDirectionIndex = -1;
         OnGameRestartHelper();
+    }
+
+    private void UpdateDirectionIndex(int newDirectionIndex)
+    {
+        directionIndex = newDirectionIndex;
+        directionListeners.Invoke(directionIndex);
     }
 }

@@ -1,30 +1,26 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameStartManager : MonoBehaviour
 {
     [SerializeField] private GameStartChannelSO gameStartChannel;
     [SerializeField] private GameRestartChannelSO gameRestartChannel;
-    private bool isGameStarted = false;
+    [SerializeField] private float startWaitTime = 5.0f;
 
     private void Awake()
     {
         gameRestartChannel.AddListener(OnGameRestart);
-    }
-
-    private void Update()
-    {
-        if (!isGameStarted && Input.GetKeyDown(KeyCode.T))
-        {
-            isGameStarted = true;
-            gameStartChannel.Invoke();
-        }
+        StartCoroutine(GameStartWait());
     }
 
     private void OnGameRestart()
     {
-        isGameStarted = false;
+        StartCoroutine(GameStartWait());
+    }
+
+    private IEnumerator GameStartWait()
+    {
+        yield return new WaitForSeconds(startWaitTime);
+        gameStartChannel.Invoke();
     }
 }

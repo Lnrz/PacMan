@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEventInvoker
+public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEventInvoker, InsideHomeEventInvoker
 {
     private static readonly float maxDistFromHouseExit = 0.035f;
     private static readonly float enterExitSpeed = 2.5f;
@@ -15,11 +15,17 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
     [SerializeField] private bool isAlreadyOut = false;
     private UnityEvent outsideHomeEvent = new UnityEvent();
     private UnityEvent enteringHomeEvent = new UnityEvent();
+    private UnityEvent insideHomeEvent = new UnityEvent();
+    private LookController lookControl;
     private IEnumerator exitHouseCorout;
     private IEnumerator enterHouseCorout;
     private Vector2 ghostHouseCenter;
     private Vector2 ghostHouseExit;
     private Vector2 ghostPositionInHouse;
+    private int exitPosLookInd = -1;
+    private int exitHouseLookInd = -1;
+    private int enterPosLookInd = -1;
+    private int enterHouseLookInd = -1;
     private bool isGoingHome = false;
 
     private void Awake()
@@ -47,6 +53,14 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
             startPos = -1;
             ghostPositionInHouse = ghostHouseCenter;
             transform.position = ghostHouseExit;
+        }
+        lookControl = GetComponent<LookController>();
+        exitHouseLookInd = Utility.Dir2Int(ghostHouseExit - ghostHouseCenter);
+        enterHouseLookInd = Utility.GetOppositeDirectionIndex(exitHouseLookInd);
+        if (startPos != -1)
+        {
+            exitPosLookInd = Utility.GetOppositeDirectionIndex(startPos);
+            enterPosLookInd = startPos;
         }
     }
 
@@ -99,6 +113,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         time = 0;
         if (startPos != -1)
         {
+            lookControl.Look(exitPosLookInd);
             while (time < 1 / enterExitSpeed)
             {
                 newPos = Vector2.Lerp(ghostPositionInHouse, ghostHouseCenter, time * enterExitSpeed);
@@ -108,6 +123,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
             }
         }
         time = 0;
+        lookControl.Look(exitHouseLookInd);
         while (time < 2 / enterExitSpeed)
         {
             newPos = Vector2.Lerp(ghostHouseCenter, ghostHouseExit, time / 2 * enterExitSpeed);
@@ -125,6 +141,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         float time;
 
         time = 0;
+        lookControl.Look(enterHouseLookInd);
         while (time < 2 / enterExitSpeed)
         {
             newPos = Vector2.Lerp(ghostHouseExit, ghostHouseCenter, time / 2 * enterExitSpeed);
@@ -135,6 +152,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         time = 0;
         if (startPos != -1)
         {
+            lookControl.Look(enterPosLookInd);
             while (time < 1 / enterExitSpeed)
             {
                 newPos = Vector2.Lerp(ghostHouseCenter, ghostPositionInHouse, time * enterExitSpeed);
@@ -143,6 +161,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
                 yield return new WaitForEndOfFrame();
             }
         }
+        FireInsideHomeEvent();
         exitHouseCorout = ExitHouse();
         StartCoroutine(exitHouseCorout);
     }
@@ -179,5 +198,15 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         {
             transform.position = ghostHouseExit;
         }
+    }
+
+    public void OnInsideHome(UnityAction listener)
+    {
+        insideHomeEvent.AddListener(listener);
+    }
+
+    private void FireInsideHomeEvent()
+    {
+        insideHomeEvent.Invoke();
     }
 }
