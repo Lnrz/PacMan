@@ -6,6 +6,8 @@ public abstract class AbstractMovingEntity : MonoBehaviour
 {
     private static readonly float speed = 4.0f;
     protected static readonly float turnDist = 0.035f;
+    [SerializeField] private GameStartChannelSO gameStartChannel;
+    [SerializeField] private StopEntitiesChannelSO stopEntitiesChannel;
     [SerializeField] private GameRestartChannelSO gameRestartChannel;
     private UnityEvent<int> directionListeners = new UnityEvent<int>();
     private bool[] legalDir = new bool[4];
@@ -13,9 +15,12 @@ public abstract class AbstractMovingEntity : MonoBehaviour
     private int directionIndex = -1;
     private int nextDirectionIndex = -1;
     private Vector3 direction = Vector3.zero;
+    private bool isAcceptingInput = false;
 
     protected void Awake()
     {
+        gameStartChannel.AddListener(OnGameStart);
+        stopEntitiesChannel.AddListener(OnStopEntities);
         gameRestartChannel.AddListener(OnGameRestart);
         AwakeHelper();
     }
@@ -31,7 +36,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
 
     protected abstract void UpdateHelper();
 
-    protected abstract void OnGameRestartHelper();
+    protected abstract void OnGameRestart();
 
     public abstract void IntersectionStopEnter(Vector3 interPos);
 
@@ -74,7 +79,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
 
     protected void ChangeDirection(int otherDirectionIndex)
     {
-        if (IsDirectionValid(otherDirectionIndex))
+        if (isAcceptingInput && IsDirectionValid(otherDirectionIndex))
         {
             nextDirectionIndex = otherDirectionIndex;
             ChangeDirection();
@@ -115,11 +120,16 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         this.speedMod = speedMod;
     }
 
-    private void OnGameRestart()
+    private void OnGameStart()
+    {
+        isAcceptingInput = true;
+    }
+
+    private void OnStopEntities()
     {
         Stop();
         nextDirectionIndex = -1;
-        OnGameRestartHelper();
+        isAcceptingInput = false;
     }
 
     private void UpdateDirectionIndex(int newDirectionIndex)

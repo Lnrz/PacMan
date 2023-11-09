@@ -33,7 +33,7 @@ public abstract class GhostMovement : AbstractMovingEntity
         ChangeToNormalSpeedMod();
     }
 
-    protected override void OnGameRestartHelper()
+    protected override void OnGameRestart()
     {
         ResetState();
         CancelReverseDirection();

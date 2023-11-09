@@ -8,12 +8,10 @@ public class PlayerMovement : AbstractMovingEntity
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
     [SerializeField] private PowerUpEndChannelSO powerUpEndChannel;
     [SerializeField] private SpeedSettingsChannelSO speedSettingsChannel;
-    [SerializeField] private GameStartChannelSO gameStartChannel;
     private float normalSpeedMod;
     private float poweredSpeedMod;
     private float currentSpeedMod;
     private bool isEating = false;
-    private bool isGameStarted = false;
 
     protected override void AwakeHelper()
     {
@@ -22,7 +20,6 @@ public class PlayerMovement : AbstractMovingEntity
         powerPelletChannel.AddListener(ChangeSpeedModToPowered);
         powerUpEndChannel.AddListener(ChangeSpeedModToNormal);
         speedSettingsChannel.AddListener(OnSpeedSettingsChange);
-        gameStartChannel.AddListener(OnGameStart);
         if (TryGetComponent<PlayerInputEventInvoker>(out PlayerInputEventInvoker playerInputEventInvoker))
         {
             playerInputEventInvoker.OnPlayerInputEvent(OnPlayerInput);
@@ -36,17 +33,9 @@ public class PlayerMovement : AbstractMovingEntity
         ChangeSpeedModToNormal();
     }
 
-    private void OnGameStart()
-    {
-        isGameStarted = true;
-    }
-
     private void OnPlayerInput(int inputDirectionIndex)
     {
-        if (isGameStarted)
-        {
-            ChangeDirection(inputDirectionIndex);
-        }
+        ChangeDirection(inputDirectionIndex);
     }
 
     private void ChangeSpeedModToPowered()
@@ -83,10 +72,9 @@ public class PlayerMovement : AbstractMovingEntity
         isEating = false;
     }
 
-    protected override void OnGameRestartHelper()
+    protected override void OnGameRestart()
     {
         transform.position = startPos;
-        isGameStarted = false;
         isEating = false;
         ChangeSpeedModToNormal();
         SetLegalDir(startDirections);

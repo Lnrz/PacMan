@@ -9,6 +9,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
     [SerializeField] private ExitHouseChannelSO exitHouseChannel;
     [SerializeField] private GhostHouseSettings settings;
     [SerializeField] private GameStartChannelSO gameStartChannel;
+    [SerializeField] private StopEntitiesChannelSO stopEntitiesChannel;
     [SerializeField] private GameRestartChannelSO gameRestartChannel;
     [SerializeField] private int priority = 0;
     [SerializeField] private int startPos = -1;
@@ -33,6 +34,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         ghostHouseCenter = settings.GetGhostHouseCenter();
         ghostHouseExit = settings.GetExitPosition();
         gameStartChannel.AddListener(OnStart);
+        stopEntitiesChannel.AddListener(OnStopEntities);
         gameRestartChannel.AddListener(OnGameRestart);
         if (TryGetComponent<EatenEventInvoker>(out EatenEventInvoker eatenEventInvoker))
         {
@@ -186,10 +188,14 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         enteringHomeEvent.Invoke();
     }
 
-    private void OnGameRestart()
+    private void OnStopEntities()
     {
         isGoingHome = false;
         StopAllCoroutines();
+    }
+
+    private void OnGameRestart()
+    {
         if (!isAlreadyOut)
         {
             transform.position = ghostPositionInHouse;

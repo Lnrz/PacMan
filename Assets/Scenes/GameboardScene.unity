@@ -1401,7 +1401,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1683,7 +1683,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3009,7 +3009,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3093,7 +3093,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3797,7 +3797,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3965,7 +3965,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4822,7 +4822,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5802,7 +5802,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6032,6 +6032,7 @@ GameObject:
   - component: {fileID: 1177933875}
   - component: {fileID: 1177933880}
   - component: {fileID: 1177933886}
+  - component: {fileID: 1177933887}
   - component: {fileID: 1177933881}
   - component: {fileID: 1177933882}
   - component: {fileID: 1177933883}
@@ -6143,7 +6144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
-  startWaitTime: 5
+  startWaitTime: 3
 --- !u!114 &1177933881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6338,8 +6339,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
+  stopEntitiesChannel: {fileID: 11400000, guid: 05999debf15b3184fb05fad56b39df78, type: 2}
+  invisibleGhostsChannel: {fileID: 11400000, guid: c6a0e23d2c4041e41a011dc4f61e07da, type: 2}
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   nextLevelChannel: {fileID: 11400000, guid: 00438c6f88dfb0b4480af7eef3bbc0cf, type: 2}
+  wallMaterial: {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
+  waitBeforeFlashing: 2
+  flashingDuration: 3
+--- !u!114 &1177933887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177933874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f8d40487c419d41b481e4196281ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livesLeftUpdateChannel: {fileID: 11400000, guid: 30d3011fd856bcd43b6adbe59f4f38a7, type: 2}
+  playerEatenChannel: {fileID: 11400000, guid: 12672d895fda7c6498a6d6afe4d28272, type: 2}
+  stopEntitiesChannel: {fileID: 11400000, guid: 05999debf15b3184fb05fad56b39df78, type: 2}
+  invisibleGhostsChannel: {fileID: 11400000, guid: c6a0e23d2c4041e41a011dc4f61e07da, type: 2}
+  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
+  gameEndChannel: {fileID: 11400000, guid: 02c3bd68c1aff10429dc419a2714a240, type: 2}
+  playerMaterial: {fileID: 2100000, guid: 320d21738edabef4897b86544f4eb490, type: 2}
+  waitBeforeDeath: 2
+  deathDuration: 2
+  waitAfterDeath: 2
+  waitBeforeMenu: 2
 --- !u!1 &1302220764
 GameObject:
   m_ObjectHideFlags: 0
@@ -6377,7 +6406,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6827,9 +6856,8 @@ GameObject:
   - component: {fileID: 1406563544}
   - component: {fileID: 1406563538}
   - component: {fileID: 1406563545}
-  - component: {fileID: 1406563546}
-  - component: {fileID: 1406563547}
   - component: {fileID: 1406563548}
+  - component: {fileID: 1406563547}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6849,13 +6877,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ac22fbcff757048be2ca181501f609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
+  stopEntitiesChannel: {fileID: 11400000, guid: 05999debf15b3184fb05fad56b39df78, type: 2}
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   startDirections: 01010100
   startPos: {x: -1.5, y: 2.5}
   powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
   powerUpEndChannel: {fileID: 11400000, guid: 6401d40b1491801439628922f80c7364, type: 2}
   speedSettingsChannel: {fileID: 11400000, guid: f86134c1bc3f59b4d85072c4eb7b9fd8, type: 2}
-  gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
 --- !u!58 &1406563540
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6911,7 +6940,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 320d21738edabef4897b86544f4eb490, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6933,7 +6962,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -413869904, guid: e969c44ba08c10a479fcbd964981670c, type: 3}
-  m_Color: {r: 0.92993367, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7009,23 +7038,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe9e455ac288f343887ec4d7d0fec19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  livesLeft: 4
   livesLeftUpdateChannel: {fileID: 11400000, guid: 30d3011fd856bcd43b6adbe59f4f38a7, type: 2}
-  gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
-  gameEndChannel: {fileID: 11400000, guid: 02c3bd68c1aff10429dc419a2714a240, type: 2}
---- !u!114 &1406563546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406563537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 249c384c170fa704685d260905460674, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEndChannel: {fileID: 11400000, guid: 02c3bd68c1aff10429dc419a2714a240, type: 2}
+  gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
+  pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
+  playerEatenChannel: {fileID: 11400000, guid: 12672d895fda7c6498a6d6afe4d28272, type: 2}
+  livesLeft: 4
+  pointsForBonusLife: 10000
 --- !u!95 &1406563547
 Animator:
   serializedVersion: 5
@@ -7262,7 +7280,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8927,7 +8945,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9238,9 +9256,9 @@ GameObject:
   - component: {fileID: 1786660128}
   - component: {fileID: 1786660130}
   - component: {fileID: 1786660129}
+  - component: {fileID: 1786660135}
   - component: {fileID: 1786660134}
   - component: {fileID: 1786660133}
-  - component: {fileID: 1786660132}
   m_Layer: 0
   m_Name: Akabei
   m_TagString: Untagged
@@ -9355,6 +9373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903a1f7763a60614895e62c5892ffe28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
+  stopEntitiesChannel: {fileID: 11400000, guid: 05999debf15b3184fb05fad56b39df78, type: 2}
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   pacman: {fileID: 1406563542}
   fixedTargetPoint: {x: -10, y: -10}
@@ -9389,23 +9409,11 @@ MonoBehaviour:
   exitHouseChannel: {fileID: 11400000, guid: 889f156366d524844af0a914bb583dce, type: 2}
   settings: {fileID: 11400000, guid: 61097e7b4db9bdb4c870f84483a33399, type: 2}
   gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
+  stopEntitiesChannel: {fileID: 11400000, guid: 05999debf15b3184fb05fad56b39df78, type: 2}
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   priority: 0
   startPos: 3
   isAlreadyOut: 0
---- !u!114 &1786660132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786660122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 249c384c170fa704685d260905460674, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEndChannel: {fileID: 11400000, guid: 02c3bd68c1aff10429dc419a2714a240, type: 2}
 --- !u!95 &1786660133
 Animator:
   serializedVersion: 5
@@ -9444,6 +9452,19 @@ MonoBehaviour:
   powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
   powerUpEndChannel: {fileID: 11400000, guid: 6401d40b1491801439628922f80c7364, type: 2}
   blinkingChannel: {fileID: 11400000, guid: b6a0a4ffd36bd0f44b21f936062df85a, type: 2}
+--- !u!114 &1786660135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786660122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8904606787852ff48869114ccc5ea1a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invisibleGhostsChannel: {fileID: 11400000, guid: c6a0e23d2c4041e41a011dc4f61e07da, type: 2}
 --- !u!1 &1792570181
 GameObject:
   m_ObjectHideFlags: 0
@@ -9621,7 +9642,6 @@ GameObject:
   - component: {fileID: 1804420028}
   - component: {fileID: 1804420033}
   - component: {fileID: 1804420029}
-  - component: {fileID: 1804420035}
   m_Layer: 0
   m_Name: Aosuke
   m_TagString: Untagged
@@ -9674,6 +9694,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e2b8b514b540041b8a11ee3b25a757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
+  stopEntitiesChannel: {fileID: 11400000, guid: 05999debf15b3184fb05fad56b39df78, type: 2}
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   pacman: {fileID: 1406563542}
   fixedTargetPoint: {x: 10, y: 10}
@@ -9771,23 +9793,11 @@ MonoBehaviour:
   exitHouseChannel: {fileID: 11400000, guid: 889f156366d524844af0a914bb583dce, type: 2}
   settings: {fileID: 11400000, guid: 61097e7b4db9bdb4c870f84483a33399, type: 2}
   gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
+  stopEntitiesChannel: {fileID: 11400000, guid: 05999debf15b3184fb05fad56b39df78, type: 2}
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   priority: 1
   startPos: 1
   isAlreadyOut: 0
---- !u!114 &1804420035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804420026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 249c384c170fa704685d260905460674, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEndChannel: {fileID: 11400000, guid: 02c3bd68c1aff10429dc419a2714a240, type: 2}
 --- !u!1 &1814027049
 GameObject:
   m_ObjectHideFlags: 0
@@ -10326,7 +10336,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11079,7 +11089,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b19e57f9000962e45a3bb4a8bf40fe2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

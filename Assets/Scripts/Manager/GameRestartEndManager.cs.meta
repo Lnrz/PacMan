@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c3f8d40487c419d41b481e4196281ba4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - livesLeftUpdateChannel: {fileID: 11400000, guid: 30d3011fd856bcd43b6adbe59f4f38a7, type: 2}
+  - playerEatenChannel: {fileID: 11400000, guid: 12672d895fda7c6498a6d6afe4d28272, type: 2}
+  - stopEntitiesChannel: {fileID: 11400000, guid: 05999debf15b3184fb05fad56b39df78, type: 2}
+  - invisibleGhostsChannel: {fileID: 11400000, guid: c6a0e23d2c4041e41a011dc4f61e07da, type: 2}
+  - gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
+  - gameEndChannel: {fileID: 11400000, guid: 02c3bd68c1aff10429dc419a2714a240, type: 2}
+  - playerMaterial: {fileID: 2100000, guid: 320d21738edabef4897b86544f4eb490, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
