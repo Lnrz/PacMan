@@ -47,7 +47,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
             {
                 startPos = Utility.GetNextDirectionIndex(startPos);
             }
-            ghostPositionInHouse = ghostHouseCenter + Utility.Int2Dir(startPos);
+            ghostPositionInHouse = ghostHouseCenter + 2.0f * Utility.Int2Dir(startPos);
             transform.position = ghostPositionInHouse;
         }
         else
@@ -116,9 +116,9 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         if (startPos != -1)
         {
             lookControl.Look(exitPosLookInd);
-            while (time < 1 / enterExitSpeed)
+            while (time < 2 / enterExitSpeed)
             {
-                newPos = Vector2.Lerp(ghostPositionInHouse, ghostHouseCenter, time * enterExitSpeed);
+                newPos = Vector2.Lerp(ghostPositionInHouse, ghostHouseCenter, time / 2 * enterExitSpeed);
                 transform.position = newPos;
                 time += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
@@ -126,9 +126,9 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         }
         time = 0;
         lookControl.Look(exitHouseLookInd);
-        while (time < 2 / enterExitSpeed)
+        while (time < 4 / enterExitSpeed)
         {
-            newPos = Vector2.Lerp(ghostHouseCenter, ghostHouseExit, time / 2 * enterExitSpeed);
+            newPos = Vector2.Lerp(ghostHouseCenter, ghostHouseExit, time / 4 * enterExitSpeed);
             transform.position = newPos;
             time += Time.deltaTime;
             yield return new WaitForEndOfFrame();
@@ -144,9 +144,9 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
 
         time = 0;
         lookControl.Look(enterHouseLookInd);
-        while (time < 2 / enterExitSpeed)
+        while (time < 4 / enterExitSpeed)
         {
-            newPos = Vector2.Lerp(ghostHouseExit, ghostHouseCenter, time / 2 * enterExitSpeed);
+            newPos = Vector2.Lerp(ghostHouseExit, ghostHouseCenter, time / 4 * enterExitSpeed);
             transform.position = newPos;
             time += Time.deltaTime;
             yield return new WaitForEndOfFrame();
@@ -155,9 +155,9 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
         if (startPos != -1)
         {
             lookControl.Look(enterPosLookInd);
-            while (time < 1 / enterExitSpeed)
+            while (time < 2 / enterExitSpeed)
             {
-                newPos = Vector2.Lerp(ghostHouseCenter, ghostPositionInHouse, time * enterExitSpeed);
+                newPos = Vector2.Lerp(ghostHouseCenter, ghostPositionInHouse, time / 2 * enterExitSpeed);
                 transform.position = newPos;
                 time += Time.deltaTime;
                 yield return new WaitForEndOfFrame();

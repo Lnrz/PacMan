@@ -54,11 +54,11 @@
                 <ui:VisualElement name="points" class="points-container" style="visibility: hidden;">
                     <ui:VisualElement class="points-container__dot-container">
                         <ui:Image class="points-container__dot-image" />
-                        <ui:Label text="10 &lt;size=15&gt;PTS&lt;/size&gt;" />
+                        <ui:Label text="10 &lt;size=30&gt;PTS&lt;/size&gt;" />
                     </ui:VisualElement>
                     <ui:VisualElement class="points-container__power-pellet-container">
                         <ui:Image name="powerPellet" class="points-container__power-pellet-image" />
-                        <ui:Label text="50 &lt;size=15&gt;PTS&lt;/size&gt;" />
+                        <ui:Label text="50 &lt;size=30&gt;PTS&lt;/size&gt;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="credits" class="credits-container" style="visibility: hidden;">
@@ -74,7 +74,7 @@
                 </ui:VisualElement>
                 <ui:VisualElement style="height: 25%;" />
                 <ui:VisualElement class="bonus-container">
-                    <ui:Label text="BONUS PAC-MAN FOR 10000 &lt;size=15&gt;POINTS&lt;/size&gt;" class="bonus-container__text" />
+                    <ui:Label text="BONUS PAC-MAN FOR 10000 &lt;size=30&gt;POINTS&lt;/size&gt;" class="bonus-container__text" />
                 </ui:VisualElement>
                 <ui:VisualElement class="credits-container">
                     <ui:Label text="UniFI" />

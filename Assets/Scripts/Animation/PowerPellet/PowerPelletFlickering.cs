@@ -21,7 +21,10 @@ public class PowerPelletFlickering : MonoBehaviour
 
     private void OnGameStart()
     {
-        StartCoroutine(flickeringCorout);
+        if (gameObject.activeSelf)
+        {
+            StartCoroutine(flickeringCorout);
+        }
     }
 
     private void OnGameRestart()

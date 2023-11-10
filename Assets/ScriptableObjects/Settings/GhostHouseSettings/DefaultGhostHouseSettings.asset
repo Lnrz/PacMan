@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770539495d3cf844ba37c11093d57914, type: 3}
   m_Name: DefaultGhostHouseSettings
   m_EditorClassIdentifier: 
-  ghostHouseCenter: {x: -9.5, y: 0.5}
-  exitPosition: {x: -7.5, y: 0.5}
-  isVertical: 1
-  turnableDirOutside: 01000100
+  ghostHouseCenter: {x: -40, y: 3.5}
+  exitPosition: {x: -40, y: 6.5}
+  isVertical: 0
+  turnableDirOutside: 00010001

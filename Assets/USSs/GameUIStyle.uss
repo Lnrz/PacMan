@@ -1,37 +1,44 @@
 :root {
-	-unity-font-definition: url("/Assets/UI Toolkit/Fonts/PublicPixel SDF.asset");
-	color: white;
-	font-size: 20px;
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/Fonts/PublicPixel%20SDF.asset?fileID=11400000&guid=4ff6070a785b7934c983685ddfa4b333&type=2#PublicPixel SDF');
+    color: white;
+    font-size: 40px;
 }
 
 .gameUI {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
-.gameUI__upper,
+.gameUI__upper {
+    height: 10%;
+    flex-direction: row;
+}
+
 .gameUI__lower {
-	height: 10%;
-	flex-direction: row;
+    height: 10%;
+    flex-direction: row;
 }
 
 .gameUI__middle {
-	height: 80%;
+    height: 80%;
 }
 
 .gameUI__lower-half {
-	width: 50%;
+    width: 50%;
 }
 
-.gameUI__upper-middle--before-coin,
+.gameUI__upper-middle--before-coin {
+    height: 50%;
+}
+
 .gameUI__lower-middle--before-coin {
-	height: 50%;
+    height: 50%;
 }
 
 .gameUI__upper-middle--after-coin {
-	height: 37.5%;
+    height: 37.5%;
 }
 
 .gameUI__lower-middle--after-coin {
-	height: 62.5%;
+    height: 62.5%;
 }

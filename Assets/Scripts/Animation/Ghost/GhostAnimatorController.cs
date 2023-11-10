@@ -13,6 +13,7 @@ public class GhostAnimatorController : MonoBehaviour, LookController
     private int frightenedHash;
     private int blinkingHash;
     private int eatenHash;
+    private bool isEaten = false;
 
     private void Awake()
     {
@@ -60,6 +61,7 @@ public class GhostAnimatorController : MonoBehaviour, LookController
 
     private void OnFrightened()
     {
+        isEaten = false;
         anim.SetBool(frightenedHash, true);
     }
 
@@ -70,6 +72,7 @@ public class GhostAnimatorController : MonoBehaviour, LookController
 
     private void OnEaten()
     {
+        isEaten = true;
         anim.SetBool(frightenedHash, false);
         anim.SetBool(eatenHash, true);
     }
@@ -81,6 +84,9 @@ public class GhostAnimatorController : MonoBehaviour, LookController
 
     private void OnBlinking()
     {
-        anim.SetTrigger(blinkingHash);
+        if (!isEaten)
+        {
+            anim.SetTrigger(blinkingHash);
+        }
     }
 }

@@ -8,7 +8,7 @@ public class TunnelTeleportEnd : MonoBehaviour
 
     private void Awake()
     {
-        exitPosition = (Vector2)transform.position + Utility.Int2Dir(exitDirection);
+        exitPosition = (Vector2)transform.position + 2.0f * Utility.Int2Dir(exitDirection);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

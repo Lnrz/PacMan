@@ -4,19 +4,15 @@
     <ui:VisualElement class="gameUI">
         <ui:VisualElement class="gameUI__upper" />
         <ui:VisualElement class="gameUI__middle">
-            <ui:Label text="READY&lt;i&gt;!&lt;/i&gt;" name="readyLabel" class="ready-text" style="top: 66%; left: 31.5%; display: flex;" />
-            <ui:Label text="GAME OVER" name="gameOverLabel" class="game-over-text" style="display: none; top: 66%; left: 28%;" />
+            <ui:Label text="READY&lt;i&gt;!&lt;/i&gt;" name="readyLabel" class="ready-text" style="top: 55%; left: 41.5%; display: flex;" />
+            <ui:Label text="GAME OVER" name="gameOverLabel" class="game-over-text" style="display: none; top: 55%; left: 35%;" />
         </ui:VisualElement>
         <ui:VisualElement class="gameUI__lower">
             <ui:VisualElement class="gameUI__lower-half">
-                <ui:VisualElement name="livesContainer" class="lives-container">
-                    
-                </ui:VisualElement>
+                <ui:VisualElement name="livesContainer" class="lives-container" />
             </ui:VisualElement>
             <ui:VisualElement class="gameUI__lower-half">
-                <ui:VisualElement name="fruitsContainer" class="fruits-container">
-
-                </ui:VisualElement>
+                <ui:VisualElement name="fruitsContainer" class="fruits-container" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

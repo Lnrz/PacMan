@@ -27,7 +27,7 @@
 
 .ghost-line__image-container {
     flex-direction: row;
-    width: 10%;
+    width: 15%;
 }
 
 .ghost-line__eyes-image {
@@ -122,8 +122,9 @@
 
 .points-container__dot-image,
 .points-container__power-pellet-image {
-    width: 50%;
-    height: 50%;
+    width: 25%;
+    height: 25%;
+    margin-right: 5%;
 }
 
 .points-container__dot-image {
