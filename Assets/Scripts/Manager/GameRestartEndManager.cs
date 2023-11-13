@@ -45,7 +45,7 @@ public class GameRestartEndManager : MonoBehaviour
         time = 0;
         while (time < 1)
         {
-            dyingProgress = Mathf.Lerp(0.0f, 3.16f, time);
+            dyingProgress = Mathf.Lerp(0.0f, 3.2f, time);
             playerMaterial.SetFloat(dyingProgressHash, dyingProgress);
             time += Time.deltaTime / deathDuration;
             yield return new WaitForEndOfFrame();

@@ -7,12 +7,14 @@ public class GhostAnimatorController : MonoBehaviour, LookController
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
     [SerializeField] private PowerUpEndChannelSO powerUpEndChannel;
     [SerializeField] private BlinkingChannelSO blinkingChannel;
+    [SerializeField] private bool startOutside;
     private Animator anim;
     private int[] lookHashes = new int[4];
     private int gameStartHash;
     private int frightenedHash;
     private int blinkingHash;
     private int eatenHash;
+    private int isInHomeHash;
     private bool isEaten = false;
 
     private void Awake()
@@ -26,6 +28,7 @@ public class GhostAnimatorController : MonoBehaviour, LookController
         frightenedHash = Animator.StringToHash("IsFrightened");
         blinkingHash = Animator.StringToHash("IsBlinking");
         eatenHash = Animator.StringToHash("IsEaten");
+        isInHomeHash = Animator.StringToHash("IsInHome");
         gameStartChannel.AddListener(OnGameStart);
         gameRestartChannel.AddListener(OnGameRestart);
         powerPelletChannel.AddListener(OnFrightened);
@@ -39,6 +42,11 @@ public class GhostAnimatorController : MonoBehaviour, LookController
         {
             insideHomeEventInvoker.OnInsideHome(OnInsideHome);
         }
+        if (TryGetComponent<ExitingHomeEventInvoker>(out ExitingHomeEventInvoker exitingHomeEventInvoker))
+        {
+            exitingHomeEventInvoker.OnExitingHome(OnExitingHome);
+        }
+        anim.SetBool(isInHomeHash, !startOutside);
     }
 
     public void Look(int dirIndex)
@@ -55,6 +63,7 @@ public class GhostAnimatorController : MonoBehaviour, LookController
     private void OnGameRestart()
     {
         anim.SetBool(gameStartHash, false);
+        anim.SetBool(isInHomeHash, !startOutside);
         anim.SetBool(frightenedHash, false);
         anim.SetBool(eatenHash, false);
     }
@@ -88,5 +97,10 @@ public class GhostAnimatorController : MonoBehaviour, LookController
         {
             anim.SetTrigger(blinkingHash);
         }
+    }
+
+    private void OnExitingHome()
+    {
+        anim.SetBool(isInHomeHash, false);
     }
 }

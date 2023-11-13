@@ -60,11 +60,14 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         Array.Copy(newLegalDir, legalDir, 4);
     }
 
-    public void Stop()
+    public void Stop(bool adjustPos)
     {
         direction = Vector3.zero;
         UpdateDirectionIndex(-1);
-        Utility.AdjustPosition(transform);
+        if (adjustPos)
+        {
+            Utility.AdjustPosition(transform);
+        }
     }
 
     public void AddDirectionListener(UnityAction<int> listener)
@@ -127,7 +130,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
 
     private void OnStopEntities()
     {
-        Stop();
+        Stop(false);
         nextDirectionIndex = -1;
         isAcceptingInput = false;
     }

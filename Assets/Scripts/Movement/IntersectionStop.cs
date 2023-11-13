@@ -34,7 +34,7 @@ public class IntersectionStop : MonoBehaviour
         dist = movingEnt.transform.position - transform.position;
         if (HasCollided())
         {
-            movingEnt.Stop();
+            movingEnt.Stop(true);
             movingEnt.LockDirection(directionIndex, true);
         }
     }
