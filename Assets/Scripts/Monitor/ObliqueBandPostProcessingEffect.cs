@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class CurveMonitorPostProcessingEffect : MonoBehaviour
+public class ObliqueBandPostProcessingEffect : MonoBehaviour
 {
     [SerializeField] private Material effect;
 

@@ -7,6 +7,7 @@ public class GhostAnimatorController : MonoBehaviour, LookController
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
     [SerializeField] private PowerUpEndChannelSO powerUpEndChannel;
     [SerializeField] private BlinkingChannelSO blinkingChannel;
+    [SerializeField] private StopEntitiesChannelSO stopEntitiesChannel;
     [SerializeField] private bool startOutside;
     private Animator anim;
     private int[] lookHashes = new int[4];
@@ -34,6 +35,7 @@ public class GhostAnimatorController : MonoBehaviour, LookController
         powerPelletChannel.AddListener(OnFrightened);
         blinkingChannel.AddListener(OnBlinking);
         powerUpEndChannel.AddListener(OnPowerUpEnd);
+        stopEntitiesChannel.AddListener(OnStopEntities);
         if (TryGetComponent<EatenEventInvoker>(out EatenEventInvoker eatenEventInvoker))
         {
             eatenEventInvoker.OnEaten(OnEaten);
@@ -100,6 +102,11 @@ public class GhostAnimatorController : MonoBehaviour, LookController
     }
 
     private void OnExitingHome()
+    {
+        anim.SetBool(isInHomeHash, false);
+    }
+
+    private void OnStopEntities()
     {
         anim.SetBool(isInHomeHash, false);
     }

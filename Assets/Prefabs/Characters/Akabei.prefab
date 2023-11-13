@@ -287,6 +287,7 @@ MonoBehaviour:
   powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
   powerUpEndChannel: {fileID: 11400000, guid: 6401d40b1491801439628922f80c7364, type: 2}
   blinkingChannel: {fileID: 11400000, guid: b6a0a4ffd36bd0f44b21f936062df85a, type: 2}
+  stopEntitiesChannel: {fileID: 11400000, guid: 05999debf15b3184fb05fad56b39df78, type: 2}
   startOutside: 1
 --- !u!95 &6323854088445521122
 Animator:

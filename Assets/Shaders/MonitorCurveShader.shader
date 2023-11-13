@@ -1,4 +1,4 @@
-Shader "PostProcessorShaders/MonitorCurveShader"
+Shader "MyShaders/PostProcessorShaders/MonitorCurveShader"
 {
     Properties
     {

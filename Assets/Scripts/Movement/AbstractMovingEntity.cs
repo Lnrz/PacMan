@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public abstract class AbstractMovingEntity : MonoBehaviour
 {
-    private static readonly float speed = 5.0f;
+    private static readonly float speed = 6.5f;
     protected static readonly float turnDist = 0.035f;
     [SerializeField] private GameStartChannelSO gameStartChannel;
     [SerializeField] private StopEntitiesChannelSO stopEntitiesChannel;
