@@ -38,6 +38,11 @@ public abstract class AbstractEatable : MonoBehaviour
         }
     }
 
+    protected int GetPoints()
+    {
+        return points;
+    }
+
     protected abstract void OnPlayerDetection();
 
     protected abstract void OnNextLevel();

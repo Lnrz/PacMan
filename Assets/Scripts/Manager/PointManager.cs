@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PointManager : MonoBehaviour
@@ -6,6 +5,7 @@ public class PointManager : MonoBehaviour
     [SerializeField] private PointsChannelSO pointsChannel;
     [SerializeField] private PowerPelletChannelSO powerPelletChannel;
     [SerializeField] private GhostEatenChannelSO ghostEatenChannel;
+    [SerializeField] private PointsTextChannelSO pointsTextChannel;
     [SerializeField] private ScoreUpdateChannelSO scoreUpdateChannel;
     [SerializeField] private HighscoreUpdateChannelSO highscoreUpdateChannel;
     [SerializeField] private int[] eatGhostPoints = { 200, 400, 800, 1600};
@@ -43,9 +43,10 @@ public class PointManager : MonoBehaviour
         eatGhostProgress = 0;
     }
 
-    private void OnGhostEaten()
+    private void OnGhostEaten(Vector3 pos)
     {
         IncreasePoints(eatGhostPoints[eatGhostProgress]);
+        pointsTextChannel.Invoke(eatGhostPoints[eatGhostProgress], pos);
         eatGhostProgress++;
     }
 }

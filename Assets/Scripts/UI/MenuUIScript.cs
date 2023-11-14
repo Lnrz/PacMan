@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class MenuUIScript : MonoBehaviour
 {
+    [SerializeField] private MenuAnimationEndChannelSO menuAnimationEndChannel;
     private Label creditNum;
     private VisualElement beforeCoin;
     private VisualElement afterCoin;
@@ -22,6 +22,7 @@ public class MenuUIScript : MonoBehaviour
             beforeCoin.style.display = DisplayStyle.None;
             afterCoin.style.display = DisplayStyle.Flex;
             creditNum.text = "1";
+            menuAnimationEndChannel.Invoke();
         }
         else if (Input.GetKeyDown(KeyCode.Return))
         {

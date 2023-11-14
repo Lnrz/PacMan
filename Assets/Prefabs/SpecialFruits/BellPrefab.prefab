@@ -138,4 +138,5 @@ MonoBehaviour:
   nextLevelChannel: {fileID: 11400000, guid: 00438c6f88dfb0b4480af7eef3bbc0cf, type: 2}
   eatingTime: 0.017
   eatingSpeedReduction: 0.2
-  secondsBeforeDestroy: 10
+  pointsTextChannel: {fileID: 11400000, guid: edc7f0ad142eafd478074701bc193b01, type: 2}
+  secondsBeforeDestroy: 15

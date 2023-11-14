@@ -26,7 +26,7 @@ public class ContactWithPlayer : MonoBehaviour, EatenEventInvoker
     public void FireOnEatenEvent()
     {
         onEatenEvent.Invoke();
-        ghostEatenChannel.Invoke();
+        ghostEatenChannel.Invoke(transform.position);
     }
 
     private void OnGameRestart()

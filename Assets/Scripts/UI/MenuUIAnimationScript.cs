@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 
 public class MenuUIAnimationScript : MonoBehaviour
 {
+    [SerializeField] private MenuAnimationEndChannelSO menuAnimationEndChannel;
     [SerializeField] private float initialWait;
     [SerializeField] private float imgCharacterWait;
     [SerializeField] private float characterNicknameWait;
@@ -47,6 +48,7 @@ public class MenuUIAnimationScript : MonoBehaviour
         MakeVisible(points);
         yield return new WaitForSeconds(pointsCreditsWait);
         MakeVisible(credits);
+        menuAnimationEndChannel.Invoke();
     }
 
     private IEnumerator ImgCharacterNicknameAnimation(string nickname)
