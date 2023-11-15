@@ -74,6 +74,7 @@ public class GhostAnimatorController : MonoBehaviour, LookController
     {
         isEaten = false;
         anim.SetBool(frightenedHash, true);
+        anim.ResetTrigger(blinkingHash);
     }
 
     private void OnPowerUpEnd()

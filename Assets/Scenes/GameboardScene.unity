@@ -38534,6 +38534,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3809146355386393815, guid: 5fe2fc8a699213546b6848c7c2f46e44, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7744332902870955469, guid: 5fe2fc8a699213546b6848c7c2f46e44, type: 3}
       propertyPath: m_LocalPosition.x
       value: -40
@@ -38638,6 +38642,14 @@ PrefabInstance:
     - target: {fileID: 5161615808143768865, guid: e2695167e31ff2e4ca1ee0d8b952df5a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7570927994871571829, guid: e2695167e31ff2e4ca1ee0d8b952df5a, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7570927994871571829, guid: e2695167e31ff2e4ca1ee0d8b952df5a, type: 3}
+      propertyPath: m_Size.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7570927994871571829, guid: e2695167e31ff2e4ca1ee0d8b952df5a, type: 3}
       propertyPath: m_Color.r

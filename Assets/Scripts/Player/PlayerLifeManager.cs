@@ -4,7 +4,7 @@ public class PlayerLifeManager : MonoBehaviour
 {
     [SerializeField] private LivesLeftUpdateChannelSO livesLeftUpdateChannel;
     [SerializeField] private GameStartChannelSO gameStartChannel;
-    [SerializeField] private PointsChannelSO pointsChannel;
+    [SerializeField] private ScoreUpdateChannelSO scoreUpdateChannel;
     [SerializeField] private PlayerEatenChannelSO playerEatenChannel;
     [SerializeField] private int livesLeft = 4;
     [SerializeField] private int pointsForBonusLife = 10000;
@@ -13,7 +13,7 @@ public class PlayerLifeManager : MonoBehaviour
     private void Awake()
     {
         gameStartChannel.AddListener(OnGameStart);
-        pointsChannel.AddListener(OnPointsUpdate);
+        scoreUpdateChannel.AddListener(OnScoreUpdate);
     }
 
     private void Start()
@@ -26,12 +26,12 @@ public class PlayerLifeManager : MonoBehaviour
         canBeEaten = true;
     }
 
-    private void OnPointsUpdate(int points)
+    private void OnScoreUpdate(int points)
     {
         if (points >= pointsForBonusLife)
         {
             UpdateLivesLeft(1);
-            pointsChannel.RemoveListener(OnPointsUpdate);
+            scoreUpdateChannel.RemoveListener(OnScoreUpdate);
         }
     }
 

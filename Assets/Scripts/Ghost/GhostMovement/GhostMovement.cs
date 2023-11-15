@@ -17,11 +17,15 @@ public abstract class GhostMovement : AbstractMovingEntity
     protected override sealed void AwakeHelper()
     {
         ResetState();
-        SetLegalDir(settings.GetTurnableDirsOutside());
+        ResetLegalDir();
         speedSettingsChannel.AddListener(OnSpeedSettingsChange);
         if (TryGetComponent<ChangeStateEventInvoker>(out ChangeStateEventInvoker changeStateEventInvoker))
         {
             changeStateEventInvoker.OnChangeState(UpdateState);
+        }
+        if (TryGetComponent<InsideHomeEventInvoker>(out InsideHomeEventInvoker insideHomeEventInvoker))
+        {
+            insideHomeEventInvoker.OnInsideHome(ResetLegalDir);
         }
     }
 
@@ -38,7 +42,7 @@ public abstract class GhostMovement : AbstractMovingEntity
         ResetState();
         CancelReverseDirection();
         ChangeToNormalSpeedMod();
-        SetLegalDir(settings.GetTurnableDirsOutside());
+        ResetLegalDir();
     }
 
     public Vector2 GetGhostHouseExitPosition()
@@ -48,26 +52,34 @@ public abstract class GhostMovement : AbstractMovingEntity
 
     protected override sealed void UpdateHelper()
     {
-        if (isWaitingToReverseDir && Utility.IsCloseToTileCenter(transform.position, turnDist))
+        if (isWaitingToReverseDir && Utility.IsCloseToTileCenter(transform.position, sqrdTurnDist))
         {
             ChangeDirection(Utility.GetOppositeDirectionIndex(GetDirectionIndex()));
             CancelReverseDirection();
         }
     }
 
-    public override sealed void IntersectionStopEnter(Vector3 interPos)
+    protected override sealed void IntersectionStopEnterHelper(Vector3 interPos)
     {
         int newDirectionIndex;
 
-        newDirectionIndex = state.GetTurningDirectionIndex(interPos);
+        newDirectionIndex = state.GetTurningDirectionIndex(interPos, GetDirectionIndex());
         if (newDirectionIndex == Utility.GetOppositeDirectionIndex(GetDirectionIndex()))
         {
             ReverseDirection();
         }
         else
-        {            
+        {
             ChangeDirection(newDirectionIndex);
         }
+    }
+
+    protected override void StopHelper(int previousDirInd)
+    {
+        int newDirectionIndex;
+
+        newDirectionIndex = state.GetTurningDirectionIndex(transform.position, previousDirInd);
+        ChangeDirection(newDirectionIndex);
     }
 
     public abstract Vector2 GetTargetPoint();
@@ -98,6 +110,11 @@ public abstract class GhostMovement : AbstractMovingEntity
     public void CancelReverseDirection()
     {
         isWaitingToReverseDir = false;
+    }
+
+    private void ResetLegalDir()
+    {
+        SetLegalDir(settings.GetTurnableDirsOutside());
     }
 
     private void ResetState()

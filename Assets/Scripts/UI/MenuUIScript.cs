@@ -16,13 +16,16 @@ public class MenuUIScript : MonoBehaviour
 
     private void Update()
     {
-        if (!isCoinInserted && Input.GetKeyDown(KeyCode.C))
+        if (!isCoinInserted)
         {
-            isCoinInserted = true;
-            beforeCoin.style.display = DisplayStyle.None;
-            afterCoin.style.display = DisplayStyle.Flex;
-            creditNum.text = "1";
-            menuAnimationEndChannel.Invoke();
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                isCoinInserted = true;
+                beforeCoin.style.display = DisplayStyle.None;
+                afterCoin.style.display = DisplayStyle.Flex;
+                creditNum.text = "1";
+                menuAnimationEndChannel.Invoke();
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Return))
         {

@@ -10,10 +10,10 @@ public class StillGhostMovementState : GhostMovementState
     public override void AfterChange()
     {
         context.CancelReverseDirection();
-        context.Stop(false);
+        context.Stop(false, true);
     }
 
-    public override int GetTurningDirectionIndex(Vector2 interPos)
+    public override int GetTurningDirectionIndex(Vector2 interPos, int currentDirInd)
     {
         return -1;
     }

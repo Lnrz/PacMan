@@ -108,15 +108,6 @@ public static class Utility
         return sqrdDist <= sqrdMaxDist;
     }
 
-    public static bool IsCloseToTileCenterAlongAxis(Vector2 pos, int axisIndex,float maxDist)
-    {
-        float dist;
-
-        dist = GetDistFromTileCenterAlongAxis(pos, axisIndex);
-        dist = Mathf.Abs(dist);
-        return dist <= maxDist;
-    }
-
     public static void AdjustPosition(Transform transf)
     {
         Vector2 pos;
@@ -154,23 +145,6 @@ public static class Utility
         res = pos - Vec2Floor(pos);
         res.x = res.x - gridOffset;
         res.y = res.y - gridOffset;
-        return res;
-    }
-
-    private static float GetDistFromTileCenterAlongAxis(Vector2 pos, int axisIndex)
-    {
-        float res = gridOffset;
-
-        switch (axisIndex)
-        {
-            case 0:
-                res = pos.x - Mathf.Floor(pos.x);
-                break;
-            case 1:
-                res = pos.y - Mathf.Floor(pos.y);
-                break;
-        }
-        res = res - gridOffset;
         return res;
     }
 

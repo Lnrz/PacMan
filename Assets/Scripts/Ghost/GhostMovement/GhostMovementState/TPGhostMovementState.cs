@@ -2,25 +2,27 @@ using UnityEngine;
 
 public abstract class TPGhostMovementState : GhostMovementState
 {
-    public sealed override int GetTurningDirectionIndex(Vector2 interPos)
+    public override int GetTurningDirectionIndex(Vector2 interPos, int currentDirInd)
     {
         Vector2 targetPoint;
 
         targetPoint = GetTargetPoint();
-        return ChooseDirection(targetPoint, interPos);
+        return ChooseDirection(targetPoint, interPos, currentDirInd);
     }
 
     protected abstract Vector2 GetTargetPoint();
 
-    private int ChooseDirection(Vector2 targetPoint, Vector2 interPos)
+    private int ChooseDirection(Vector2 targetPoint, Vector2 interPos, int currentDirInd)
     {
         float[] dist = new float[4];
         int newDirectionIndex;
+        int oppositeDirIndex;
         float minDist;
 
+        oppositeDirIndex = Utility.GetOppositeDirectionIndex(currentDirInd);
         for (int i = 0; i < 4; i++)
         {
-            if (!context.GetIsLegalDir(i) || i == Utility.GetOppositeDirectionIndex(context.GetDirectionIndex()))
+            if (!context.GetIsLegalDir(i) || i == oppositeDirIndex)
             {
                 dist[i] = float.MaxValue;
                 continue;
@@ -37,7 +39,7 @@ public abstract class TPGhostMovementState : GhostMovementState
                 newDirectionIndex = i;
             }
         }
-        if (dist[newDirectionIndex] == float.MaxValue) return (context.GetDirectionIndex() + 2) %  4;
+        if (dist[newDirectionIndex] == float.MaxValue) return oppositeDirIndex;
         return newDirectionIndex;
     }
 }

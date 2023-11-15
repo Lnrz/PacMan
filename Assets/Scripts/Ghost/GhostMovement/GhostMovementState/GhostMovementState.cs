@@ -9,7 +9,7 @@ public abstract class GhostMovementState
         this.context = context;
     }
 
-    public abstract int GetTurningDirectionIndex(Vector2 interPos);
+    public abstract int GetTurningDirectionIndex(Vector2 interPos, int currentDirInd);
 
     public abstract void BeforeChange();
 

@@ -80,7 +80,9 @@ public class PlayerMovement : AbstractMovingEntity
         SetLegalDir(startDirections);
     }
 
-    public override sealed void IntersectionStopEnter(Vector3 interPos) {} 
+    protected override sealed void IntersectionStopEnterHelper(Vector3 interPos) {} 
 
     protected override void UpdateHelper() {}
+
+    protected override void StopHelper(int previousDirInd) {}
 }

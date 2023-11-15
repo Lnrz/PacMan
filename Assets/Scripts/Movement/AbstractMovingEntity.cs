@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public abstract class AbstractMovingEntity : MonoBehaviour
 {
     private static readonly float speed = 6.5f;
-    protected static readonly float turnDist = 0.035f;
+    protected static readonly float sqrdTurnDist = 0.0324f;
     [SerializeField] private GameStartChannelSO gameStartChannel;
     [SerializeField] private StopEntitiesChannelSO stopEntitiesChannel;
     [SerializeField] private GameRestartChannelSO gameRestartChannel;
@@ -15,6 +15,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
     private int directionIndex = -1;
     private int nextDirectionIndex = -1;
     private Vector3 direction = Vector3.zero;
+    private Vector3 lastInterPos = Vector3.zero;
     private bool isAcceptingInput = false;
 
     protected void Awake()
@@ -38,7 +39,13 @@ public abstract class AbstractMovingEntity : MonoBehaviour
 
     protected abstract void OnGameRestart();
 
-    public abstract void IntersectionStopEnter(Vector3 interPos);
+    protected abstract void IntersectionStopEnterHelper(Vector3 interPos);
+
+    public void IntersectionStopEnter(Vector3 interPos)
+    {
+        lastInterPos = interPos;
+        IntersectionStopEnterHelper(interPos);
+    }
 
     public bool GetIsLegalDir(int directionIndex)
     {
@@ -60,15 +67,24 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         Array.Copy(newLegalDir, legalDir, 4);
     }
 
-    public void Stop(bool adjustPos)
+    public void Stop(bool adjustPos, bool forceStop)
     {
+        int previousDirInd;
+
         direction = Vector3.zero;
+        previousDirInd = directionIndex;
         UpdateDirectionIndex(-1);
         if (adjustPos)
         {
             Utility.AdjustPosition(transform);
         }
+        if (!forceStop)
+        {
+            StopHelper(previousDirInd);
+        }
     }
+
+    protected abstract void StopHelper(int previousDirInd);
 
     public void AddDirectionListener(UnityAction<int> listener)
     {
@@ -110,7 +126,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
     {
         if (!IsDirectionValid(nextDirectionIndex)) return false;
         if (Utility.GetAxisIndex(nextDirectionIndex) == Utility.GetAxisIndex(directionIndex)) return true;
-        return Utility.IsCloseToTileCenterAlongAxis(transform.position, Utility.GetAxisIndex(nextDirectionIndex), turnDist);
+        return directionIndex == -1 || (transform.position - lastInterPos).sqrMagnitude <= sqrdTurnDist;
     }
 
     private void Move()
@@ -130,7 +146,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
 
     private void OnStopEntities()
     {
-        Stop(false);
+        Stop(false, true);
         nextDirectionIndex = -1;
         isAcceptingInput = false;
     }
