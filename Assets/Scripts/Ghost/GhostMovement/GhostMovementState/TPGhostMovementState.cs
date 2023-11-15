@@ -19,7 +19,7 @@ public abstract class TPGhostMovementState : GhostMovementState
         int oppositeDirIndex;
         float minDist;
 
-        oppositeDirIndex = Utility.GetOppositeDirectionIndex(currentDirInd);
+        oppositeDirIndex = MyDirUtils.GetOppositeDirectionIndex(currentDirInd);
         for (int i = 0; i < 4; i++)
         {
             if (!context.GetIsLegalDir(i) || i == oppositeDirIndex)
@@ -27,7 +27,7 @@ public abstract class TPGhostMovementState : GhostMovementState
                 dist[i] = float.MaxValue;
                 continue;
             }
-            dist[i] = (interPos + Utility.Int2Dir(i) - targetPoint).sqrMagnitude;
+            dist[i] = (interPos + MyDirUtils.Int2Dir(i) - targetPoint).sqrMagnitude;
         }
         newDirectionIndex = 0;
         minDist = dist[0];

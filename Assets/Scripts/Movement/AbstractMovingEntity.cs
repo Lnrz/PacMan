@@ -76,7 +76,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         UpdateDirectionIndex(-1);
         if (adjustPos)
         {
-            Utility.AdjustPosition(transform);
+            MyGridUtils.AdjustPosition(transform);
         }
         if (!forceStop)
         {
@@ -115,9 +115,9 @@ public abstract class AbstractMovingEntity : MonoBehaviour
         if (IsNextDirectionTurnable())
         {
             UpdateDirectionIndex(nextDirectionIndex);
-            direction = Utility.Int2Dir(directionIndex);
-            legalDir[Utility.GetOppositeDirectionIndex(directionIndex)] = true;
-            Utility.AdjustPositionToAxis(transform, Utility.GetAxisIndex(directionIndex));
+            direction = MyDirUtils.Int2Dir(directionIndex);
+            legalDir[MyDirUtils.GetOppositeDirectionIndex(directionIndex)] = true;
+            MyGridUtils.AdjustPositionToAxis(transform, MyDirUtils.GetAxisIndex(directionIndex));
             nextDirectionIndex = -1;
         }
     }
@@ -125,7 +125,7 @@ public abstract class AbstractMovingEntity : MonoBehaviour
     private bool IsNextDirectionTurnable()
     {
         if (!IsDirectionValid(nextDirectionIndex)) return false;
-        if (Utility.GetAxisIndex(nextDirectionIndex) == Utility.GetAxisIndex(directionIndex)) return true;
+        if (MyDirUtils.GetAxisIndex(nextDirectionIndex) == MyDirUtils.GetAxisIndex(directionIndex)) return true;
         return directionIndex == -1 || (transform.position - lastInterPos).sqrMagnitude <= sqrdTurnDist;
     }
 

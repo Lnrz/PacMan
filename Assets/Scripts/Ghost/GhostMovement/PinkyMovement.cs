@@ -13,7 +13,7 @@ public class PinkyMovement : GhostMovement
             pacmanME = pacman.GetComponent<AbstractMovingEntity>();
         }
         targetPoint = pacman.position;
-        targetPoint += 4 * Utility.Int2Dir(pacmanME.GetDirectionIndex());
+        targetPoint += 4 * MyDirUtils.Int2Dir(pacmanME.GetDirectionIndex());
         return targetPoint;
     }
 }

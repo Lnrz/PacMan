@@ -14,7 +14,7 @@ public class AosukeMovement : GhostMovement
             pacmanME = pacman.GetComponent<AbstractMovingEntity>();
         }
         targetPoint = pacman.position; 
-        targetPoint += 2 * Utility.Int2Dir(pacmanME.GetDirectionIndex());
+        targetPoint += 2 * MyDirUtils.Int2Dir(pacmanME.GetDirectionIndex());
         targetPoint += (targetPoint - (Vector2)akabei.position);
         return targetPoint;
     }

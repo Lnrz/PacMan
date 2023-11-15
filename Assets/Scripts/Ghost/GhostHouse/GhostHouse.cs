@@ -46,9 +46,9 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
             exitHouseChannel.AddListener(WakeUp);
             if (settings.IsVertical())
             {
-                startPos = Utility.GetNextDirectionIndex(startPos);
+                startPos = MyDirUtils.GetNextDirectionIndex(startPos);
             }
-            ghostPositionInHouse = ghostHouseCenter + 2.0f * Utility.Int2Dir(startPos);
+            ghostPositionInHouse = ghostHouseCenter + 2.0f * MyDirUtils.Int2Dir(startPos);
             transform.position = ghostPositionInHouse;
         }
         else
@@ -58,11 +58,11 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
             transform.position = ghostHouseExit;
         }
         lookControl = GetComponent<LookController>();
-        exitHouseLookInd = Utility.Dir2Int(ghostHouseExit - ghostHouseCenter);
-        enterHouseLookInd = Utility.GetOppositeDirectionIndex(exitHouseLookInd);
+        exitHouseLookInd = MyDirUtils.Dir2Int(ghostHouseExit - ghostHouseCenter);
+        enterHouseLookInd = MyDirUtils.GetOppositeDirectionIndex(exitHouseLookInd);
         if (startPos != -1)
         {
-            exitPosLookInd = Utility.GetOppositeDirectionIndex(startPos);
+            exitPosLookInd = MyDirUtils.GetOppositeDirectionIndex(startPos);
             enterPosLookInd = startPos;
         }
     }

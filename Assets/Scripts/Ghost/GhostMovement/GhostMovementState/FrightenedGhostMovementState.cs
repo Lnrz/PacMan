@@ -7,7 +7,7 @@ public class FrightenedGhostMovementState : GhostMovementState
         int newDirectionIndex;
         int oppositeDirIndex;
 
-        oppositeDirIndex = Utility.GetOppositeDirectionIndex(currentDirInd);
+        oppositeDirIndex = MyDirUtils.GetOppositeDirectionIndex(currentDirInd);
         newDirectionIndex = Random.Range(0, 4);
         for (int i = 0; i < 4; i++)
         {
@@ -15,7 +15,7 @@ public class FrightenedGhostMovementState : GhostMovementState
             {
                 return newDirectionIndex;
             }
-            newDirectionIndex = Utility.GetNextDirectionIndex(newDirectionIndex);
+            newDirectionIndex = MyDirUtils.GetNextDirectionIndex(newDirectionIndex);
         }
         return oppositeDirIndex;
     }

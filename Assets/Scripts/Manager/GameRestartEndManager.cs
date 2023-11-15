@@ -62,8 +62,8 @@ public class GameRestartEndManager : MonoBehaviour
             gameEndChannel.Invoke();
             yield return new WaitForSeconds(waitBeforeMenu);
             playerMaterial.SetFloat(dyingProgressHash, 0.0f);
-            Utility.LoadScene("MenuScene", false);
-            Utility.UnloadScene("GameboardScene");
+            MySceneUtils.LoadScene("MenuScene", false);
+            MySceneUtils.UnloadScene("GameboardScene");
         }
     }
 }

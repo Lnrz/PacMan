@@ -52,9 +52,9 @@ public abstract class GhostMovement : AbstractMovingEntity
 
     protected override sealed void UpdateHelper()
     {
-        if (isWaitingToReverseDir && Utility.IsCloseToTileCenter(transform.position, sqrdTurnDist))
+        if (isWaitingToReverseDir && MyGridUtils.IsCloseToTileCenter(transform.position, sqrdTurnDist))
         {
-            ChangeDirection(Utility.GetOppositeDirectionIndex(GetDirectionIndex()));
+            ChangeDirection(MyDirUtils.GetOppositeDirectionIndex(GetDirectionIndex()));
             CancelReverseDirection();
         }
     }
@@ -64,7 +64,7 @@ public abstract class GhostMovement : AbstractMovingEntity
         int newDirectionIndex;
 
         newDirectionIndex = state.GetTurningDirectionIndex(interPos, GetDirectionIndex());
-        if (newDirectionIndex == Utility.GetOppositeDirectionIndex(GetDirectionIndex()))
+        if (newDirectionIndex == MyDirUtils.GetOppositeDirectionIndex(GetDirectionIndex()))
         {
             ReverseDirection();
         }
@@ -97,7 +97,7 @@ public abstract class GhostMovement : AbstractMovingEntity
         for (int i = 0; i < 4; i++)
         {
             if (GetIsLegalDir(directionIndex)) break;
-            directionIndex = Utility.GetNextDirectionIndex(directionIndex);
+            directionIndex = MyDirUtils.GetNextDirectionIndex(directionIndex);
         }
         ChangeDirection(directionIndex);
     }

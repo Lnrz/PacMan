@@ -23,7 +23,7 @@ public class PointManager : MonoBehaviour
 
     private void GetInitialHighscore()
     {
-        highscore = Utility.GetHighscore();
+        highscore = MyScoreUtils.GetHighscore();
     }
 
     private void IncreasePoints(int points)
@@ -33,7 +33,7 @@ public class PointManager : MonoBehaviour
         if (highscore < currentPoints)
         {
             highscore = currentPoints;
-            Utility.SetHighscore(highscore);
+            MyScoreUtils.SetHighscore(highscore);
             highscoreUpdateChannel.Invoke(highscore);
         }
     }

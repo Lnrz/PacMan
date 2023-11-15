@@ -21,7 +21,7 @@ public class ScoresUIScript : MonoBehaviour
 
     private void SetInitialHighscore()
     {
-        highscore.text = Utility.GetHighscore().ToString();
+        highscore.text = MyScoreUtils.GetHighscore().ToString();
     }
 
     private void GetLabels()

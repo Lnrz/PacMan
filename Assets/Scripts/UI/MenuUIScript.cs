@@ -29,8 +29,8 @@ public class MenuUIScript : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Return))
         {
-            Utility.LoadScene("GameboardScene", true);
-            Utility.UnloadScene("MenuScene");
+            MySceneUtils.LoadScene("GameboardScene", true);
+            MySceneUtils.UnloadScene("MenuScene");
         }
     }
 
