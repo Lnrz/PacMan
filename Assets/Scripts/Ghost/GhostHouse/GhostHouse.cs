@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEventInvoker, InsideHomeEventInvoker, ExitingHomeEventInvoker
 {
     private static readonly float maxDistFromHouseExit = 0.035f;
-    private static readonly float enterExitSpeed = 2.5f;
+    private static readonly float enterExitSpeed = 3.0f;
     [SerializeField] private ExitHouseChannelSO exitHouseChannel;
     [SerializeField] private GhostHouseSettings settings;
     [SerializeField] private GameStartChannelSO gameStartChannel;

@@ -4,8 +4,8 @@
     <ui:VisualElement class="gameUI">
         <ui:VisualElement class="gameUI__upper" />
         <ui:VisualElement class="gameUI__middle">
-            <ui:Label text="READY&lt;i&gt;!&lt;/i&gt;" name="readyLabel" class="ready-text" style="top: 55%; left: 41.5%; display: flex;" />
-            <ui:Label text="GAME OVER" name="gameOverLabel" class="game-over-text" style="display: none; top: 55%; left: 35%;" />
+            <ui:Label text="READY&lt;i&gt;!&lt;/i&gt;" name="readyLabel" class="ready-text" style="top: 54.25%; left: 41.5%; display: flex;" />
+            <ui:Label text="GAME OVER" name="gameOverLabel" class="game-over-text" style="display: none; top: 54.5%; left: 35.5%;" />
         </ui:VisualElement>
         <ui:VisualElement class="gameUI__lower">
             <ui:VisualElement class="gameUI__lower-half">

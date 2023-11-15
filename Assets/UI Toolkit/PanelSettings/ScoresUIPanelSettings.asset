@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ScoresUIPanelSettings
   m_EditorClassIdentifier: 
   themeUss: {fileID: -4733365628477956816, guid: cae530d9185b2ab43a7d9f8e21c1d8a0, type: 3}
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 752929a7b8e3b29489e7db6a978b2514, type: 2}
   m_ScaleMode: 2
   m_ReferenceSpritePixelsPerUnit: 100
   m_Scale: 1
@@ -25,7 +25,7 @@ MonoBehaviour:
   m_SortingOrder: 0
   m_TargetDisplay: 0
   m_ClearDepthStencil: 1
-  m_ClearColor: 0
+  m_ClearColor: 1
   m_ColorClearValue: {r: 0, g: 0, b: 0, a: 0}
   m_DynamicAtlasSettings:
     m_MinAtlasSize: 64
