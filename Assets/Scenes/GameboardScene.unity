@@ -5781,6 +5781,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3205740143968839717, guid: 16ab270156e0ab94eafd32e4760193ae, type: 3}
   m_PrefabInstance: {fileID: 375805576}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &381060491 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7570927994871571829, guid: e2695167e31ff2e4ca1ee0d8b952df5a, type: 3}
+  m_PrefabInstance: {fileID: 6278238095644973446}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &383564868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6808,6 +6813,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2199440892733197288, guid: 8c439bbdd7c4d4a4991892c07ff8e817, type: 3}
   m_PrefabInstance: {fileID: 446582018}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &448421542 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3488893069140662471, guid: 097724aa994d7a44e8037478f23c50b1, type: 3}
+  m_PrefabInstance: {fileID: 1775848663724335534}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &449784921
 PrefabInstance:
@@ -31514,6 +31524,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 321049561842701884, guid: 40c6338f73a1abe468ed572c446be683, type: 3}
   m_PrefabInstance: {fileID: 1748013458}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &1748893846 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3764397874306738902, guid: 1d81d06ef8ec61346aa2f07f638a677c, type: 3}
+  m_PrefabInstance: {fileID: 8612345205554732344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1751777648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34855,6 +34870,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1777223457262739118, guid: 715440a43a15747478858d6919eea352, type: 3}
   m_PrefabInstance: {fileID: 1944538813}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1945748190 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 326191324301313124, guid: be58eab210f625646b76d4f9501ae438, type: 3}
+  m_PrefabInstance: {fileID: 1901953772346042817}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1952069797
 PrefabInstance:
@@ -38416,6 +38436,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Akabei
       objectReference: {fileID: 0}
+    - target: {fileID: 5317974768484214491, guid: 097724aa994d7a44e8037478f23c50b1, type: 3}
+      propertyPath: bodyRend
+      value: 
+      objectReference: {fileID: 448421542}
     - target: {fileID: 7429400228576033849, guid: 097724aa994d7a44e8037478f23c50b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -40
@@ -38469,6 +38493,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 326191324301313124, guid: be58eab210f625646b76d4f9501ae438, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 326191324301313124, guid: be58eab210f625646b76d4f9501ae438, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 896390177863080140, guid: be58eab210f625646b76d4f9501ae438, type: 3}
+      propertyPath: bodyRend
+      value: 
+      objectReference: {fileID: 1945748190}
     - target: {fileID: 1705656521069915844, guid: be58eab210f625646b76d4f9501ae438, type: 3}
       propertyPath: m_LocalPosition.x
       value: -40
@@ -38591,6 +38627,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2382780516962727592, guid: e2695167e31ff2e4ca1ee0d8b952df5a, type: 3}
+      propertyPath: bodyRend
+      value: 
+      objectReference: {fileID: 381060491}
     - target: {fileID: 2511352296295777832, guid: e2695167e31ff2e4ca1ee0d8b952df5a, type: 3}
       propertyPath: m_Name
       value: Aosuke
@@ -38777,6 +38817,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5429788251630321461, guid: 1d81d06ef8ec61346aa2f07f638a677c, type: 3}
+      propertyPath: bodyRend
+      value: 
+      objectReference: {fileID: 1748893846}
     - target: {fileID: 5636319132137673305, guid: 1d81d06ef8ec61346aa2f07f638a677c, type: 3}
       propertyPath: m_Name
       value: Guzuta
