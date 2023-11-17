@@ -12,16 +12,19 @@ public class GameRestartEndManager : MonoBehaviour
     [SerializeField] private Material playerMaterial;
     [SerializeField] private float waitBeforeDeath = 2.0f;
     [SerializeField] private float deathDuration = 1.5f;
+    [SerializeField] private float poppingDuration = 0.2f;
     [SerializeField] private float waitAfterDeath = 2.0f;
     [SerializeField] private float waitBeforeMenu = 2.0f;
     private int livesLeft;
     private int dyingProgressHash;
+    private int isPoppingHash;
 
     private void Awake()
     {
         livesLeftUpdateChannel.AddListener(OnLifesLeftUpdate);
         playerEatenChannel.AddListener(OnPlayerEaten);
         dyingProgressHash = Shader.PropertyToID("_MinAngle");
+        isPoppingHash = Shader.PropertyToID("_IsPopping");
     }
 
     private void OnLifesLeftUpdate(int livesLeft)
@@ -50,6 +53,9 @@ public class GameRestartEndManager : MonoBehaviour
             time += Time.deltaTime / deathDuration;
             yield return new WaitForEndOfFrame();
         }
+        playerMaterial.SetInteger(isPoppingHash, 1);
+        yield return new WaitForSeconds(poppingDuration);
+        playerMaterial.SetInteger(isPoppingHash, 0);
         yield return new WaitForSeconds(waitAfterDeath);
         if (livesLeft >= 0)
         {

@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1205454530}
+  - component: {fileID: 1205454533}
   - component: {fileID: 1205454529}
   - component: {fileID: 1205454531}
   - component: {fileID: 1205454532}
@@ -202,6 +203,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextLevelChannel: {fileID: 11400000, guid: 00438c6f88dfb0b4480af7eef3bbc0cf, type: 2}
   gameEndChannel: {fileID: 11400000, guid: 02c3bd68c1aff10429dc419a2714a240, type: 2}
+--- !u!114 &1205454533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205454528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a4a189947f4704290ef94c6e427b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

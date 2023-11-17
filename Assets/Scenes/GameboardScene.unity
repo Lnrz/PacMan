@@ -20297,6 +20297,7 @@ MonoBehaviour:
   playerMaterial: {fileID: 2100000, guid: 320d21738edabef4897b86544f4eb490, type: 2}
   waitBeforeDeath: 2
   deathDuration: 2
+  poppingDuration: 0.3
   waitAfterDeath: 2
   waitBeforeMenu: 2
 --- !u!114 &1177933888
@@ -38520,6 +38521,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Akabei
       objectReference: {fileID: 0}
+    - target: {fileID: 4473854446277233855, guid: 097724aa994d7a44e8037478f23c50b1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5317974768484214491, guid: 097724aa994d7a44e8037478f23c50b1, type: 3}
       propertyPath: bodyRend
       value: 
@@ -38637,6 +38642,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pinky
       objectReference: {fileID: 0}
+    - target: {fileID: 8594396526782645207, guid: be58eab210f625646b76d4f9501ae438, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38650,6 +38659,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2522915439553366930, guid: 5fe2fc8a699213546b6848c7c2f46e44, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3809146355386393815, guid: 5fe2fc8a699213546b6848c7c2f46e44, type: 3}
       propertyPath: m_Name
       value: Player
@@ -38718,6 +38731,10 @@ PrefabInstance:
     - target: {fileID: 2511352296295777832, guid: e2695167e31ff2e4ca1ee0d8b952df5a, type: 3}
       propertyPath: m_Name
       value: Aosuke
+      objectReference: {fileID: 0}
+    - target: {fileID: 2511352296295777832, guid: e2695167e31ff2e4ca1ee0d8b952df5a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3969718203574427636, guid: e2695167e31ff2e4ca1ee0d8b952df5a, type: 3}
       propertyPath: akabei
@@ -38908,6 +38925,10 @@ PrefabInstance:
     - target: {fileID: 5636319132137673305, guid: 1d81d06ef8ec61346aa2f07f638a677c, type: 3}
       propertyPath: m_Name
       value: Guzuta
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636319132137673305, guid: 1d81d06ef8ec61346aa2f07f638a677c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

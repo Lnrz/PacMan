@@ -68,6 +68,7 @@ public class GhostAnimatorController : MonoBehaviour, LookController
         anim.SetBool(isInHomeHash, !startOutside);
         anim.SetBool(frightenedHash, false);
         anim.SetBool(eatenHash, false);
+        anim.SetTrigger(lookHashes[1]);
     }
 
     private void OnFrightened()

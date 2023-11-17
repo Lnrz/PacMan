@@ -1343,7 +1343,6 @@ GameObject:
   - component: {fileID: 1581927780}
   - component: {fileID: 1581927782}
   - component: {fileID: 1581927779}
-  - component: {fileID: 1581927785}
   m_Layer: 0
   m_Name: MenuCamera
   m_TagString: MainCamera
@@ -1452,18 +1451,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vSyncCount: 1
   frameRate: 60
---- !u!114 &1581927785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1581927778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50e277b763aa35c44a57ea38c2efb7b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1582776616
 GameObject:
   m_ObjectHideFlags: 0

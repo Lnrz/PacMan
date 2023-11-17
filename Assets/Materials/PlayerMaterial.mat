@@ -61,6 +61,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints:
     - _IsDying: 110
+    - _IsPopping: 0
+    - _SampleNum: 32
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5

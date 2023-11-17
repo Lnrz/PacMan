@@ -137,5 +137,5 @@ MonoBehaviour:
   pointsChannel: {fileID: 11400000, guid: a91df8c4550e2c542a157b4c81ae9133, type: 2}
   nextLevelChannel: {fileID: 11400000, guid: 00438c6f88dfb0b4480af7eef3bbc0cf, type: 2}
   eatingTime: 0.017
-  eatingSpeedReduction: 0.2
+  eatingSpeedReduction: 0.3
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}

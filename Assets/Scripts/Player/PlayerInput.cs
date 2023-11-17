@@ -35,28 +35,35 @@ public class PlayerInput : MonoBehaviour, PlayerInputEventInvoker
         {
             directionIndex = 3;
         }
-
         return directionIndex;
     }
 
     private bool UpInput()
     {
-        return Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
+        return Input.GetKeyDown(KeyCode.W) ||
+            Input.GetKeyDown(KeyCode.UpArrow) ||
+            Input.GetKeyDown(KeyCode.Keypad8);
     }
 
     private bool RightInput()
     {
-        return Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
+        return Input.GetKeyDown(KeyCode.D) ||
+            Input.GetKeyDown(KeyCode.RightArrow) ||
+            Input.GetKeyDown(KeyCode.Keypad6);
     }
 
     private bool DownInput()
     {
-        return Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
+        return Input.GetKeyDown(KeyCode.S) ||
+            Input.GetKeyDown(KeyCode.DownArrow) ||
+            Input.GetKeyDown(KeyCode.Keypad5);
     }
 
     private bool LeftInput()
     {
-        return Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
+        return Input.GetKeyDown(KeyCode.A) ||
+            Input.GetKeyDown(KeyCode.LeftArrow) ||
+            Input.GetKeyDown(KeyCode.Keypad4);
     }
 
     public void OnPlayerInputEvent(UnityAction<int> listener)
