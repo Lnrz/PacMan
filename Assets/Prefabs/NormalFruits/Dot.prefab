@@ -139,3 +139,4 @@ MonoBehaviour:
   eatingTime: 0.017
   eatingSpeedReduction: 0.3
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
+  dotPowerPelletEatenChannel: {fileID: 11400000, guid: 134d12c14d20c31478c253c47fcb4ffe, type: 2}

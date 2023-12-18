@@ -254,7 +254,7 @@ MonoBehaviour:
   stopEntitiesChannel: {fileID: 11400000, guid: 05999debf15b3184fb05fad56b39df78, type: 2}
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   pacman: {fileID: 0}
-  fixedTargetPoint: {x: -100, y: -100}
+  fixedTargetPoint: {x: -54.5, y: -13.5}
   settings: {fileID: 11400000, guid: 61097e7b4db9bdb4c870f84483a33399, type: 2}
   speedSettingsChannel: {fileID: 11400000, guid: f86134c1bc3f59b4d85072c4eb7b9fd8, type: 2}
   akabei: {fileID: 0}

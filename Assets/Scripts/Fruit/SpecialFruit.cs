@@ -4,6 +4,7 @@ using UnityEngine;
 public class SpecialFruit : AbstractEatable
 {
     [SerializeField] private PointsTextChannelSO pointsTextChannel;
+    [SerializeField] private SpecialFruitEatenChannelSO specialFruitEatenChannel;
     [SerializeField] private PlayerEatenChannelSO playerEatenChannel;
     [SerializeField] private GameStartChannelSO gameStartChannel;
     [SerializeField] private float secondsBeforeDestroy = 10.0f;
@@ -43,6 +44,7 @@ public class SpecialFruit : AbstractEatable
     protected override void OnPlayerDetection()
     {
         pointsTextChannel.Invoke(GetPoints(), transform.position);
+        specialFruitEatenChannel.Invoke();
         Destroy(gameObject);
     }
 

@@ -140,6 +140,7 @@ MonoBehaviour:
   eatingTime: 0.017
   eatingSpeedReduction: 0.2
   powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
+  dotPowerPelletEatenChannel: {fileID: 11400000, guid: 134d12c14d20c31478c253c47fcb4ffe, type: 2}
 --- !u!114 &4950101244210828809
 MonoBehaviour:
   m_ObjectHideFlags: 0

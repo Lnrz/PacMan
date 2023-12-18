@@ -139,6 +139,7 @@ MonoBehaviour:
   eatingTime: 0.017
   eatingSpeedReduction: 0.2
   pointsTextChannel: {fileID: 11400000, guid: edc7f0ad142eafd478074701bc193b01, type: 2}
+  specialFruitEatenChannel: {fileID: 11400000, guid: dbdfe4284674004489c65f71629d90c0, type: 2}
   playerEatenChannel: {fileID: 11400000, guid: 12672d895fda7c6498a6d6afe4d28272, type: 2}
   gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
   secondsBeforeDestroy: 15
