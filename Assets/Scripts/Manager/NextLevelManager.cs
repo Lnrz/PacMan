@@ -4,6 +4,7 @@ using UnityEngine;
 public class NextLevelManager : MonoBehaviour
 {
     [SerializeField] private DotChannelSO dotChannel;
+    [SerializeField] private ResetBGMChannelSO resetBGMChannel;
     [SerializeField] private StopEntitiesChannelSO stopEntitiesChannel;
     [SerializeField] private InvisibleGhostsChannelSO invisibleGhostsChannel;
     [SerializeField] private GameRestartChannelSO gameRestartChannel;
@@ -34,6 +35,7 @@ public class NextLevelManager : MonoBehaviour
 
     private IEnumerator NextLevelAnimation()
     {
+        resetBGMChannel.Invoke();
         stopEntitiesChannel.Invoke();
         yield return new WaitForSeconds(waitBeforeFlashing);
         invisibleGhostsChannel.Invoke(true);

@@ -201,6 +201,8 @@ MonoBehaviour:
   gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
   scoreUpdateChannel: {fileID: 11400000, guid: bc455c8a885a1fe45948573eabe2d4f8, type: 2}
   playerEatenChannel: {fileID: 11400000, guid: 12672d895fda7c6498a6d6afe4d28272, type: 2}
+  audioSrc: {fileID: 0}
+  extraLifeAudioClip: {fileID: 8300000, guid: 97dfba220868df5429bba26eaba77c3a, type: 3}
   livesLeft: 4
   pointsForBonusLife: 10000
 --- !u!114 &8060083405175986421

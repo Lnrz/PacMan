@@ -5,7 +5,10 @@ public class GameStartManager : MonoBehaviour
 {
     [SerializeField] private GameStartChannelSO gameStartChannel;
     [SerializeField] private GameRestartChannelSO gameRestartChannel;
-    [SerializeField] private float startWaitTime = 5.0f;
+    [SerializeField] private AudioSource audioSrc;
+    [SerializeField] private AudioClip gameStartAudioClip;
+    [SerializeField] private float gameStartWait;
+    private bool firstStart = true;
 
     private void Awake()
     {
@@ -20,7 +23,16 @@ public class GameStartManager : MonoBehaviour
 
     private IEnumerator GameStartWait()
     {
-        yield return new WaitForSeconds(startWaitTime);
+        if (firstStart)
+        {
+            audioSrc.PlayOneShot(gameStartAudioClip);
+            firstStart = false;
+            yield return new WaitForSeconds(gameStartAudioClip.length);
+        }
+        else
+        {
+            yield return new WaitForSeconds(gameStartWait);
+        }
         gameStartChannel.Invoke();
     }
 }

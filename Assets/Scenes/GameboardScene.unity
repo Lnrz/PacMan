@@ -676,7 +676,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.65
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -20188,6 +20188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1177933879}
   - component: {fileID: 1177933889}
+  - component: {fileID: 1177933890}
   - component: {fileID: 1177933878}
   - component: {fileID: 1177933888}
   - component: {fileID: 1177933877}
@@ -20308,7 +20309,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
-  startWaitTime: 3
+  audioSrc: {fileID: 51702059}
+  gameStartAudioClip: {fileID: 8300000, guid: b612f695c66001245b2b92148c4bc6ee, type: 3}
+  gameStartWait: 3
 --- !u!114 &1177933881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20503,6 +20506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
+  resetBGMChannel: {fileID: 11400000, guid: 00f3e3b0ca15d5e479543b085be57ba6, type: 2}
   stopEntitiesChannel: {fileID: 11400000, guid: 05999debf15b3184fb05fad56b39df78, type: 2}
   invisibleGhostsChannel: {fileID: 11400000, guid: c6a0e23d2c4041e41a011dc4f61e07da, type: 2}
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
@@ -20529,9 +20533,12 @@ MonoBehaviour:
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}
   gameEndChannel: {fileID: 11400000, guid: 02c3bd68c1aff10429dc419a2714a240, type: 2}
   playerMaterial: {fileID: 2100000, guid: 320d21738edabef4897b86544f4eb490, type: 2}
+  audioSrc: {fileID: 51702059}
+  deathAudioClip: {fileID: 8300000, guid: 9598d0b1f46eb3f4a8beeb2f1eaa60a6, type: 3}
+  deathVolumeMod: 0.4
   waitBeforeDeath: 2
-  deathDuration: 2
-  poppingDuration: 0.3
+  deathDuration: 0.95
+  poppingDuration: 0.55
   waitAfterDeath: 2
   waitBeforeMenu: 2
 --- !u!114 &1177933888
@@ -20563,11 +20570,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dotPowerPelletEatenChannel: {fileID: 11400000, guid: 134d12c14d20c31478c253c47fcb4ffe, type: 2}
   specialFruitEatenChannel: {fileID: 11400000, guid: dbdfe4284674004489c65f71629d90c0, type: 2}
+  ghostEatenChannel: {fileID: 11400000, guid: 89a389330caa60045ae8ce5dd2dbdaa8, type: 2}
   audioSrc: {fileID: 51702059}
   dotsPowerPelletsAudioClips:
   - {fileID: 8300000, guid: cee4de78c35be6148812d25bd78cfbf5, type: 3}
   - {fileID: 8300000, guid: e77000bf6f189d6408580eaf63495102, type: 3}
   specialFruitAudioClip: {fileID: 8300000, guid: 75a5ca72ab391d44bbf4e7f3609fbfb6, type: 3}
+  ghostEatenAudioClip: {fileID: 8300000, guid: f9494d6fe62b28a4eb82e77740dff599, type: 3}
+--- !u!114 &1177933890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177933874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78940ea51accdee49827879b202ea8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
+  dotChannel: {fileID: 11400000, guid: 82d263ddc3b7adc4888a2d187382e550, type: 2}
+  powerPelletChannel: {fileID: 11400000, guid: a0dfb102a3aeb6f4fb13a2cbe5909a73, type: 2}
+  powerUpEndChannel: {fileID: 11400000, guid: 6401d40b1491801439628922f80c7364, type: 2}
+  ghostEatenChannel: {fileID: 11400000, guid: 89a389330caa60045ae8ce5dd2dbdaa8, type: 2}
+  ghostEnteredHomeChannel: {fileID: 11400000, guid: 5bf59f3c20394384e9dae735708e1c4f, type: 2}
+  playerEatenChannel: {fileID: 11400000, guid: 12672d895fda7c6498a6d6afe4d28272, type: 2}
+  resetBGMChannel: {fileID: 11400000, guid: 00f3e3b0ca15d5e479543b085be57ba6, type: 2}
+  audioSrc: {fileID: 51702058}
+  BGMs:
+  - {fileID: 8300000, guid: 74ecff6526fa2d1469504e6b02514c76, type: 3}
+  - {fileID: 8300000, guid: 79645b3fdda5da647a2bfd0ba8c2fce7, type: 3}
+  - {fileID: 8300000, guid: a9c0bba024873ae458ace47356685222, type: 3}
+  - {fileID: 8300000, guid: b717bdc2358dc884895e88ba92caf97e, type: 3}
+  - {fileID: 8300000, guid: fbc95d3f4b99015428b89d2573ed8ed0, type: 3}
+  dotsForBGMProgression: 78000000b4000000d2000000e1000000
+  pacmanPoweredBGM: {fileID: 8300000, guid: db754812f0a49694dbdb7a48a0ad61f5, type: 3}
+  ghostGoingHomeBGM: {fileID: 8300000, guid: 5812ceb9052a37c49b371ee876ca870c, type: 3}
 --- !u!1001 &1181789091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38932,6 +38971,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1100911977350511597, guid: 5fe2fc8a699213546b6848c7c2f46e44, type: 3}
+      propertyPath: audioSrc
+      value: 
+      objectReference: {fileID: 51702059}
     - target: {fileID: 3809146355386393815, guid: 5fe2fc8a699213546b6848c7c2f46e44, type: 3}
       propertyPath: m_Name
       value: Player
@@ -39289,6 +39332,7 @@ SceneRoots:
   - {fileID: 1901953772346042817}
   - {fileID: 8612345205554732344}
   - {fileID: 1177933879}
+  - {fileID: 51702060}
   - {fileID: 2048053175}
   - {fileID: 289906086}
   - {fileID: 514982250}
@@ -39296,4 +39340,3 @@ SceneRoots:
   - {fileID: 99015513}
   - {fileID: 132266563}
   - {fileID: 1662157607}
-  - {fileID: 51702060}

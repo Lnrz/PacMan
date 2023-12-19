@@ -10,6 +10,9 @@ public class GameRestartEndManager : MonoBehaviour
     [SerializeField] private GameRestartChannelSO gameRestartChannel;
     [SerializeField] private GameEndChannelSO gameEndChannel;
     [SerializeField] private Material playerMaterial;
+    [SerializeField] private AudioSource audioSrc;
+    [SerializeField] private AudioClip deathAudioClip;
+    [SerializeField] private float deathVolumeMod = 0.75f;
     [SerializeField] private float waitBeforeDeath = 2.0f;
     [SerializeField] private float deathDuration = 1.5f;
     [SerializeField] private float poppingDuration = 0.2f;
@@ -45,6 +48,7 @@ public class GameRestartEndManager : MonoBehaviour
         stopEntitiesChannel.Invoke();
         yield return new WaitForSeconds(waitBeforeDeath);
         invisibleGhostsChannel.Invoke(true);
+        audioSrc.PlayOneShot(deathAudioClip, deathVolumeMod);
         time = 0;
         while (time < 1)
         {

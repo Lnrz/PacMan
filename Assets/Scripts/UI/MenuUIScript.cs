@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 public class MenuUIScript : MonoBehaviour
 {
     [SerializeField] private MenuAnimationEndChannelSO menuAnimationEndChannel;
+    private AudioSource audioSrc;
     private Label creditNum;
     private VisualElement beforeCoin;
     private VisualElement afterCoin;
@@ -11,6 +12,7 @@ public class MenuUIScript : MonoBehaviour
 
     private void Awake()
     {
+        audioSrc = GetComponent<AudioSource>();
         GetElements();
     }
 
@@ -20,6 +22,7 @@ public class MenuUIScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.C))
             {
+                audioSrc.Play();
                 isCoinInserted = true;
                 beforeCoin.style.display = DisplayStyle.None;
                 afterCoin.style.display = DisplayStyle.Flex;

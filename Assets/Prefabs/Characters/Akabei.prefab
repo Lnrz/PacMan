@@ -202,6 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitHouseChannel: {fileID: 11400000, guid: 889f156366d524844af0a914bb583dce, type: 2}
   settings: {fileID: 11400000, guid: 61097e7b4db9bdb4c870f84483a33399, type: 2}
+  ghostEnteredHomeChannel: {fileID: 11400000, guid: 5bf59f3c20394384e9dae735708e1c4f, type: 2}
   gameStartChannel: {fileID: 11400000, guid: 5a72fc5501c8cfb42ac276d374defb41, type: 2}
   stopEntitiesChannel: {fileID: 11400000, guid: 05999debf15b3184fb05fad56b39df78, type: 2}
   gameRestartChannel: {fileID: 11400000, guid: 2a006c9b583fb904dbd2f8ad1de4fc01, type: 2}

@@ -8,6 +8,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
     private static readonly float enterExitSpeed = 3.0f;
     [SerializeField] private ExitHouseChannelSO exitHouseChannel;
     [SerializeField] private GhostHouseSettings settings;
+    [SerializeField] private GhostEnteredHomeChannelSO ghostEnteredHomeChannel;
     [SerializeField] private GameStartChannelSO gameStartChannel;
     [SerializeField] private StopEntitiesChannelSO stopEntitiesChannel;
     [SerializeField] private GameRestartChannelSO gameRestartChannel;
@@ -166,6 +167,7 @@ public class GhostHouse : MonoBehaviour, OutsideHomeEventInvoker, EnteringHomeEv
             }
         }
         FireInsideHomeEvent();
+        ghostEnteredHomeChannel.Invoke();
         exitHouseCorout = ExitHouse();
         StartCoroutine(exitHouseCorout);
     }

@@ -6,6 +6,8 @@ public class PlayerLifeManager : MonoBehaviour
     [SerializeField] private GameStartChannelSO gameStartChannel;
     [SerializeField] private ScoreUpdateChannelSO scoreUpdateChannel;
     [SerializeField] private PlayerEatenChannelSO playerEatenChannel;
+    [SerializeField] private AudioSource audioSrc;
+    [SerializeField] private AudioClip extraLifeAudioClip;
     [SerializeField] private int livesLeft = 4;
     [SerializeField] private int pointsForBonusLife = 10000;
     private bool canBeEaten = false;
@@ -32,6 +34,7 @@ public class PlayerLifeManager : MonoBehaviour
         {
             UpdateLivesLeft(1);
             scoreUpdateChannel.RemoveListener(OnScoreUpdate);
+            audioSrc.PlayOneShot(extraLifeAudioClip);
         }
     }
 
